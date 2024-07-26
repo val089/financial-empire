@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   const a = 'a';
+  const b = 'b';
   return (
     <View style={styles.container}>
       <Text>Financial Empire</Text>
