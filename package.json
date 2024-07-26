@@ -7,14 +7,14 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "eslint ."
+    "lint": "echo \"Running ESlint\" && eslint .",
+    "check-types": "tsc --pretty --noEmit",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
     "expo": "~51.0.22",
     "expo-status-bar": "~1.12.1",
-    "prettier": "^3.3.3",
     "react": "18.2.0",
     "react-native": "0.74.3"
   },
@@ -23,7 +23,17 @@
     "@types/react": "~18.2.45",
     "eslint": "^8.57.0",
     "eslint-config-expo": "^7.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.2",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.3",
     "typescript": "^5.1.3"
   },
-  "private": true
+  "private": true,
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "yarn lint"
+    ]
+  }
 }
