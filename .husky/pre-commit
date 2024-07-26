@@ -1,12 +1,9 @@
-#!/bin/sh
-. "$(dirname $0)/_/husky.sh"
-
-echo '🏗️👷 Check prettier, lint and types before committing'
+echo '🏗️👷 Check lint and types before committing'
 
 bun lint-staged
 
 # Check tsconfig standards
-yarn check-types ||
+bun check-types ||
 (
     echo '🤡😂❌🤡 Failed Type check. 🤡😂❌🤡
             Are you seriously trying to write that? Make the changes required above.'
