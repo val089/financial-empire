@@ -1,11 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigation from './setup/navigation/RootNavigation';
+import UserContextWrapper from './contexts/UserContext/UserContextWrapper';
 
 export default function App() {
   return (
-    <View className='flex-1 items-center justify-center bg-blue-400'>
-      <Text>Financial Empire</Text>
-      <StatusBar style='auto' />
-    </View>
+    <UserContextWrapper>
+      <NavigationContainer>
+        <SafeAreaProvider>
+          <StatusBar style='dark' />
+          <RootNavigation />
+        </SafeAreaProvider>
+      </NavigationContainer>
+    </UserContextWrapper>
   );
 }
