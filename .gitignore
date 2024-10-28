@@ -76,3 +76,12 @@ yarn-error.*
 *.tsbuildinfo
 
 # @end expo-cli
+
+# Android
+/android/
+*.apk
+*.aab
+
+# iOS
+./ios/
+*.ipa
