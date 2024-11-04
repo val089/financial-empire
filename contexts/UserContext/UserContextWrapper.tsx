@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { Session, User } from '@supabase/supabase-js';
-import { supabase } from '../../lib/supabase';
+import { supabase } from 'lib/supabase';
 import { UserContextProvider } from '.';
 
 const UserContextWrapper = ({ children }: { children: ReactNode }) => {

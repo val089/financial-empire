@@ -1,5 +1,5 @@
-import Account from '../../components/Account';
-import { useUserContext } from '../../contexts/UserContext';
+import Account from 'components/Account';
+import { useUserContext } from 'contexts/UserContext';
 
 const HomeScreen = () => {
   const { user, session } = useUserContext();

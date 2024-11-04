@@ -1,106 +1,33 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../lib/supabase';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Button, Input, Text } from '@rneui/themed';
 import { Session } from '@supabase/supabase-js';
 import Avatar from './Avatar';
-import { FlashList } from '@shopify/flash-list';
-import useAuthentication from '../hooks/useAuthentication';
+import useAuthentication from 'hooks/useAuthentication';
+import useUserProfileQuery from 'api/queries/useUserProfileQuery';
+import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
 
 export default function Account({ session }: { session: Session }) {
-  const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState('');
   const [website, setWebsite] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
-  const [users, setUsers] = useState<{ id: string }[]>([]);
   const { logOut } = useAuthentication();
 
+  const { data, isLoading: isUserProfileLoding } = useUserProfileQuery();
+  const { mutate: updateProfile, isPending: isUserProfileUpdating } =
+    useUpdateUserProfileMutation();
+
   useEffect(() => {
-    if (session) {
-      getProfile();
-      getAllUsers();
+    if (data) {
+      setUsername(data.username);
+      setWebsite(data.website);
+      setAvatarUrl(data.avatar_url);
     }
+  }, [data]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session]);
-
-  async function getProfile() {
-    try {
-      setLoading(true);
-      // TODO: handle error by toast or alert
-      if (!session?.user) throw new Error('No user on the session!');
-
-      const { data, error, status } = await supabase
-        .from('profiles')
-        .select(`username, website, avatar_url`)
-        .eq('id', session?.user.id)
-        .single();
-      if (error && status !== 406) {
-        // TODO: handle error by toast or alert
-        throw error;
-      }
-
-      if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        Alert.alert(error.message);
-      }
-    } finally {
-      setLoading(false);
-    }
+  if (!data || isUserProfileLoding) {
+    return <Text>Loading...</Text>;
   }
-
-  async function updateProfile({
-    username,
-    website,
-    avatar_url,
-  }: {
-    username: string;
-    website: string;
-    avatar_url: string;
-  }) {
-    try {
-      setLoading(true);
-      // TODO: handle error by toast or alert
-      if (!session?.user) throw new Error('No user on the session!');
-
-      const updates = {
-        id: session?.user.id,
-        username,
-        website,
-        avatar_url,
-        updated_at: new Date(),
-      };
-
-      const { error } = await supabase.from('profiles').upsert(updates);
-
-      if (error) {
-        // TODO: handle error by toast or alert
-        throw error;
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        Alert.alert(error.message);
-      }
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  const getAllUsers = async () => {
-    const { data, error } = await supabase.from('profiles').select('id');
-
-    if (error) {
-      console.error('Error getting all users:', error.message);
-      return;
-    }
-
-    setUsers(data || []);
-  };
 
   return (
     <View style={styles.container}>
@@ -110,7 +37,12 @@ export default function Account({ session }: { session: Session }) {
           url={avatarUrl}
           onUpload={(url: string) => {
             setAvatarUrl(url);
-            updateProfile({ username, website, avatar_url: url });
+
+            updateProfile({
+              username: data.username,
+              website: data.website,
+              avatar_url: data.avatar_url,
+            });
           }}
         />
       </View>
@@ -121,7 +53,7 @@ export default function Account({ session }: { session: Session }) {
       <View style={styles.verticallySpaced}>
         <Input
           label='Username'
-          value={username || ''}
+          value={username}
           onChangeText={(text) => setUsername(text)}
         />
       </View>
@@ -135,24 +67,16 @@ export default function Account({ session }: { session: Session }) {
 
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button
-          title={loading ? 'Loading ...' : 'Update'}
+          title={isUserProfileUpdating ? 'Loading ...' : 'Update'}
           onPress={() =>
             updateProfile({ username, website, avatar_url: avatarUrl })
           }
-          disabled={loading}
+          disabled={isUserProfileLoding}
         />
       </View>
 
       <View style={styles.verticallySpaced}>
         <Button title='Sign Out' onPress={logOut} />
-      </View>
-
-      <View style={(styles.verticallySpaced, { height: 200 })}>
-        <FlashList
-          data={users}
-          renderItem={({ item }) => <Text>{item.id}</Text>}
-          estimatedItemSize={44}
-        />
       </View>
     </View>
   );
