@@ -4,6 +4,9 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
+    'import/no-cycle': ['error', { maxDepth: 3 }],
+    'arrow-body-style': ['error', 'as-needed'],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
