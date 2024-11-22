@@ -78,10 +78,10 @@ yarn-error.*
 # @end expo-cli
 
 # Android
-/android/
+android/
 *.apk
 *.aab
 
 # iOS
-./ios/
+ios/
 *.ipa

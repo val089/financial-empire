@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import AuthNavigation from './AuthNavigation';
 import HomeNavigation from './HomeNavigation';
-import { useUserContext } from '../../contexts/UserContext';
+import { useUserContext } from 'contexts/UserContext';
 
 const { Screen, Navigator } = createStackNavigator();
 
