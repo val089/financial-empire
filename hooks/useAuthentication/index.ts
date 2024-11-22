@@ -1,5 +1,5 @@
-import { useUserContext } from '../../contexts/UserContext';
-import { supabase } from '../../lib/supabase';
+import { useUserContext } from 'contexts/UserContext';
+import { supabase } from 'lib/supabase';
 
 const useAuthentication = () => {
   const { setIsLoggedIn } = useUserContext();

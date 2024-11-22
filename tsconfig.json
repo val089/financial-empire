@@ -1,6 +1,29 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "baseUrl": ".",
+    "target": "ES6",
+    "paths": {
+      "api/*": ["./api/*"],
+      "assets/*": ["./assets/*"],
+      "components/*": ["./components/*"],
+      "contexts/*": ["./contexts/*"],
+      "hooks/*": ["./hooks/*"],
+      "screens/*": ["./screens/*"],
+      "lib/*": ["./lib/*"],
+      "setup/*": ["./setup/*"]
+    }
+  },
+  "include": [
+    "./**/*",
+    "./api/**/*",
+    "./assets/**/*",
+    "./components/**/*",
+    "./contexts/**/*",
+    "./hooks/**/*",
+    "./screens/**/*",
+    "./lib/**/*",
+    "./setup/**/*"
+  ]
 }
