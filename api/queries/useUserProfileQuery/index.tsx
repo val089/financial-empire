@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '../../../lib/supabase';
-import { UserProfileQueryResponse } from './types';
-import { useUserContext } from '../../../contexts/UserContext';
+import { supabase } from 'lib/supabase';
+import { UseUserProfileQueryOptions } from './types';
+import { useUserContext } from 'contexts/UserContext';
 import { Queries } from '../../enums';
 
-const useUserProfileQuery = () => {
+const useUserProfileQuery = (options?: UseUserProfileQueryOptions) => {
   const { session } = useUserContext();
 
-  return useQuery<UserProfileQueryResponse | null>({
+  return useQuery({
     queryKey: [Queries.UserProfile, session?.user, session?.user.id],
     queryFn: async () => {
       // TODO: handle error by toast or alert
@@ -25,6 +25,7 @@ const useUserProfileQuery = () => {
 
       return data;
     },
+    ...options,
   });
 };
 
