@@ -85,3 +85,5 @@ android/
 # iOS
 ios/
 *.ipa
+
+.yarn
