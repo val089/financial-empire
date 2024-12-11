@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Avatar } from 'components/atoms';
 import { ScreenHeaderProps } from './types';
 import { ArrowLeftButton } from 'components/atoms';
+import { testIDs } from 'utils/testIDs';
 
 const ScreenHeader = ({ avatarUrl, title, onBackPress }: ScreenHeaderProps) => {
   const { top } = useSafeAreaInsets();
@@ -22,6 +23,7 @@ const ScreenHeader = ({ avatarUrl, title, onBackPress }: ScreenHeaderProps) => {
         'h-[100px] max-w-full px-4 flex-row items-center justify-between'
       )}
       style={{ paddingTop: top }}
+      testID={testIDs.screenHeader}
     >
       <View className='flex-1 flex-row items-center'>
         {renderLeftHeaderElement()}

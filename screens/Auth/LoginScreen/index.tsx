@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View, TextInput, Button } from 'react-native';
 import { supabase } from 'lib/supabase';
-import { Button, Input } from '@rneui/themed';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -22,9 +21,9 @@ const LoginScreen = () => {
   return (
     <View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Input
-          label='Email'
-          leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+        <TextInput
+          // label='Email'
+          // leftIcon={{ type: 'font-awesome', name: 'envelope' }}
           onChangeText={(text) => setEmail(text)}
           value={email}
           placeholder='email@address.com'
@@ -32,9 +31,9 @@ const LoginScreen = () => {
         />
       </View>
       <View style={styles.verticallySpaced}>
-        <Input
-          label='Password'
-          leftIcon={{ type: 'font-awesome', name: 'lock' }}
+        <TextInput
+          // label='Password'
+          // leftIcon={{ type: 'font-awesome', name: 'lock' }}
           onChangeText={(text) => setPassword(text)}
           value={password}
           secureTextEntry={true}
