@@ -3,3 +3,5 @@ declare module '*.svg' {
 
   export default SvgReactComponent;
 }
+
+declare module '*.ttf';

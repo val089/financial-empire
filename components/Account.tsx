@@ -81,6 +81,8 @@ export default function Account({ session }: { session: Session }) {
       <View style={styles.verticallySpaced}>
         <Button title='Sign Out' onPress={logOut} />
       </View>
+
+      <Text className='font-interRegular text-h3'>100 999 678 234 569</Text>
     </View>
   );
 }
