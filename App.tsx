@@ -4,10 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootNavigation from './setup/navigation/RootNavigation';
 import UserContextWrapper from './contexts/UserContext/UserContextWrapper';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import Constants from 'expo-constants';
 
 const queryClient = new QueryClient();
 
-export default function App() {
+function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <UserContextWrapper>
@@ -21,3 +22,11 @@ export default function App() {
     </QueryClientProvider>
   );
 }
+
+let AppEntryPoint = App;
+
+if (Constants.expoConfig?.extra?.storybookEnabled === 'true') {
+  AppEntryPoint = require('./.storybook').default;
+}
+
+export default AppEntryPoint;
