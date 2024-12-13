@@ -1,19 +1,21 @@
+const path = require('path');
 const { getDefaultConfig } = require('expo/metro-config');
+const withStorybook = require('@storybook/react-native/metro/withStorybook');
 
-module.exports = (() => {
-  const config = getDefaultConfig(__dirname);
+const defaultConfig = getDefaultConfig(__dirname);
 
-  const { transformer, resolver } = config;
+defaultConfig.transformer = {
+  ...defaultConfig.transformer,
+  babelTransformerPath: require.resolve('react-native-svg-transformer/expo'),
+};
 
-  config.transformer = {
-    ...transformer,
-    babelTransformerPath: require.resolve('react-native-svg-transformer/expo'),
-  };
-  config.resolver = {
-    ...resolver,
-    assetExts: resolver.assetExts.filter((ext) => ext !== 'svg'),
-    sourceExts: [...resolver.sourceExts, 'svg'],
-  };
+defaultConfig.resolver = {
+  ...defaultConfig.resolver,
+  assetExts: defaultConfig.resolver.assetExts.filter((ext) => ext !== 'svg'),
+  sourceExts: [...defaultConfig.resolver.sourceExts, 'svg'],
+};
 
-  return config;
-})();
+module.exports = withStorybook(defaultConfig, {
+  enabled: true,
+  configPath: path.resolve(__dirname, './.storybook'),
+});
