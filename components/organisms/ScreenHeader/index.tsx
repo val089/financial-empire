@@ -28,7 +28,9 @@ const ScreenHeader = ({ avatarUrl, title, onBackPress }: ScreenHeaderProps) => {
       <View className='flex-1 flex-row items-center'>
         {renderLeftHeaderElement()}
 
-        {title && <Text className='ml-2'>{title}</Text>}
+        {title && (
+          <Text className='ml-2 font-interRegular text-h3'>{title}</Text>
+        )}
       </View>
 
       {/* TODO: Add settings, notifications in the future */}
