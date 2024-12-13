@@ -5,11 +5,20 @@ import RootNavigation from './setup/navigation/RootNavigation';
 import UserContextWrapper from './contexts/UserContext/UserContextWrapper';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Constants from 'expo-constants';
+import { useFonts } from 'expo-font';
+import { InterLight, InterRegular, InterMedium, InterBold } from 'assets/fonts';
 
 const queryClient = new QueryClient();
 
-function App() {
-  return (
+const App = () => {
+  const [loaded] = useFonts({
+    InterLight,
+    InterRegular,
+    InterMedium,
+    InterBold,
+  });
+
+  return loaded ? (
     <QueryClientProvider client={queryClient}>
       <UserContextWrapper>
         <NavigationContainer>
@@ -20,8 +29,8 @@ function App() {
         </NavigationContainer>
       </UserContextWrapper>
     </QueryClientProvider>
-  );
-}
+  ) : null;
+};
 
 let AppEntryPoint = App;
 
