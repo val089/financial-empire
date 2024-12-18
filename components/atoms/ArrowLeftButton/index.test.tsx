@@ -4,12 +4,12 @@ import ArrowLeftButton from './index';
 import { testIDs } from 'utils/testIDs';
 
 describe('ArrowLeftButton', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(<ArrowLeftButton onPress={() => {}} />);
     expect(screen.getByTestId(testIDs.arrowLeftButton)).toBeTruthy();
   });
 
-  it('calls onClick when clicked', () => {
+  test('calls onClick when clicked', () => {
     const handlePress = jest.fn();
     render(<ArrowLeftButton onPress={handlePress} />);
     fireEvent.press(screen.getByTestId(testIDs.arrowLeftButton));
