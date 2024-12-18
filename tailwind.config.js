@@ -8,11 +8,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: {
+          blue: {
+            400: '#2196f3',
+          },
+          black: '#000',
+          red: '#E70202',
+        },
+      },
       fontSize: {
         h1: ['28px', { lineHeight: '32px' }],
         h2: ['18px', { lineHeight: '24px' }],
         h3: ['16px', { lineHeight: '22px' }],
-        // h4: ['14px', { lineHeight: '18px' }],
+        h4: ['14px', { lineHeight: '18px' }],
         // h5: ['12px', { lineHeight: '16px' }],
         // h6: ['8px', { lineHeight: '12px' }],
         // body1: ['32px', { lineHeight: '35px' }],

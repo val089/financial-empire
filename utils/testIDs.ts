@@ -3,4 +3,6 @@ export enum testIDs {
   avatarPlaceholder = 'avatar-placeholder',
   screenHeader = 'screen-header',
   arrowLeftButton = 'arrow-left-button',
+  inputLeftIcon = 'input-left-icon',
+  inputRightIcon = 'input-right-icon',
 }

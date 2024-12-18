@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, View, TextInput, Button } from 'react-native';
+import { Alert, StyleSheet, View, Button } from 'react-native';
 import { supabase } from 'lib/supabase';
+import { Input, PasswordInput } from 'components/atoms';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -19,11 +20,10 @@ const LoginScreen = () => {
   }
 
   return (
-    <View>
+    <View className='px-4'>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <TextInput
-          // label='Email'
-          // leftIcon={{ type: 'font-awesome', name: 'envelope' }}
+        <Input
+          label='Email'
           onChangeText={(text) => setEmail(text)}
           value={email}
           placeholder='email@address.com'
@@ -31,12 +31,10 @@ const LoginScreen = () => {
         />
       </View>
       <View style={styles.verticallySpaced}>
-        <TextInput
-          // label='Password'
-          // leftIcon={{ type: 'font-awesome', name: 'lock' }}
+        <PasswordInput
+          label='Password'
           onChangeText={(text) => setPassword(text)}
           value={password}
-          secureTextEntry={true}
           placeholder='Password'
           autoCapitalize={'none'}
         />
