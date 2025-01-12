@@ -6,7 +6,7 @@ import { useUserContext } from '../../../contexts/UserContext';
 import { Alert } from 'react-native';
 
 const useUpdateUserProfileMutation = () => {
-  const { user } = useUserContext();
+  const { session } = useUserContext();
 
   return useMutation({
     mutationFn: async ({
@@ -16,10 +16,10 @@ const useUpdateUserProfileMutation = () => {
     }: UseUpdateUserProfileMutationParameters) => {
       try {
         // TODO: handle error by toast or alert
-        if (!user) throw new Error('No user on the session!');
+        if (!session?.user.id) throw new Error('No user on the session!');
 
         const updates = {
-          id: user.id,
+          id: session?.user.id,
           username,
           website,
           avatar_url,

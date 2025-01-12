@@ -18,16 +18,20 @@ describe('ScreenHeader', () => {
     expect(queryByText('Title')).toBeNull();
   });
 
-  test('renders with avatar', () => {
+  // TODO: replace test for avatar, avatar picker will move to Profile Screen
+  test('renders with avatar picker', () => {
     const { getByTestId } = render(
-      <ScreenHeader avatarUrl='https://example.com/avatar.png' />
+      <ScreenHeader
+        avatarUrl='https://example.com/avatar.png'
+        onUpload={() => {}}
+      />
     );
-    expect(getByTestId(testIDs.avatar)).toBeTruthy();
+    expect(getByTestId(testIDs.avatarPicker)).toBeTruthy();
   });
 
   test('renders without avatar', () => {
     const { queryByTestId } = render(<ScreenHeader />);
-    expect(queryByTestId(testIDs.avatar)).toBeNull();
+    expect(queryByTestId(testIDs.avatarPicker)).toBeNull();
   });
 
   test('renders with back button', () => {

@@ -1,10 +1,8 @@
-import Account from 'components/Account';
-import { useUserContext } from 'contexts/UserContext';
+import { Text, View } from 'react-native';
 
-const HomeScreen = () => {
-  const { user, session } = useUserContext();
-
-  return <>{session && user && <Account key={user.id} session={session} />}</>;
-};
-
+const HomeScreen = () => (
+  <View className='flex-1 items-center justify-center'>
+    <Text className='text-h1'>Welcome to the home screen</Text>
+  </View>
+);
 export default HomeScreen;
