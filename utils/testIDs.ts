@@ -5,4 +5,6 @@ export enum testIDs {
   arrowLeftButton = 'arrow-left-button',
   inputLeftIcon = 'input-left-icon',
   inputRightIcon = 'input-right-icon',
+  avatarLoader = 'avatar-loader',
+  avatarPicker = 'avatar-picker',
 }

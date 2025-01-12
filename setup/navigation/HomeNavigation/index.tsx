@@ -1,16 +1,42 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from 'screens/Home';
 import { ScreenHeader } from 'components/organisms';
+import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
+import { useUserContext } from 'contexts/UserContext';
 const { Screen, Navigator } = createStackNavigator();
 
 const HomeNavigation = () => {
-  const avatarUrl = 'https://avatars.githubusercontent.com/u/4726921?v=4';
+  const { mutate } = useUpdateUserProfileMutation();
+  const { user } = useUserContext();
 
   return (
     <Navigator
       screenOptions={{
         header: ({ options }) => (
-          <ScreenHeader {...{ avatarUrl }} title='Kamil Szerląg' />
+          <ScreenHeader
+            title={`Hi, ${user?.username}`}
+            onUpload={(newAvatarData) => {
+              mutate(
+                {
+                  username: user?.username || '',
+                  website: user?.website || '',
+                  avatar_url: newAvatarData?.path || '',
+                }
+                // TODO: check if we need to invalidate the cache after added Profile Screen
+                // {
+                //   onSuccess: () => {
+                //     if (userId) {
+                //       invalidateQueries({
+                //         queryKey: [Queries.UserProfile, userId],
+                //       });
+                //     }
+                //   },
+                // }
+              );
+            }}
+            avatarUrl={user?.avatar_url}
+            {...options}
+          />
         ),
       }}
     >

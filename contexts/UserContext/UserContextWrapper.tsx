@@ -1,12 +1,21 @@
 import { ReactNode, useEffect, useState } from 'react';
-import { Session, User } from '@supabase/supabase-js';
+import { Session } from '@supabase/supabase-js';
 import { supabase } from 'lib/supabase';
 import { UserContextProvider } from '.';
+import useUserProfileQuery from 'api/queries/useUserProfileQuery';
 
 const UserContextWrapper = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
-  const [user, setUser] = useState<User | undefined>(undefined);
+  const [userId, setUserId] = useState('');
+  const { data, isLoading: isUserProfileLoading } = useUserProfileQuery(
+    userId,
+    {
+      enabled: userId !== null,
+    }
+  );
+
+  const isAuthenticating = isUserProfileLoading;
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -14,12 +23,13 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
       if (!session) {
         return;
       }
+      setSession(session);
+      setUserId(session.user.id);
       setIsLoggedIn(true);
-      setUser(session.user);
+      // setUser(session.user);
     });
   }, []);
 
@@ -29,7 +39,9 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
         isLoggedIn,
         setIsLoggedIn,
         session,
-        user,
+        user: data ?? null,
+        userId,
+        isAuthenticating,
       }}
     >
       {children}
