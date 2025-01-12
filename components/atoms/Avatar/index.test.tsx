@@ -16,4 +16,9 @@ describe('Avatar', () => {
     const { getByTestId } = render(<Avatar url='' />);
     expect(getByTestId(testIDs.avatarPlaceholder)).toBeTruthy();
   });
+
+  test('renders Avatar loader when isLoading is true', () => {
+    const { getByTestId } = render(<Avatar isLoading />);
+    expect(getByTestId(testIDs.avatarLoader)).toBeTruthy();
+  });
 });

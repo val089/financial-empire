@@ -21,3 +21,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {};
+
+export const Placeholder: Story = {
+  args: {
+    url: '',
+  },
+};
+
+export const Loader: Story = {
+  args: {
+    isLoading: true,
+  },
+};

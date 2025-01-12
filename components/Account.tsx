@@ -12,7 +12,9 @@ export default function Account({ session }: { session: Session }) {
   const [avatarUrl, setAvatarUrl] = useState('');
   const { logOut } = useAuthentication();
 
-  const { data, isLoading: isUserProfileLoding } = useUserProfileQuery();
+  const { data, isLoading: isUserProfileLoding } = useUserProfileQuery(
+    session.user.id
+  );
   const { mutate: updateProfile, isPending: isUserProfileUpdating } =
     useUpdateUserProfileMutation();
 

@@ -2,11 +2,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AuthNavigation from './AuthNavigation';
 import HomeNavigation from './HomeNavigation';
 import { useUserContext } from 'contexts/UserContext';
+import { ActivityIndicator, View } from 'react-native';
 
 const { Screen, Navigator } = createStackNavigator();
 
 const RootNavigation = () => {
-  const { isLoggedIn } = useUserContext();
+  const { isLoggedIn, isAuthenticating } = useUserContext();
 
   const renderNavigator = () => {
     if (!isLoggedIn) {
@@ -16,7 +17,11 @@ const RootNavigation = () => {
     return <Screen name='HomeNav' component={HomeNavigation} />;
   };
 
-  return (
+  return isAuthenticating ? (
+    <View>
+      <ActivityIndicator />
+    </View>
+  ) : (
     <Navigator
       screenOptions={{
         headerShown: false,

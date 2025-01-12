@@ -1,16 +1,23 @@
 import clsx from 'clsx';
 import { View, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Avatar } from 'components/atoms';
 import { ScreenHeaderProps } from './types';
 import { ArrowLeftButton } from 'components/atoms';
 import { testIDs } from 'utils/testIDs';
+import AvatarPicker from 'components/molecules/AvatarPicker';
 
-const ScreenHeader = ({ avatarUrl, title, onBackPress }: ScreenHeaderProps) => {
+const ScreenHeader = ({
+  avatarUrl,
+  title,
+  onUpload,
+  onBackPress,
+}: ScreenHeaderProps) => {
   const { top } = useSafeAreaInsets();
 
+  // TODO: Move change avatar to Profile Screen
   const renderLeftHeaderElement = () => {
-    if (avatarUrl) return <Avatar url={avatarUrl} />;
+    if (avatarUrl && onUpload)
+      return <AvatarPicker {...{ avatarUrl, onUpload }} />;
 
     if (onBackPress) return <ArrowLeftButton onPress={onBackPress} />;
 
