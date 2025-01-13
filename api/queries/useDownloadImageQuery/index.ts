@@ -23,7 +23,18 @@ const useDownloadImageQuery = ({
         throw error;
       }
 
-      const avatar_url = URL.createObjectURL(data);
+      const fr = new FileReader();
+      fr.readAsDataURL(data);
+      const avatar_url: string = await new Promise((resolve, reject) => {
+        fr.onload = () => {
+          resolve(fr.result as string);
+        };
+        fr.onerror = () => {
+          reject(new Error('Failed to read file as data URL'));
+        };
+        fr.readAsDataURL(data);
+      });
+
       return {
         avatar_url,
       };
