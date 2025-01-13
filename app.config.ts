@@ -32,4 +32,5 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   extra: {
     storybookEnabled: process.env.STORYBOOK_ENABLED,
   },
+  newArchEnabled: true,
 });
