@@ -7,12 +7,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/icon.png',
-  userInterfaceStyle: 'light',
-  splash: {
-    image: './assets/splash.png',
-    resizeMode: 'contain',
-    backgroundColor: '#ffffff',
-  },
+  userInterfaceStyle: 'automatic',
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.kamildev.financialempire',
@@ -27,9 +22,24 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   web: {
     favicon: './assets/favicon.png',
   },
-  plugins: [['expo-font']],
+  plugins: [
+    'expo-font',
+    [
+      'expo-splash-screen',
+      {
+        // backgroundColor: '#ffffff',
+        image: './assets/splash-light.png',
+        dark: {
+          image: './assets/splash-light.png',
+          // backgroundColor: '#000000',
+        },
+        imageWidth: 50,
+      },
+    ],
+  ],
   scheme: 'com.supabase',
   extra: {
     storybookEnabled: process.env.STORYBOOK_ENABLED,
   },
+  newArchEnabled: true,
 });
