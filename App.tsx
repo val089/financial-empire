@@ -7,6 +7,14 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import { InterLight, InterRegular, InterMedium, InterBold } from 'assets/fonts';
+import * as SplashScreen from 'expo-splash-screen';
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+SplashScreen.setOptions({
+  duration: 500,
+  fade: true,
+});
 
 const queryClient = new QueryClient();
 
@@ -21,7 +29,7 @@ const App = () => {
   return loaded ? (
     <QueryClientProvider client={queryClient}>
       <UserContextWrapper>
-        <NavigationContainer>
+        <NavigationContainer onReady={() => SplashScreen.hide()}>
           <SafeAreaProvider>
             <StatusBar style='dark' />
             <RootNavigation />
