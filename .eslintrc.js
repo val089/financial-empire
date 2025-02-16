@@ -18,4 +18,12 @@ module.exports = {
     ],
     'no-console': ['warn', { allow: ['warn', 'error'] }],
   },
+  ignorePatterns: [
+    'node_modules/',
+    'android/',
+    'ios/',
+    'dist/',
+    '.svgrrc.js',
+    'theme/svgrTemplate.js',
+  ],
 };

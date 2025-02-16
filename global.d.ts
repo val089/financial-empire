@@ -1,6 +1,10 @@
 import React from 'react';
-import { StyleProp } from 'react-native';
+import { ColorValue, StyleProp, ViewStyle } from 'react-native';
 import { SvgProps as ReactNativeSvgProps } from 'react-native-svg';
+
+interface SvgStyle extends ViewStyle {
+  color: ColorValue;
+}
 
 declare global {
   interface SvgProps extends ReactNativeSvgProps {
