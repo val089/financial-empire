@@ -7,7 +7,7 @@ const Avatar = ({ url, isLoading }: AvatarProps) => {
   if (isLoading) {
     return (
       <View
-        className='w-10 h-10 bg-gray-400 rounded-full items-center justify-center'
+        className='h-10 w-10 items-center justify-center rounded-full bg-gray-400'
         testID={testIDs.avatarLoader}
       >
         <ActivityIndicator size='small' color='white' />
@@ -19,14 +19,14 @@ const Avatar = ({ url, isLoading }: AvatarProps) => {
     <>
       {url ? (
         <Image
-          className='w-10 h-10 rounded-full mr-2'
+          className='mr-2 h-10 w-10 rounded-full'
           resizeMode='cover'
           source={{ uri: url }}
           testID={testIDs.avatar}
         />
       ) : (
         <View
-          className='w-10 h-10 bg-gray-400 rounded-full'
+          className='h-10 w-10 rounded-full bg-gray-400'
           testID={testIDs.avatarPlaceholder}
         />
       )}

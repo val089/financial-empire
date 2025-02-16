@@ -27,7 +27,7 @@ const ScreenHeader = ({
   return (
     <View
       className={clsx(
-        'h-[100px] max-w-full px-4 flex-row items-center justify-between'
+        'h-[100px] max-w-full flex-row items-center justify-between px-4'
       )}
       style={{ paddingTop: top }}
       testID={testIDs.screenHeader}
