@@ -9,6 +9,8 @@ import { useFonts } from 'expo-font';
 import { InterLight, InterRegular, InterMedium, InterBold } from 'assets/fonts';
 import * as SplashScreen from 'expo-splash-screen';
 
+import './theme/global.css';
+
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({

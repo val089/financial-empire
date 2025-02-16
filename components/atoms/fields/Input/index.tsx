@@ -1,14 +1,15 @@
-import clsx from 'clsx';
 import { useState } from 'react';
 import { TextInput, Text, View, TouchableOpacity } from 'react-native';
 import { InputProps } from './types';
 import { testIDs } from 'utils/testIDs';
+import { mergeClasses } from 'utils/functions/mergeClasses';
 
 const Input = ({
   label,
   errorMessage,
   leftIcon,
   rightIcon,
+  className,
   ...rest
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -32,7 +33,7 @@ const Input = ({
   return (
     <>
       {label && (
-        <Text className='pb-1 text-primary-black text-h4'>{label}</Text>
+        <Text className='pb-1 text-h4 text-primary-black'>{label}</Text>
       )}
       <View className='justify-center'>
         {LeftIcon && (
@@ -42,7 +43,7 @@ const Input = ({
             testID={testIDs.inputLeftIcon}
           >
             <LeftIcon
-              className={`${leftIconColor ?? 'fill-primary-black'} w-6 h-6`}
+              className={`${leftIconColor ?? 'fill-primary-black'} h-6 w-6`}
             />
           </TouchableOpacity>
         )}
@@ -50,12 +51,16 @@ const Input = ({
           style={{
             includeFontPadding: false,
           }}
-          className={clsx('border p-3 rounded-md text-h3', {
-            'border-gray-300': !isFocused && !errorMessage,
-            'border-primary-red': errorMessage,
-            'border-primary-blue-400': isFocused && !errorMessage,
-            'pl-12': LeftIcon,
-          })}
+          className={mergeClasses(
+            'rounded-md border p-3 text-h3',
+            {
+              'border-gray-300': !isFocused && !errorMessage,
+              'border-primary-red': errorMessage,
+              'border-primary-blue-400': isFocused && !errorMessage,
+              'pl-12': LeftIcon,
+            },
+            className
+          )}
           onFocus={toggleFocus}
           onBlur={toggleFocus}
           {...rest}
@@ -67,7 +72,7 @@ const Input = ({
             testID={testIDs.inputRightIcon}
           >
             <RightIcon
-              className={`${rightIconColor ?? 'fill-primary-black'} w-6 h-6`}
+              className={`${rightIconColor ?? 'fill-primary-black'} h-6 w-6`}
             />
           </TouchableOpacity>
         )}
