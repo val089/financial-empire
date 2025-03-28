@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-import { Mutations } from '../../enums';
+import { Mutations } from 'api/enums';
 import { UseUpdateUserProfileMutationParameters } from './types';
-import { supabase } from '../../../lib/supabase';
-import { useUserContext } from '../../../contexts/UserContext';
+import { supabase } from 'lib/supabase';
+import { useUserContext } from 'contexts/UserContext';
 import { Alert } from 'react-native';
 
 const useUpdateUserProfileMutation = () => {
@@ -18,15 +18,11 @@ const useUpdateUserProfileMutation = () => {
         // TODO: handle error by toast or alert
         if (!session?.user.id) throw new Error('No user on the session!');
 
-        const updates = {
-          id: session?.user.id,
+        const { error } = await supabase.from('profiles').update({
           username,
           website,
           avatar_url,
-          updated_at: new Date(),
-        };
-
-        const { error } = await supabase.from('profiles').upsert(updates);
+        });
 
         if (error) {
           // TODO: handle error by toast or alert

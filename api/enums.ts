@@ -1,10 +1,12 @@
 export enum Mutations {
-  UpdateUserProfile = 'UpdateUserProfile',
-  UploadAvatar = 'UploadAvatar',
+  UpdateUserProfile = 'updateUserProfile',
+  UploadAvatar = 'uploadAvatar',
   DownloadImage = 'downloadImage',
+  AddFinancialEntry = 'addFinancialEntry',
 }
 
 export enum Queries {
   UserProfile = 'userProfile',
   DownloadImage = 'downloadImage',
+  FinancialEntries = 'financialEntries',
 }
