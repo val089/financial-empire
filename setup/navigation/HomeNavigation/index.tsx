@@ -1,48 +1,30 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from 'screens/Home';
-import { ScreenHeader } from 'components/organisms';
-import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
-import { useUserContext } from 'contexts/UserContext';
-const { Screen, Navigator } = createStackNavigator();
+import HomeScreen from 'screens/Home/HomeScreen';
+import { HomeStackParamList } from './types';
+import { Screens } from 'utils/Screens';
+import FinancialEntriesScreen from 'screens/Home/FinancialEntriesScreen';
+// import { ScreenHeader } from 'components/organisms';
 
-const HomeNavigation = () => {
-  const { mutate } = useUpdateUserProfileMutation();
-  const { user } = useUserContext();
+const { Screen, Navigator } = createStackNavigator<HomeStackParamList>();
 
-  return (
-    <Navigator
-      screenOptions={{
-        header: ({ options }) => (
-          <ScreenHeader
-            title={`Hi, ${user?.username}`}
-            onUpload={(newAvatarData) => {
-              mutate(
-                {
-                  username: user?.username || '',
-                  website: user?.website || '',
-                  avatar_url: newAvatarData?.path || '',
-                }
-                // TODO: check if we need to invalidate the cache after added Profile Screen
-                // {
-                //   onSuccess: () => {
-                //     if (userId) {
-                //       invalidateQueries({
-                //         queryKey: [Queries.UserProfile, userId],
-                //       });
-                //     }
-                //   },
-                // }
-              );
-            }}
-            avatarUrl={user?.avatar_url}
-            {...options}
-          />
-        ),
-      }}
-    >
-      <Screen name='HomeScreen' component={HomeScreen} />
-    </Navigator>
-  );
-};
+const HomeNavigation = () => (
+  <Navigator
+  // TODO: fix back button
+  // screenOptions={{
+  //   header: ({ options }) => <ScreenHeader {...options} />,
+  // }}
+  >
+    <Screen
+      name={Screens.Home}
+      component={HomeScreen}
+      options={{ headerShown: false }}
+    />
+    <Screen
+      name={Screens.FinancialEntries}
+      component={FinancialEntriesScreen}
+      options={{ title: Screens.FinancialEntries }}
+    />
+  </Navigator>
+);
 
 export default HomeNavigation;

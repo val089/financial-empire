@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { Mutations } from '../../enums';
+import { Mutations } from 'api/enums';
 import { supabase } from 'lib/supabase';
 import { Alert } from 'react-native';
 import { ImagePickerSuccessResult } from 'expo-image-picker';
