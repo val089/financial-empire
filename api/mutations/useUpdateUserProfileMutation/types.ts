@@ -1,5 +1,6 @@
-export type UseUpdateUserProfileMutationParameters = {
-  username: string;
-  website: string;
-  avatar_url: string;
-};
+import { ProfileUpdate } from 'lib/types';
+
+export type UseUpdateUserProfileMutationParameters = Pick<
+  ProfileUpdate,
+  'avatar_url' | 'username' | 'website'
+>;

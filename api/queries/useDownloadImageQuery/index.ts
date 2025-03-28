@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from 'lib/supabase';
-import { Queries } from '../../enums';
+import { Queries } from 'api/enums';
 import { UseUserProfileQueryOptions } from './types';
 
 const useDownloadImageQuery = ({

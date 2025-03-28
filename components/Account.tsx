@@ -7,9 +7,9 @@ import useUserProfileQuery from 'api/queries/useUserProfileQuery';
 import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
 
 export default function Account({ session }: { session: Session }) {
-  const [username, setUsername] = useState('');
-  const [website, setWebsite] = useState('');
-  const [avatarUrl, setAvatarUrl] = useState('');
+  const [username, setUsername] = useState<string | null>(null);
+  const [website, setWebsite] = useState<string | null>(null);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const { logOut } = useAuthentication();
 
   const { data, isLoading: isUserProfileLoding } = useUserProfileQuery(
@@ -39,6 +39,10 @@ export default function Account({ session }: { session: Session }) {
           onUpload={(url: string) => {
             setAvatarUrl(url);
 
+            if (!data.username || !data.website || !data.avatar_url) {
+              return;
+            }
+
             updateProfile({
               username: data.username,
               website: data.website,
@@ -58,7 +62,7 @@ export default function Account({ session }: { session: Session }) {
       <View style={styles.verticallySpaced}>
         <TextInput
           // label='Username'
-          value={username}
+          value={username || ''}
           onChangeText={(text) => setUsername(text)}
         />
       </View>

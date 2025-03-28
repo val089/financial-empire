@@ -52,7 +52,7 @@ const Input = ({
             includeFontPadding: false,
           }}
           className={mergeClasses(
-            'rounded-md border p-3 text-h3',
+            'rounded-md border p-3 text-h3 bg-white',
             {
               'border-gray-300': !isFocused && !errorMessage,
               'border-primary-red': errorMessage,
