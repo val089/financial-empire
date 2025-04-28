@@ -7,4 +7,5 @@ export enum testIDs {
   inputRightIcon = 'input-right-icon',
   avatarLoader = 'avatar-loader',
   avatarPicker = 'avatar-picker',
+  floatingAddButton = 'floating-add-button',
 }
