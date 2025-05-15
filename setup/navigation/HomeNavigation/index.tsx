@@ -3,6 +3,7 @@ import HomeScreen from 'screens/Home/HomeScreen';
 import { HomeStackParamList } from './types';
 import { Screens } from 'utils/Screens';
 import FinancialEntriesScreen from 'screens/Home/FinancialEntriesScreen';
+import AddEntryScreen from 'screens/Home/AddEntryScreen';
 // import { ScreenHeader } from 'components/organisms';
 
 const { Screen, Navigator } = createStackNavigator<HomeStackParamList>();
@@ -23,6 +24,11 @@ const HomeNavigation = () => (
       name={Screens.FinancialEntries}
       component={FinancialEntriesScreen}
       options={{ title: Screens.FinancialEntries }}
+    />
+    <Screen
+      name={Screens.AddEntry}
+      component={AddEntryScreen}
+      options={{ title: Screens.AddEntry }}
     />
   </Navigator>
 );

@@ -15,7 +15,8 @@
     "prepare": "husky",
     "test": "jest --silent",
     "storybook-generate": "sb-rn-get-stories",
-    "generate-types-supabase": "supabase gen types typescript --project-id khagimhahmqobusbsdyy > lib/database.types.ts --debug"
+    "generate-types-supabase": "supabase gen types typescript --project-ixd khagimhahmqobusbsdyy > lib/database.types.ts --debug",
+    "check-dependencies": "yarn outdated"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.23.1",
