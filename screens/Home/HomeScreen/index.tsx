@@ -5,12 +5,16 @@ import { Screens } from 'utils/Screens';
 import { ScreenHeader } from 'components/organisms';
 import { useUserContext } from 'contexts/UserContext';
 import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
+import { useState } from 'react';
+import { RadioGroup } from 'components/molecules';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { logOut } = useAuthentication();
   const { user } = useUserContext();
   // TODO: Move to Profile Screen
   const { mutate } = useUpdateUserProfileMutation();
+
+  const [value, setValue] = useState('a');
 
   return (
     <>
@@ -46,6 +50,15 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         <Text className='text-h1 text-center mt-20'>
           Welcome to the home screen
         </Text>
+
+        <RadioGroup
+          options={[
+            { label: 'label 1', value: 'a' },
+            { label: 'label 2', value: 'b' },
+          ]}
+          onSelect={setValue}
+          selectedValue={value}
+        />
 
         <TouchableOpacity
           className='bg-primary-blue-400 py-4 w-[200px] self-center rounded-md'

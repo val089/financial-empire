@@ -45,6 +45,7 @@ const App = () => {
 let AppEntryPoint = App;
 
 if (Constants.expoConfig?.extra?.storybookEnabled === 'true') {
+  SplashScreen.hide();
   AppEntryPoint = require('./.storybook').default;
 }
 

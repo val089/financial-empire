@@ -3,6 +3,7 @@ import { FinancialEntriesScreenProps } from './types';
 import { FloatingAddButton, Input } from 'components/atoms';
 import useFinancialEntries from 'api/queries/useFinancialEntries';
 import useAddFinancialEntry from 'api/mutations/useAddFinancialEntry';
+import { Screens } from 'utils/Screens';
 
 // TODO: move this to bottom navigator
 
@@ -31,7 +32,9 @@ const FinancialEntriesScreen = ({
 
   return (
     <>
-      <FloatingAddButton />
+      <FloatingAddButton
+        onPress={() => navigation?.navigate(Screens.AddEntry)}
+      />
       <FlatList
         className='px-4'
         data={financialEntries}
