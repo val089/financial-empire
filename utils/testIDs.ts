@@ -8,4 +8,7 @@ export enum testIDs {
   avatarLoader = 'avatar-loader',
   avatarPicker = 'avatar-picker',
   floatingAddButton = 'floating-add-button',
+  numberPad = 'number-pad',
+  numberPadDisplay = 'number-pad-display',
+  numberPadButton = 'number-pad-button',
 }
