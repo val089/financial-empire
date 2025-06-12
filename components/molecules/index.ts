@@ -1,3 +1,4 @@
 import RadioGroup from './RadioGroup';
+import NumberPad from './NumberPad';
 
-export { RadioGroup };
+export { RadioGroup, NumberPad };

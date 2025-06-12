@@ -1,5 +1,5 @@
 import useAuthentication from 'hooks/useAuthentication';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { HomeScreenProps } from './types';
 import { Screens } from 'utils/Screens';
 import { ScreenHeader } from 'components/organisms';
@@ -7,6 +7,7 @@ import { useUserContext } from 'contexts/UserContext';
 import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
 import { useState } from 'react';
 import { RadioGroup } from 'components/molecules';
+import { Button } from 'components/atoms';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { logOut } = useAuthentication();
@@ -46,11 +47,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         <View className='h-[400px] bg-primary-blue-400 justify-center items-center'>
           <Text className='text-h1 text-white'>10 000,00</Text>
         </View>
-
         <Text className='text-h1 text-center mt-20'>
           Welcome to the home screen
         </Text>
-
         <RadioGroup
           options={[
             { label: 'label 1', value: 'a' },
@@ -59,22 +58,12 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           onSelect={setValue}
           selectedValue={value}
         />
+        <Button label='Logout' onPress={logOut} className='mb-4' />
 
-        <TouchableOpacity
-          className='bg-primary-blue-400 py-4 w-[200px] self-center rounded-md'
-          onPress={logOut}
-        >
-          <Text className='text-white text-h3 text-center'>Logout</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          className='mt-10 bg-primary-blue-400 py-4 w-[200px] self-center rounded-md'
+        <Button
           onPress={() => navigation?.navigate(Screens.FinancialEntries)}
-        >
-          <Text className='text-white text-h3 text-center'>
-            Financial Entries
-          </Text>
-        </TouchableOpacity>
+          label='Financial Entries'
+        />
       </View>
     </>
   );

@@ -4,6 +4,8 @@ import Input from './fields/Input';
 import PasswordInput from './fields/PasswordInput';
 import FloatingAddButton from './FloatingAddButton';
 import Radio from './Radio';
+import CheckableButton from './CheckableButton';
+import Button from './Button';
 
 export {
   Avatar,
@@ -12,4 +14,6 @@ export {
   PasswordInput,
   FloatingAddButton,
   Radio,
+  CheckableButton,
+  Button,
 };
