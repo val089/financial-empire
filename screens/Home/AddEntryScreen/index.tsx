@@ -1,24 +1,58 @@
 import { View, Text } from 'react-native';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { FormData } from './types';
+import { AddFinancialEntryScreenProps, FormData } from './types';
 import { CheckableButton } from 'components/atoms';
 import { NumberPad } from 'components/molecules';
 import { Button } from 'components/atoms';
+import useAddFinancialEntry from 'api/mutations/useAddFinancialEntry';
+import useDefaultToast from 'hooks/useDefaultToast';
+import { useQueryClient } from '@tanstack/react-query';
+import { Queries } from 'api/enums';
 
-const AddEntryScreen = () => {
+const AddFinancialEntryScreen = ({
+  navigation,
+}: AddFinancialEntryScreenProps) => {
+  const { mutate: addFinancialEntry } = useAddFinancialEntry();
+  const { showDefaultToastOnError, toast } = useDefaultToast();
+  const queryClient = useQueryClient();
+
   const methods = useForm<FormData>({
     defaultValues: {
       type: 'income',
-      amount: 0,
+      amount: '0',
     },
-    // resolver: yupResolver(validationSchema),
     mode: 'onChange',
   });
 
-  const { handleSubmit, setValue, watch } = methods;
+  const {
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { isSubmitting },
+  } = methods;
 
   const onSubmit = (formData: FormData) => {
-    console.log('formData', formData);
+    addFinancialEntry(
+      {
+        ...formData,
+        amount: parseFloat(formData.amount),
+      },
+      {
+        // TODO: Add optimistic update
+        onSuccess: () => {
+          toast.show('Financial entry added successfully!', {
+            type: 'success',
+          });
+
+          queryClient.invalidateQueries({
+            queryKey: [Queries.FinancialEntries],
+          });
+
+          navigation?.goBack();
+        },
+        onError: () => showDefaultToastOnError(),
+      }
+    );
   };
 
   return (
@@ -56,11 +90,15 @@ const AddEntryScreen = () => {
             </Text>
           </View>
 
-          <Button label='Add' onPress={handleSubmit(onSubmit)} />
+          <Button
+            label='Add'
+            onPress={handleSubmit(onSubmit)}
+            disabled={isSubmitting}
+          />
         </View>
 
         <NumberPad
-          onChange={(result) => setValue('amount', Number(result))}
+          onChange={(result) => setValue('amount', result)}
           className='flex-1'
         />
       </FormProvider>
@@ -68,4 +106,4 @@ const AddEntryScreen = () => {
   );
 };
 
-export default AddEntryScreen;
+export default AddFinancialEntryScreen;

@@ -26,9 +26,9 @@ const HomeNavigation = () => (
       options={{ title: Screens.FinancialEntries }}
     />
     <Screen
-      name={Screens.AddEntry}
+      name={Screens.AddFinancialEntry}
       component={AddEntryScreen}
-      options={{ title: Screens.AddEntry }}
+      options={{ title: Screens.AddFinancialEntry, presentation: 'modal' }}
     />
   </Navigator>
 );

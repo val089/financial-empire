@@ -1,50 +1,25 @@
-import { View, Text, Button, ActivityIndicator, FlatList } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { FinancialEntriesScreenProps } from './types';
-import { FloatingAddButton, Input } from 'components/atoms';
+import { FloatingAddButton } from 'components/atoms';
 import useFinancialEntries from 'api/queries/useFinancialEntries';
-import useAddFinancialEntry from 'api/mutations/useAddFinancialEntry';
 import { Screens } from 'utils/Screens';
-
-// TODO: move this to bottom navigator
+import { FlashList } from '@shopify/flash-list';
 
 const FinancialEntriesScreen = ({
   navigation,
 }: FinancialEntriesScreenProps) => {
-  const {
-    data: financialEntries,
-    isPending,
-    isLoading,
-    refetch,
-  } = useFinancialEntries();
-
-  const { mutate: addEntry } = useAddFinancialEntry();
-
-  const handleAddEntry = () => {
-    addEntry(
-      {
-        name: 'Test08',
-        amount: 150,
-        type: 'income',
-      },
-      { onSuccess: () => refetch() }
-    );
-  };
+  const { data: financialEntries, isFetching } = useFinancialEntries();
 
   return (
     <>
       <FloatingAddButton
-        onPress={() => navigation?.navigate(Screens.AddEntry)}
+        onPress={() => navigation?.navigate(Screens.AddFinancialEntry)}
       />
-      <FlatList
-        className='px-4'
+      <FlashList
+        estimatedItemSize={100}
+        contentContainerStyle={{ paddingHorizontal: 16, paddingVertical: 16 }}
         data={financialEntries}
         keyExtractor={(item) => String(item.id)}
-        ListHeaderComponent={
-          <>
-            <Input className='mt-4' keyboardType='numeric' />
-            <Button title='Add Income' onPress={handleAddEntry} />
-          </>
-        }
         renderItem={({ item }) => (
           <View
             className='p-2 mb-2 rounded-md bg-blue-200 flex-row justify-between'
@@ -54,8 +29,11 @@ const FinancialEntriesScreen = ({
             <Text className='text-h3'>{item.amount}</Text>
           </View>
         )}
-        ListFooterComponent={
-          isPending || isLoading ? <ActivityIndicator /> : null
+        ListFooterComponent={isFetching ? <ActivityIndicator /> : null}
+        ListEmptyComponent={
+          !isFetching ? (
+            <Text className='text-center text-gray-500'>No entries found</Text>
+          ) : null
         }
       />
     </>
