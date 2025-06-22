@@ -9,7 +9,7 @@ describe('Button', () => {
     expect(screen.getByText(label)).toBeTruthy();
   });
 
-  test('calls onClick when clicked', () => {
+  test('calls onPress when clicked', () => {
     const handlePress = jest.fn();
     render(<Button onPress={handlePress} label={label} />);
     fireEvent.press(screen.getByText(label));
