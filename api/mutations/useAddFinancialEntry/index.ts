@@ -8,7 +8,7 @@ const useAddFinancialEntry = () =>
     mutationFn: async (params: UseAddFinancialEntryMutationParameters) => {
       await supabase.from('financial-entries').insert(params);
     },
-    mutationKey: [Mutations.UpdateUserProfile],
+    mutationKey: [Mutations.AddFinancialEntry],
   });
 
 export default useAddFinancialEntry;
