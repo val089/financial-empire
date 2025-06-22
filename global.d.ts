@@ -2,6 +2,7 @@ import React from 'react';
 import { ColorValue, StyleProp, ViewStyle } from 'react-native';
 import { SvgProps as ReactNativeSvgProps } from 'react-native-svg';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
 
 interface SvgStyle extends ViewStyle {
   color: ColorValue;

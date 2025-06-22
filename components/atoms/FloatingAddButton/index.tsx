@@ -1,9 +1,10 @@
 import { IconPlus } from 'assets/svg';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { testIDs } from 'utils/testIDs';
+import { FloatingAddButtonProps } from './types';
 
-const FloatingAddButton = ({ className, ...rest }: TouchableOpacityProps) => (
+const FloatingAddButton = ({ className, ...rest }: FloatingAddButtonProps) => (
   <TouchableOpacity
     {...rest}
     testID={testIDs.floatingAddButton}

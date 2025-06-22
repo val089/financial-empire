@@ -8,6 +8,7 @@ import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import { InterLight, InterRegular, InterMedium, InterBold } from 'assets/fonts';
 import * as SplashScreen from 'expo-splash-screen';
+import { ToastProvider } from 'react-native-toast-notifications';
 
 import './theme/global.css';
 
@@ -32,10 +33,12 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <UserContextWrapper>
         <NavigationContainer onReady={() => SplashScreen.hide()}>
-          <SafeAreaProvider>
-            <StatusBar style='dark' />
-            <RootNavigation />
-          </SafeAreaProvider>
+          <ToastProvider placement='top'>
+            <SafeAreaProvider>
+              <StatusBar style='dark' />
+              <RootNavigation />
+            </SafeAreaProvider>
+          </ToastProvider>
         </NavigationContainer>
       </UserContextWrapper>
     </QueryClientProvider>
@@ -45,6 +48,7 @@ const App = () => {
 let AppEntryPoint = App;
 
 if (Constants.expoConfig?.extra?.storybookEnabled === 'true') {
+  SplashScreen.hide();
   AppEntryPoint = require('./.storybook').default;
 }
 

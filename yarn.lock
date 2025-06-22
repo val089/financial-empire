@@ -7045,6 +7045,7 @@ __metadata:
     prettier-plugin-tailwindcss: "npm:^0.6.9"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
+    react-hook-form: "npm:^7.56.3"
     react-native: "npm:0.76.7"
     react-native-document-picker: "npm:^9.3.1"
     react-native-gesture-handler: "npm:~2.20.2"
@@ -7053,6 +7054,7 @@ __metadata:
     react-native-screens: "npm:~4.4.0"
     react-native-svg: "npm:15.8.0"
     react-native-svg-transformer: "npm:^1.5.0"
+    react-native-toast-notifications: "npm:^3.4.0"
     supabase: "npm:2.15.8"
     tailwind-merge: "npm:^3.0.1"
     tailwindcss: "npm:3.3.2"
@@ -11603,6 +11605,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-hook-form@npm:^7.56.3":
+  version: 7.56.3
+  resolution: "react-hook-form@npm:7.56.3"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18 || ^19
+  checksum: 10c0/9467b027fd030d93ba3c8de85853d381ca92ba70bfdb9d0569a63dae44c1459082f5863a4ceb8690789a7185a588516182904db4c72546119c966bf25316d591
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.12.0 || ^17.0.0 || ^18.0.0, react-is@npm:^18.0.0, react-is@npm:^18.3.1":
   version: 18.3.1
   resolution: "react-is@npm:18.3.1"
@@ -11796,6 +11807,16 @@ __metadata:
   version: 1.0.5
   resolution: "react-native-swipe-gestures@npm:1.0.5"
   checksum: 10c0/33bb8bd402de82ed751a8f1913fe7e02ddc533edb7178bf9e499387b93d0d14154cef120f273c554bb988ad1ba87165b80be213611cb92af8875f2380ec7878b
+  languageName: node
+  linkType: hard
+
+"react-native-toast-notifications@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "react-native-toast-notifications@npm:3.4.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/1e60ca9155bd19a2c47670a80f60438dbd88be2a4193d6dedce04f3179a529b5fdc85c4b5283926d383f8641d757ac302b96d1a1eb2760a6424e4b433582ad79
   languageName: node
   linkType: hard
 
