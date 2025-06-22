@@ -15,7 +15,8 @@
     "prepare": "husky",
     "test": "jest --silent",
     "storybook-generate": "sb-rn-get-stories",
-    "generate-types-supabase": "supabase gen types typescript --project-id khagimhahmqobusbsdyy > lib/database.types.ts --debug"
+    "generate-types-supabase": "supabase gen types typescript --project-id khagimhahmqobusbsdyy > lib/database.types.ts --debug",
+    "check-dependencies": "yarn outdated"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.23.1",
@@ -36,12 +37,14 @@
     "expo-status-bar": "~2.0.1",
     "nativewind": "^4.1.23",
     "react": "18.3.1",
+    "react-hook-form": "^7.56.3",
     "react-native": "0.76.7",
     "react-native-document-picker": "^9.3.1",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
     "react-native-svg": "15.8.0",
+    "react-native-toast-notifications": "^3.4.0",
     "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {

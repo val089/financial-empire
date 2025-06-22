@@ -9,7 +9,7 @@ describe('ArrowLeftButton', () => {
     expect(screen.getByTestId(testIDs.arrowLeftButton)).toBeTruthy();
   });
 
-  test('calls onClick when clicked', () => {
+  test('calls onPress when clicked', () => {
     const handlePress = jest.fn();
     render(<ArrowLeftButton onPress={handlePress} />);
     fireEvent.press(screen.getByTestId(testIDs.arrowLeftButton));

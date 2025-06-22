@@ -10,6 +10,7 @@ const Input = ({
   leftIcon,
   rightIcon,
   className,
+  containerClassName,
   ...rest
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -31,7 +32,7 @@ const Input = ({
   };
 
   return (
-    <>
+    <View className={mergeClasses('', containerClassName)}>
       {label && (
         <Text className='pb-1 text-h4 text-primary-black'>{label}</Text>
       )}
@@ -52,7 +53,7 @@ const Input = ({
             includeFontPadding: false,
           }}
           className={mergeClasses(
-            'rounded-md border p-3 text-h3 bg-white',
+            'rounded-xl border p-3 text-h3 bg-white',
             {
               'border-gray-300': !isFocused && !errorMessage,
               'border-primary-red': errorMessage,
@@ -81,7 +82,7 @@ const Input = ({
       {errorMessage && (
         <Text className='pt-1 text-h4 text-primary-red'>{errorMessage}</Text>
       )}
-    </>
+    </View>
   );
 };
 
