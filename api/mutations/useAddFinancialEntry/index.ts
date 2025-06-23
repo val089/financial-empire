@@ -1,12 +1,25 @@
 import { useMutation } from '@tanstack/react-query';
 import { Mutations } from 'api/enums';
-import { UseAddFinancialEntryMutationParameters } from './types';
+import {
+  UseAddFinancialEntryMutationParameters,
+  UseAddFinancialEntryMutationReturnType,
+} from './types';
 import { supabase } from 'lib/supabase';
 
-const useAddFinancialEntry = () =>
+const useAddFinancialEntry = (): UseAddFinancialEntryMutationReturnType =>
   useMutation({
     mutationFn: async (params: UseAddFinancialEntryMutationParameters) => {
-      await supabase.from('financial-entries').insert(params);
+      const { data, error } = await supabase
+        .from('financial-entries')
+        .insert(params)
+        .select()
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      return data;
     },
     mutationKey: [Mutations.AddFinancialEntry],
   });
