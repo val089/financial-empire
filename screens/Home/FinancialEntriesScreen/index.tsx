@@ -7,6 +7,7 @@ import { Screens } from 'utils/Screens';
 import { FlashList, ListRenderItem } from '@shopify/flash-list';
 import { FinancialEntry } from 'lib/types';
 import { Formatter } from 'utils/Formatter/Formatter';
+import FinancialEntryItem from './components/FinancialEntryItem';
 
 const FinancialEntriesScreen = ({
   navigation,
@@ -20,34 +21,9 @@ const FinancialEntriesScreen = ({
         index > 0 && financialEntries?.[index - 1]?.created_at
           ? Formatter.getDateString(financialEntries[index - 1].created_at)
           : null;
-      const shouldShowDate = currentDateString !== previousDateString;
+      const showMainDate = currentDateString !== previousDateString;
 
-      return (
-        <>
-          {shouldShowDate && (
-            <Text className='text-h2 px-4 mt-10 font-interMedium'>
-              {Formatter.formatDate(item.created_at)}
-            </Text>
-          )}
-          <View
-            className='p-4 flex-row justify-between items-center border-b border-b-gray-200'
-            key={item.id}
-          >
-            <View>
-              <Text className='text-h3'>{item.category || 'TEST'}</Text>
-              <Text className='text-h4 text-gray-400'>
-                {Formatter.timeFromDate(item.created_at)}
-              </Text>
-            </View>
-
-            {item.type === 'income' ? (
-              <Text className='text-h3 text-green-500'>+ {item.amount}</Text>
-            ) : (
-              <Text className='text-h3 text-red-500'>- {item.amount}</Text>
-            )}
-          </View>
-        </>
-      );
+      return <FinancialEntryItem {...{ item, showMainDate }} />;
     },
     [financialEntries]
   );
@@ -58,6 +34,7 @@ const FinancialEntriesScreen = ({
         onPress={() => navigation?.navigate(Screens.AddFinancialEntry)}
       />
       <FlashList
+        contentContainerStyle={{ paddingBottom: 100 }}
         estimatedItemSize={100}
         data={financialEntries}
         keyExtractor={(item) => String(item.id)}
