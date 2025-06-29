@@ -16,7 +16,7 @@ export class Formatter {
 
   /**
    * Formats date string (2025-06-22T15:52:36.842778) to display in format "22 JUNE" or "22 JUNE 2024"
-   * Year is only showed when it is not current year.
+   * Year is only shown when it is not current year.
    */
   public static formatDate = (timestamp: string): string => {
     const date = new Date(timestamp);
