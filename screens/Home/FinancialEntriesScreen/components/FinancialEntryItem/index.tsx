@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { Formatter } from 'utils/Formatter/Formatter';
 import RightAction from '../RightAction';
 import { FinancialEntryItemProps } from './types';
@@ -12,6 +12,16 @@ const FinancialEntryItem = ({
   showMainDate,
 }: FinancialEntryItemProps) => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Cleanup timeout on component unmount to prevent memory leaks
+  useEffect(
+    () => () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    },
+    []
+  );
 
   const handleSwipeableOpen = (
     directions: 'left' | 'right',
