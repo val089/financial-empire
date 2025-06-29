@@ -37,7 +37,6 @@ const FinancialEntryItem = ({
             'border-t': showMainDate,
           }
         )}
-        key={item.id}
       >
         <View>
           <Text className='text-h3'>{item.category || 'TEST'}</Text>
