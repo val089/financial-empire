@@ -11,7 +11,7 @@ const FinancialEntryItem = ({
   item,
   showMainDate,
 }: FinancialEntryItemProps) => {
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleSwipeableOpen = (
     directions: 'left' | 'right',
