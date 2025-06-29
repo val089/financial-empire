@@ -18,6 +18,7 @@ const FinancialEntryItem = ({
     () => () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
       }
     },
     []
