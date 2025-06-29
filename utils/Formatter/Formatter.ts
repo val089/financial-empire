@@ -10,7 +10,8 @@ export class Formatter {
    * Extracts only the date from timestamp (without time) for comparison
    */
   public static getDateString(timestamp: string): string {
-    return new Date(timestamp).toDateString();
+    const date = new Date(timestamp);
+    return format(date, 'yyyy-MM-dd');
   }
 
   /**

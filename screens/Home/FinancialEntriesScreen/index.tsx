@@ -28,6 +28,14 @@ const FinancialEntriesScreen = ({
     [financialEntries]
   );
 
+  if (isFetching) {
+    return (
+      <View className='flex-1 bg-white justify-center items-center'>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
   return (
     <View className='flex-1 bg-white'>
       <FloatingAddButton
