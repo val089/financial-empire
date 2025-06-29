@@ -36,7 +36,7 @@ const App = () => {
         <NavigationContainer onReady={() => SplashScreen.hide()}>
           <ToastProvider placement='top'>
             <SafeAreaProvider>
-              <GestureHandlerRootView>
+              <GestureHandlerRootView style={{ flex: 1 }}>
                 <StatusBar style='dark' />
                 <RootNavigation />
               </GestureHandlerRootView>
