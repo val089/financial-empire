@@ -1,6 +1,6 @@
 import { Text } from 'react-native';
 import Reanimated, { useAnimatedStyle } from 'react-native-reanimated';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons';
 import colors from 'theme/colors';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { RightActionProps } from './types';
