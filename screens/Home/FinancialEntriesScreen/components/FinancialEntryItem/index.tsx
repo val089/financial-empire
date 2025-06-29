@@ -26,7 +26,8 @@ const FinancialEntryItem = ({
         />
       )}
       onSwipeableOpen={(directions, swipeable) => {
-        setTimeout(() => swipeable.close(), 2000);
+        const timeout = setTimeout(() => swipeable.close(), 2000);
+        return () => clearTimeout(timeout);
       }}
     >
       <View
