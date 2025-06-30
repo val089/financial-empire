@@ -9,6 +9,7 @@ import { useFonts } from 'expo-font';
 import { InterLight, InterRegular, InterMedium, InterBold } from 'assets/fonts';
 import * as SplashScreen from 'expo-splash-screen';
 import { ToastProvider } from 'react-native-toast-notifications';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import './theme/global.css';
 
@@ -35,8 +36,10 @@ const App = () => {
         <NavigationContainer onReady={() => SplashScreen.hide()}>
           <ToastProvider placement='top'>
             <SafeAreaProvider>
-              <StatusBar style='dark' />
-              <RootNavigation />
+              <GestureHandlerRootView style={{ flex: 1 }}>
+                <StatusBar style='dark' />
+                <RootNavigation />
+              </GestureHandlerRootView>
             </SafeAreaProvider>
           </ToastProvider>
         </NavigationContainer>

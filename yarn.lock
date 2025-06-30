@@ -1916,6 +1916,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@expo/vector-icons@npm:^14.1.0":
+  version: 14.1.0
+  resolution: "@expo/vector-icons@npm:14.1.0"
+  peerDependencies:
+    expo-font: "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/f1dcea2c43c0808f48d1953395c6f8025ae5e811648e86b79158492c9ef8af7a40781e42844dfb1434242a08fcf6ab14886825eb2c79bad2a792aebd1eb5077c
+  languageName: node
+  linkType: hard
+
 "@expo/ws-tunnel@npm:^1.0.1":
   version: 1.0.4
   resolution: "@expo/ws-tunnel@npm:1.0.4"
@@ -5390,6 +5401,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "date-fns@npm:4.1.0"
+  checksum: 10c0/b79ff32830e6b7faa009590af6ae0fb8c3fd9ffad46d930548fbb5acf473773b4712ae887e156ba91a7b3dc30591ce0f517d69fd83bd9c38650fdc03b4e0bac8
+  languageName: node
+  linkType: hard
+
 "debug@npm:2.6.9, debug@npm:^2.2.0, debug@npm:^2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -6999,6 +7017,7 @@ __metadata:
   resolution: "financial-empire@workspace:."
   dependencies:
     "@babel/core": "npm:^7.20.0"
+    "@expo/vector-icons": "npm:^14.1.0"
     "@gorhom/bottom-sheet": "npm:^5.0.6"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
     "@react-native-community/datetimepicker": "npm:^8.2.0"
@@ -7022,6 +7041,7 @@ __metadata:
     babel-plugin-module-resolver: "npm:^5.0.2"
     clsx: "npm:^2.1.1"
     cross-env: "npm:^7.0.3"
+    date-fns: "npm:^4.1.0"
     dotenv: "npm:^16.4.7"
     eslint: "npm:^8.57.0"
     eslint-config-expo: "npm:~8.0.1"
