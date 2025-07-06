@@ -8,11 +8,19 @@ import { FlashList, ListRenderItem } from '@shopify/flash-list';
 import { FinancialEntry } from 'lib/types';
 import { Formatter } from 'utils/Formatter/Formatter';
 import FinancialEntryItem from './components/FinancialEntryItem';
+import useRefreshOnScroll from 'hooks/useRefreshOnScroll';
 
 const FinancialEntriesScreen = ({
   navigation,
 }: FinancialEntriesScreenProps) => {
-  const { data: financialEntries, isFetching } = useFinancialEntries();
+  const {
+    data: financialEntries,
+    isFetching,
+    refetch,
+    isLoading,
+  } = useFinancialEntries();
+
+  const { refreshControl } = useRefreshOnScroll({ refetch });
 
   const renderItem: ListRenderItem<FinancialEntry> = useCallback(
     ({ item, index }) => {
@@ -28,7 +36,7 @@ const FinancialEntriesScreen = ({
     [financialEntries]
   );
 
-  if (isFetching) {
+  if (isLoading) {
     return (
       <View className='flex-1 bg-white justify-center items-center'>
         <ActivityIndicator />
@@ -42,15 +50,17 @@ const FinancialEntriesScreen = ({
         onPress={() => navigation?.navigate(Screens.AddFinancialEntry)}
       />
       <FlashList
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 100 }}
         estimatedItemSize={100}
         data={financialEntries}
         keyExtractor={(item) => String(item.id)}
-        {...{ renderItem }}
-        ListFooterComponent={isFetching ? <ActivityIndicator /> : null}
+        {...{ renderItem, refreshControl }}
         ListEmptyComponent={
-          !isFetching ? (
-            <Text className='text-center text-gray-500'>No entries found</Text>
+          !isFetching && !isLoading && financialEntries?.length === 0 ? (
+            <Text className='text-h3 text-center text-gray-500 mt-20'>
+              No entries found
+            </Text>
           ) : null
         }
       />
