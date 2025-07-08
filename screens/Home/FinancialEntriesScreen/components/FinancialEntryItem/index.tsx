@@ -32,7 +32,7 @@ const FinancialEntryItem = ({
     }
 
     timeoutRef.current = setTimeout(() => {
-      swipeableRef?.current?.close();
+      swipeableRef.current?.close();
       timeoutRef.current = null;
     }, 2000);
   };

@@ -19,19 +19,9 @@ const useDefaultToast = () => {
       position: 'top',
     });
 
-  const showInfoToast = (message: string) =>
-    Toast.show({
-      type: 'info',
-      text1: 'Info',
-      text2: message,
-      position: 'top',
-    });
-
   return {
     showDefaultToastOnError,
     showSuccessToast,
-    showInfoToast,
-    toast: Toast,
   };
 };
 
