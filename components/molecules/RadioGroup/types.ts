@@ -1,5 +1,7 @@
+import { ReactElement } from 'react';
+
 export interface RadioGroupOption<T> {
-  label: string | JSX.Element;
+  label: string | ReactElement;
   value: T;
 }
 

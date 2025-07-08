@@ -5,7 +5,9 @@ const meta = {
   title: 'Molecules/NumberPad',
   component: NumberPad,
   argTypes: {},
-  args: {},
+  args: {
+    display: false,
+  },
 } satisfies Meta<typeof NumberPad>;
 
 export default meta;
