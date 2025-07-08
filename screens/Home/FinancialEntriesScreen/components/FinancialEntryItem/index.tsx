@@ -12,6 +12,7 @@ const FinancialEntryItem = ({
   showMainDate,
 }: FinancialEntryItemProps) => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const swipeableRef = useRef<SwipeableMethods>(null);
 
   // Cleanup timeout on component unmount to prevent memory leaks
   useEffect(
@@ -24,23 +25,19 @@ const FinancialEntryItem = ({
     []
   );
 
-  const handleSwipeableOpen = (
-    directions: 'left' | 'right',
-    swipeable: SwipeableMethods
-  ) => {
-    // Clear any existing timeout
+  // JS functions for timeout management
+  const handleSwipeableOpen = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    // Set new timeout to auto-close after 2 seconds
+
     timeoutRef.current = setTimeout(() => {
-      swipeable.close();
+      swipeableRef?.current?.close();
       timeoutRef.current = null;
     }, 2000);
   };
 
   const handleSwipeableWillClose = () => {
-    // Clear timeout when manually closing
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
@@ -48,13 +45,17 @@ const FinancialEntryItem = ({
   };
 
   return (
-    <>
+    <View testID={`swipeable-item-${item.id.toString()}`}>
       {showMainDate && (
-        <Text className='text-h2 px-4 mt-10 mb-5 font-interMedium'>
+        <Text
+          className='text-h2 px-4 mt-10 mb-5 font-interMedium'
+          testID='main-date'
+        >
           {Formatter.formatDate(item.created_at)}
         </Text>
       )}
       <Swipeable
+        ref={swipeableRef}
         friction={2}
         enableTrackpadTwoFingerGesture
         rightThreshold={40}
@@ -89,7 +90,7 @@ const FinancialEntryItem = ({
           )}
         </View>
       </Swipeable>
-    </>
+    </View>
   );
 };
 
