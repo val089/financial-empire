@@ -8,7 +8,7 @@ import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import { InterLight, InterRegular, InterMedium, InterBold } from 'assets/fonts';
 import * as SplashScreen from 'expo-splash-screen';
-import { ToastProvider } from 'react-native-toast-notifications';
+import Toast from 'react-native-toast-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import './theme/global.css';
@@ -34,14 +34,13 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <UserContextWrapper>
         <NavigationContainer onReady={() => SplashScreen.hide()}>
-          <ToastProvider placement='top'>
-            <SafeAreaProvider>
-              <GestureHandlerRootView style={{ flex: 1 }}>
-                <StatusBar style='dark' />
-                <RootNavigation />
-              </GestureHandlerRootView>
-            </SafeAreaProvider>
-          </ToastProvider>
+          <SafeAreaProvider>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <StatusBar style='dark' />
+              <RootNavigation />
+            </GestureHandlerRootView>
+          </SafeAreaProvider>
+          <Toast />
         </NavigationContainer>
       </UserContextWrapper>
     </QueryClientProvider>
