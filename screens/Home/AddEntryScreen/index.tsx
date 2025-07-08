@@ -13,7 +13,7 @@ const AddFinancialEntryScreen = ({
   navigation,
 }: AddFinancialEntryScreenProps) => {
   const { mutate: addFinancialEntry } = useAddFinancialEntry();
-  const { showDefaultToastOnError, toast } = useDefaultToast();
+  const { showDefaultToastOnError, showSuccessToast } = useDefaultToast();
   const queryClient = useQueryClient();
 
   const methods = useForm<FormData>({
@@ -40,9 +40,7 @@ const AddFinancialEntryScreen = ({
       {
         // TODO: Add optimistic update
         onSuccess: () => {
-          toast.show('Financial entry added successfully!', {
-            type: 'success',
-          });
+          showSuccessToast('Financial entry added successfully!');
 
           queryClient.invalidateQueries({
             queryKey: [Queries.FinancialEntries],

@@ -14,6 +14,8 @@ defaultConfig.resolver = {
   ...defaultConfig.resolver,
   assetExts: defaultConfig.resolver.assetExts.filter((ext) => ext !== 'svg'),
   sourceExts: [...defaultConfig.resolver.sourceExts, 'svg'],
+  // issue with supabase-js --> https://github.com/supabase/supabase-js/issues/1400, after fix it can be removed
+  unstable_enablePackageExports: false,
 };
 
 const configWithNativeWind = withNativeWind(defaultConfig, {

@@ -42,5 +42,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   extra: {
     storybookEnabled: process.env.STORYBOOK_ENABLED,
   },
-  newArchEnabled: true,
+
+  // New architecture is enabled by default from Expo SDK 53.
 });
