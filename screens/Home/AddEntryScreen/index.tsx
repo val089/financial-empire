@@ -8,6 +8,7 @@ import useAddFinancialEntry from 'api/mutations/useAddFinancialEntry';
 import useDefaultToast from 'hooks/useDefaultToast';
 import { useQueryClient } from '@tanstack/react-query';
 import { Queries } from 'api/enums';
+import { ScreenHeader } from 'components/organisms';
 
 const AddFinancialEntryScreen = ({
   navigation,
@@ -55,6 +56,10 @@ const AddFinancialEntryScreen = ({
 
   return (
     <View className='flex-1 bg-white'>
+      <ScreenHeader
+        onBackPress={() => navigation?.goBack()}
+        title='Add financial entry'
+      />
       <FormProvider {...methods}>
         <View className='px-4'>
           <View className='items-centser'>

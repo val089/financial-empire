@@ -1,8 +1,8 @@
-import { IconPlus } from 'assets/svg';
 import { TouchableOpacity } from 'react-native';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { testIDs } from 'utils/testIDs';
 import { FloatingAddButtonProps } from './types';
+import { Ionicons } from '@expo/vector-icons';
 
 const FloatingAddButton = ({ className, ...rest }: FloatingAddButtonProps) => (
   <TouchableOpacity
@@ -13,7 +13,7 @@ const FloatingAddButton = ({ className, ...rest }: FloatingAddButtonProps) => (
       className
     )}
   >
-    <IconPlus width={24} height={24} />
+    <Ionicons name='add' size={40} color='#fff' />
   </TouchableOpacity>
 );
 
