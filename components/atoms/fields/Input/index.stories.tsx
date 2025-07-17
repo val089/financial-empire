@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Input from '.';
-import { IconEyeOpen, IconEyeClose } from 'assets/svg';
+import { Ionicons } from '@expo/vector-icons';
 
 const meta = {
   title: 'Atoms/fields/Input',
@@ -38,7 +38,7 @@ export const WithLeftIcon: Story = {
     placeholder: 'Type something...',
     value: '',
     leftIcon: {
-      icon: IconEyeClose,
+      icon: () => <Ionicons name='eye-off' size={24} />,
       onPress: () => console.log('Left icon pressed'),
     },
   },
@@ -49,7 +49,7 @@ export const WithRightIcon: Story = {
     placeholder: 'Type something...',
     value: '',
     rightIcon: {
-      icon: IconEyeOpen,
+      icon: () => <Ionicons name='eye' size={24} />,
       onPress: () => console.log('Right icon pressed'),
     },
   },

@@ -1,7 +1,7 @@
 import { TouchableOpacity } from 'react-native';
-import { IconArrowLeft } from 'assets/svg';
 import { ArrowLeftButtonProps } from './types';
 import { testIDs } from 'utils/testIDs';
+import { Ionicons } from '@expo/vector-icons';
 
 const ArrowLeftButton = ({ onPress }: ArrowLeftButtonProps) => (
   <TouchableOpacity
@@ -10,7 +10,7 @@ const ArrowLeftButton = ({ onPress }: ArrowLeftButtonProps) => (
     hitSlop={15}
     testID={testIDs.arrowLeftButton}
   >
-    <IconArrowLeft height={24} width={24} fill='black' />
+    <Ionicons name='arrow-back' size={30} color='#000' />
   </TouchableOpacity>
 );
 

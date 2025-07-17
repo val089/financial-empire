@@ -43,4 +43,10 @@ describe('ScreenHeader', () => {
     const { queryByTestId } = render(<ScreenHeader />);
     expect(queryByTestId(testIDs.arrowLeftButton)).toBeNull();
   });
+
+  test('renders with main side menu icons', () => {
+    const { getByTestId } = render(<ScreenHeader showMainSideMenu={true} />);
+    expect(getByTestId(testIDs.notificationsButton)).toBeTruthy();
+    expect(getByTestId(testIDs.settingsButton)).toBeTruthy();
+  });
 });
