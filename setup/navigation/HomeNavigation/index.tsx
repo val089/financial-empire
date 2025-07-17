@@ -23,12 +23,18 @@ const HomeNavigation = () => (
     <Screen
       name={Screens.FinancialEntries}
       component={FinancialEntriesScreen}
-      options={{ title: Screens.FinancialEntries }}
+      options={{
+        title: Screens.FinancialEntries,
+        headerShown: false,
+      }}
     />
     <Screen
       name={Screens.AddFinancialEntry}
       component={AddEntryScreen}
-      options={{ title: Screens.AddFinancialEntry, presentation: 'modal' }}
+      options={{
+        title: Screens.AddFinancialEntry,
+        headerShown: false,
+      }}
     />
   </Navigator>
 );

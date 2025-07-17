@@ -9,6 +9,7 @@ import { FinancialEntry } from 'lib/types';
 import { Formatter } from 'utils/Formatter/Formatter';
 import FinancialEntryItem from './components/FinancialEntryItem';
 import useRefreshOnScroll from 'hooks/useRefreshOnScroll';
+import { ScreenHeader } from 'components/organisms';
 
 const FinancialEntriesScreen = ({
   navigation,
@@ -46,6 +47,10 @@ const FinancialEntriesScreen = ({
 
   return (
     <View className='flex-1 bg-white'>
+      <ScreenHeader
+        onBackPress={() => navigation?.goBack()}
+        title='Financial entries'
+      />
       <FloatingAddButton
         onPress={() => navigation?.navigate(Screens.AddFinancialEntry)}
       />
