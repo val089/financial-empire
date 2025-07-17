@@ -1,16 +1,19 @@
 import clsx from 'clsx';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenHeaderProps } from './types';
 import { ArrowLeftButton } from 'components/atoms';
 import { testIDs } from 'utils/testIDs';
 import AvatarPicker from 'components/molecules/AvatarPicker';
+import { Ionicons } from '@expo/vector-icons';
+import { DEFAULT_HEADER_ICONS_PROPS, ICONS_HIT_SLOPE } from './consts';
 
 const ScreenHeader = ({
   avatarUrl,
   title,
   onUpload,
   onBackPress,
+  showMainSideMenu,
 }: ScreenHeaderProps) => {
   const { top } = useSafeAreaInsets();
 
@@ -40,13 +43,35 @@ const ScreenHeader = ({
         )}
       </View>
 
-      {/* TODO: Add settings, notifications in the future */}
-      {/* <View className='flex-row'> */}
-      {/* Settings ? */}
-      {/* <View className='w-10 h-10 bg-blue-400 rounded-full mr-2' /> */}
-      {/* Notifications ? */}
-      {/* <View className='w-10 h-10 bg-blue-700 rounded-full mr-2' /> */}
-      {/* </View> */}
+      {showMainSideMenu && (
+        <View className='flex-row items-center justify-end'>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {}}
+            hitSlop={ICONS_HIT_SLOPE}
+            testID={testIDs.notificationsButton}
+          >
+            <Ionicons
+              name='notifications'
+              size={DEFAULT_HEADER_ICONS_PROPS.size}
+              color={DEFAULT_HEADER_ICONS_PROPS.color}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {}}
+            hitSlop={ICONS_HIT_SLOPE}
+            testID={testIDs.settingsButton}
+          >
+            <Ionicons
+              name='settings'
+              size={DEFAULT_HEADER_ICONS_PROPS.size}
+              color={DEFAULT_HEADER_ICONS_PROPS.color}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
