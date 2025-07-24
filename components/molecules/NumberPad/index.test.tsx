@@ -4,7 +4,7 @@ import Calculator from './index';
 import { testIDs } from 'utils/testIDs';
 import { Keys } from './types';
 
-describe('Calculator', () => {
+describe('NumberPad', () => {
   const numberPadButtonId = testIDs.numberPadButton;
   const numberPadDisplayId = testIDs.numberPadDisplay;
   const numberPadId = testIDs.numberPad;
@@ -174,7 +174,7 @@ describe('Calculator', () => {
     expect(display.props.children).toBe(0);
   });
 
-  test('calls onChange with correct values for complex input sequence', () => {
+  test('calls onChange with correct values for complex input sequence and check that onChange return value as a number', () => {
     const mockOnChange = jest.fn();
     render(<Calculator onChange={mockOnChange} display />);
 
@@ -199,7 +199,7 @@ describe('Calculator', () => {
 
     const display = screen.getByTestId(numberPadDisplayId);
     expect(display.props.children).toBe('12.5');
-    expect(mockOnChange).toHaveBeenLastCalledWith('12.5');
+    expect(mockOnChange).toHaveBeenCalledWith(12.5);
   });
 
   test('prevents leading zeros', () => {

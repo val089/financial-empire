@@ -14,12 +14,7 @@ import { ScreenHeader } from 'components/organisms';
 const FinancialEntriesScreen = ({
   navigation,
 }: FinancialEntriesScreenProps) => {
-  const {
-    data: financialEntries,
-    isFetching,
-    refetch,
-    isLoading,
-  } = useFinancialEntries();
+  const { data: financialEntries, isFetching, refetch } = useFinancialEntries();
 
   const { refreshControl } = useRefreshOnScroll({ refetch });
 
@@ -37,7 +32,7 @@ const FinancialEntriesScreen = ({
     [financialEntries]
   );
 
-  if (isLoading) {
+  if (isFetching) {
     return (
       <View className='flex-1 bg-white justify-center items-center'>
         <ActivityIndicator />
@@ -62,7 +57,7 @@ const FinancialEntriesScreen = ({
         keyExtractor={(item) => String(item.id)}
         {...{ renderItem, refreshControl }}
         ListEmptyComponent={
-          !isFetching && !isLoading && financialEntries?.length === 0 ? (
+          !isFetching && financialEntries?.length === 0 ? (
             <Text className='text-h3 text-center text-gray-500 mt-20'>
               No entries found
             </Text>

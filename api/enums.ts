@@ -9,4 +9,5 @@ export enum Queries {
   UserProfile = 'userProfile',
   DownloadImage = 'downloadImage',
   FinancialEntries = 'financialEntries',
+  FinancialEntriesTotalAmount = 'financialEntriesTotalAmount',
 }
