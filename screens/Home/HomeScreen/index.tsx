@@ -6,6 +6,7 @@ import { ScreenHeader } from 'components/organisms';
 import { useUserContext } from 'contexts/UserContext';
 import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
 import { Button } from 'components/atoms';
+import TotalFinancialEntriesAmount from './partials/TotalFinancialEntriesAmount';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { logOut } = useAuthentication();
@@ -16,7 +17,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
   return (
     <>
       <ScreenHeader
-        title={`Hi, ${user?.username}`}
+        title={`Hi, ${user?.username || 'user'}`}
         onUpload={(newAvatarData) => {
           mutate(
             {
@@ -39,10 +40,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         avatarUrl={user?.avatar_url || ''}
       />
       <View className='flex-1'>
-        {/* TOTAL MONEY */}
-        <View className='h-[400px] bg-primary-blue-400 justify-center items-center'>
-          <Text className='text-h1 text-white'>10 000,00</Text>
-        </View>
+        <TotalFinancialEntriesAmount />
         <View className='px-4'>
           <Text className='text-h1 text-center mt-20'>
             Welcome to the home screen

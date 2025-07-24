@@ -6,6 +6,7 @@ import FloatingAddButton from './FloatingAddButton';
 import Radio from './Radio';
 import CheckableButton from './CheckableButton';
 import Button from './Button';
+import Loader from './Loader';
 
 export {
   Avatar,
@@ -16,4 +17,5 @@ export {
   Radio,
   CheckableButton,
   Button,
+  Loader,
 };
