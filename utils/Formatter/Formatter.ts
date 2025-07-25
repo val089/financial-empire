@@ -40,8 +40,8 @@ export class Formatter {
    * Formats amount to a string with two decimal places and thousands separator
    * Example: 1234567.89 -> "1 234 567,89"
    */
-
   public static formatAmount(value: number): string {
+    // TODO: change to use locale currency formatting
     return value.toLocaleString('pl-PL', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
