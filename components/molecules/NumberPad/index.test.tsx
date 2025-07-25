@@ -174,7 +174,7 @@ describe('NumberPad', () => {
     expect(display.props.children).toBe(0);
   });
 
-  test('calls onChange with correct values for complex input sequence and check that onChange return value as a number', () => {
+  test('calls onChange with correct values for complex input sequence and checks that onChange returns a number', () => {
     const mockOnChange = jest.fn();
     render(<Calculator onChange={mockOnChange} display />);
 
