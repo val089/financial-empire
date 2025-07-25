@@ -11,7 +11,7 @@ const NumberPad = ({
   className,
   display = false,
 }: {
-  onChange?: (value: string) => void;
+  onChange?: (value: number) => void;
   className?: string;
   display?: boolean;
 }) => {
@@ -20,7 +20,7 @@ const NumberPad = ({
   const updateValue = useCallback(
     (value: string) => {
       setValue(value);
-      onChange?.(value);
+      onChange?.(Number(value));
     },
     [onChange]
   );
