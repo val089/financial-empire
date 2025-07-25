@@ -5,6 +5,7 @@ const colors = {
     },
     black: '#000',
     red: '#E70202',
+    white: '#FFF',
   },
 };
 
