@@ -29,7 +29,7 @@ const AddFinancialEntryScreen = ({
       />
       <FormProvider {...formMethods}>
         <View className='px-4'>
-          <View className='items-centser'>
+          <View className='items-center'>
             <Controller
               name='type'
               render={({ field: { onChange, value } }) => (
