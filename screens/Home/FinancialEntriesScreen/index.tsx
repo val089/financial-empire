@@ -1,7 +1,7 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text } from 'react-native';
 import { useCallback } from 'react';
 import { FinancialEntriesScreenProps } from './types';
-import { FloatingAddButton } from 'components/atoms';
+import { FloatingAddButton, Loader } from 'components/atoms';
 import useFinancialEntries from 'api/queries/useFinancialEntries';
 import { Screens } from 'utils/Screens';
 import { FlashList, ListRenderItem } from '@shopify/flash-list';
@@ -14,7 +14,16 @@ import { ScreenHeader } from 'components/organisms';
 const FinancialEntriesScreen = ({
   navigation,
 }: FinancialEntriesScreenProps) => {
-  const { data: financialEntries, isFetching, refetch } = useFinancialEntries();
+  const {
+    data: financialEntries,
+    isFetching,
+    refetch,
+    fetchNextPage,
+    hasNextPage,
+    isLoading,
+  } = useFinancialEntries({
+    select: (queryData) => queryData.pages.flatMap((data) => data),
+  });
 
   const { refreshControl } = useRefreshOnScroll({ refetch });
 
@@ -31,14 +40,6 @@ const FinancialEntriesScreen = ({
     },
     [financialEntries]
   );
-
-  if (isFetching) {
-    return (
-      <View className='flex-1 bg-white justify-center items-center'>
-        <ActivityIndicator />
-      </View>
-    );
-  }
 
   return (
     <View className='flex-1 bg-white'>
@@ -62,6 +63,10 @@ const FinancialEntriesScreen = ({
               No entries found
             </Text>
           ) : null
+        }
+        onEndReached={() => (hasNextPage ? fetchNextPage() : undefined)}
+        ListFooterComponent={
+          hasNextPage || isLoading ? <Loader className='mt-20' /> : null
         }
       />
     </View>
