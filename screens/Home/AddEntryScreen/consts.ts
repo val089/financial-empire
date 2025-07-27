@@ -1,4 +1,12 @@
+import { FinancialEntryTypeList } from 'lib/types';
+
 export const entryTypes = [
-  { label: 'income', value: 'income' },
-  { label: 'expense', value: 'expense' },
+  {
+    label: FinancialEntryTypeList.income,
+    value: FinancialEntryTypeList.income,
+  },
+  {
+    label: FinancialEntryTypeList.expense,
+    value: FinancialEntryTypeList.expense,
+  },
 ];
