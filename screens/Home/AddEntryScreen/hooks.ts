@@ -16,7 +16,7 @@ export const useAddEntryScreen = ({
 
   const methods = useForm<FormData>({
     defaultValues: {
-      type: FinancialEntryTypeList.income,
+      type: FinancialEntryTypeList.expense,
       amount: 0,
     },
     mode: 'onChange',
