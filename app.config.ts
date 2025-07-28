@@ -1,5 +1,17 @@
 import { ExpoConfig, ConfigContext } from 'expo/config';
 
+const IS_DEV = process.env.APP_ENV === 'development';
+
+// FPS Monitor settings
+const getFPSMonitorEnabled = () => {
+  if (process.env.EXPO_PUBLIC_ENABLE_FPS_MONITOR) {
+    return process.env.EXPO_PUBLIC_ENABLE_FPS_MONITOR;
+  }
+
+  // Enabled by default in dev mode, disabled in production
+  return IS_DEV ? 'true' : 'false';
+};
+
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: 'financial-empire',
@@ -41,6 +53,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   scheme: 'com.supabase',
   extra: {
     storybookEnabled: process.env.STORYBOOK_ENABLED,
+    enableFPSMonitor: getFPSMonitorEnabled(),
   },
 
   // New architecture is enabled by default from Expo SDK 53.

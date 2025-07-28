@@ -10,6 +10,7 @@ import { InterLight, InterRegular, InterMedium, InterBold } from 'assets/fonts';
 import * as SplashScreen from 'expo-splash-screen';
 import Toast from 'react-native-toast-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import FPSMonitor from 'components/utils/FPSMonitor';
 
 import './theme/global.css';
 
@@ -38,6 +39,8 @@ const App = () => {
             <GestureHandlerRootView style={{ flex: 1 }}>
               <StatusBar style='dark' />
               <RootNavigation />
+              {/* Global FPSMonitor - controlled by EXPO_PUBLIC_ENABLE_FPS_MONITOR */}
+              <FPSMonitor />
             </GestureHandlerRootView>
           </SafeAreaProvider>
           <Toast />
