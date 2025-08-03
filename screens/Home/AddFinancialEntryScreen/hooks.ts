@@ -5,11 +5,13 @@ import useDefaultToast from 'hooks/useDefaultToast';
 import { useQueryClient } from '@tanstack/react-query';
 import { Queries } from 'api/enums';
 import { FinancialEntryTypeList } from 'lib/types';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
-export const useAddEntryScreen = ({
+export const useAddFinancialEntryScreen = ({
   navigation,
+  route,
 }: AddFinancialEntryScreenProps) => {
+  const { category_name, subcategory_name } = route?.params || {};
   const { mutate: addFinancialEntry } = useAddFinancialEntry();
   const { showDefaultToastOnError, showSuccessToast } = useDefaultToast();
   const queryClient = useQueryClient();
@@ -18,11 +20,25 @@ export const useAddEntryScreen = ({
     defaultValues: {
       type: FinancialEntryTypeList.expense,
       amount: 0,
+      category_name: null,
+      subcategory_name: null,
     },
     mode: 'onChange',
   });
 
   const { setValue, watch } = methods;
+
+  useEffect(() => {
+    if (category_name) {
+      setValue('category_name', category_name);
+    }
+    if (subcategory_name) {
+      setValue('subcategory_name', subcategory_name);
+    }
+    if (category_name && !subcategory_name) {
+      setValue('subcategory_name', null);
+    }
+  }, [category_name, setValue, subcategory_name]);
 
   const onSubmit = (formData: FormData) => {
     addFinancialEntry(
@@ -37,9 +53,7 @@ export const useAddEntryScreen = ({
           queryClient.invalidateQueries({
             queryKey: [Queries.FinancialEntriesTotalAmount],
           });
-
           showSuccessToast('Financial entry added successfully!');
-
           navigation?.goBack();
         },
         onError: () => showDefaultToastOnError(),

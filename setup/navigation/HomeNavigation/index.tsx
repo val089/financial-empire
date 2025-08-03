@@ -3,7 +3,9 @@ import HomeScreen from 'screens/Home/HomeScreen';
 import { HomeStackParamList } from './types';
 import { Screens } from 'utils/Screens';
 import FinancialEntriesScreen from 'screens/Home/FinancialEntriesScreen';
-import AddEntryScreen from 'screens/Home/AddEntryScreen';
+import AddEntryScreen from 'screens/Home/AddFinancialEntryScreen';
+import CategoryFinancialEntriesScreen from 'screens/Home/CategoryFinancialEntriesScreen';
+import SubcategoryFinancialEntriesScreen from 'screens/Home/SubcategoryFinancialEntriesScreen';
 // import { ScreenHeader } from 'components/organisms';
 
 const { Screen, Navigator } = createStackNavigator<HomeStackParamList>();
@@ -24,7 +26,6 @@ const HomeNavigation = () => (
       name={Screens.FinancialEntries}
       component={FinancialEntriesScreen}
       options={{
-        title: Screens.FinancialEntries,
         headerShown: false,
       }}
     />
@@ -32,7 +33,20 @@ const HomeNavigation = () => (
       name={Screens.AddFinancialEntry}
       component={AddEntryScreen}
       options={{
-        title: Screens.AddFinancialEntry,
+        headerShown: false,
+      }}
+    />
+    <Screen
+      name={Screens.CategoryFinancialEntries}
+      component={CategoryFinancialEntriesScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
+    <Screen
+      name={Screens.SubcategoryFinancialEntries}
+      component={SubcategoryFinancialEntriesScreen}
+      options={{
         headerShown: false,
       }}
     />
