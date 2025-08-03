@@ -14,31 +14,70 @@ export type Database = {
   };
   public: {
     Tables: {
+      'categories-financial-entries': {
+        Row: {
+          created_at: string;
+          id: number;
+          name:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
+        };
+        Insert: {
+          created_at?: string;
+          id?: number;
+          name?:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
+        };
+        Update: {
+          created_at?: string;
+          id?: number;
+          name?:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
+        };
+        Relationships: [];
+      };
       'financial-entries': {
         Row: {
           amount: number | null;
-          category: string | null;
+          category_name:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
           created_at: string;
           id: number;
           name: string | null;
+          subcategory_name:
+            | Database['public']['Enums']['SubcategoryFinancialEntryName']
+            | null;
           type: Database['public']['Enums']['FinancialEntryType'];
           user_id: string | null;
         };
         Insert: {
           amount?: number | null;
-          category?: string | null;
+          category_name?:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
           created_at?: string;
           id?: number;
           name?: string | null;
+          subcategory_name?:
+            | Database['public']['Enums']['SubcategoryFinancialEntryName']
+            | null;
           type: Database['public']['Enums']['FinancialEntryType'];
           user_id?: string | null;
         };
         Update: {
           amount?: number | null;
-          category?: string | null;
+          category_name?:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
           created_at?: string;
           id?: number;
           name?: string | null;
+          subcategory_name?:
+            | Database['public']['Enums']['SubcategoryFinancialEntryName']
+            | null;
           type?: Database['public']['Enums']['FinancialEntryType'];
           user_id?: string | null;
         };
@@ -71,26 +110,151 @@ export type Database = {
         };
         Relationships: [];
       };
+      'subcategories-financial-entries': {
+        Row: {
+          category_name:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
+          created_at: string;
+          id: number;
+          name:
+            | Database['public']['Enums']['SubcategoryFinancialEntryName']
+            | null;
+        };
+        Insert: {
+          category_name?:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
+          created_at?: string;
+          id?: number;
+          name?:
+            | Database['public']['Enums']['SubcategoryFinancialEntryName']
+            | null;
+        };
+        Update: {
+          category_name?:
+            | Database['public']['Enums']['CategoryFinancialEntryName']
+            | null;
+          created_at?: string;
+          id?: number;
+          name?:
+            | Database['public']['Enums']['SubcategoryFinancialEntryName']
+            | null;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
     };
     Functions: {
-      get_total_amount: {
-        Args: Record<PropertyKey, never>;
-        Returns: number;
-      };
       get_total_financial_entries_amount: {
-        Args: Record<PropertyKey, never>;
-        Returns: number;
-      };
-      get_user_financial_entries_total: {
         Args: Record<PropertyKey, never>;
         Returns: number;
       };
     };
     Enums: {
+      CategoryFinancialEntryName:
+        | 'income'
+        | 'food & drinks'
+        | 'housing'
+        | 'transportation'
+        | 'vehicle'
+        | 'life & entertainment'
+        | 'communication, pc'
+        | 'financial expenses'
+        | 'investments'
+        | 'others'
+        | 'shopping';
       FinancialEntryType: 'income' | 'expense';
+      SubcategoryFinancialEntryName:
+        | 'groceries'
+        | 'restaurant'
+        | 'fast-food'
+        | 'bar'
+        | 'cafe'
+        | 'clothes'
+        | 'shoes'
+        | 'jewels'
+        | 'health'
+        | 'beauty'
+        | 'kids'
+        | 'home'
+        | 'garden'
+        | 'pets'
+        | 'animals'
+        | 'electronics'
+        | 'gifts'
+        | 'stationery'
+        | 'hobby'
+        | 'drug-store'
+        | 'chemist'
+        | 'rent'
+        | 'mortgage'
+        | 'energy'
+        | 'services'
+        | 'maintenance'
+        | 'property insurance'
+        | 'public transport'
+        | 'taxi'
+        | 'plane'
+        | 'business trips'
+        | 'fuel'
+        | 'parking'
+        | 'vehicle maintenance'
+        | 'rentals'
+        | 'vehicle insurance'
+        | 'leasing'
+        | 'health care'
+        | 'wellness'
+        | 'active sport'
+        | 'theatre'
+        | 'life events'
+        | 'hobbies'
+        | 'education'
+        | 'books'
+        | 'streaming'
+        | 'holiday'
+        | 'charity'
+        | 'alcohol'
+        | 'tobacco'
+        | 'trips'
+        | 'hotels'
+        | 'cinema'
+        | 'lottery'
+        | 'gambling'
+        | 'phone'
+        | 'internet'
+        | 'software'
+        | 'apps'
+        | 'games'
+        | 'postal services'
+        | 'taxes'
+        | 'insurances'
+        | 'loan'
+        | 'interests'
+        | 'fines'
+        | 'advisory'
+        | 'charges'
+        | 'fees'
+        | 'child support'
+        | 'vehicles'
+        | 'financial investments'
+        | 'savings'
+        | 'collections'
+        | 'wage'
+        | 'invoices'
+        | 'dividends'
+        | 'sale'
+        | 'rental income'
+        | 'dues'
+        | 'grants'
+        | 'lending'
+        | 'renting'
+        | 'checks'
+        | 'coupons'
+        | 'refunds'
+        | 'realty';
     };
     CompositeTypes: {
       [_ in never]: never;
@@ -221,7 +385,109 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      CategoryFinancialEntryName: [
+        'income',
+        'food & drinks',
+        'housing',
+        'transportation',
+        'vehicle',
+        'life & entertainment',
+        'communication, pc',
+        'financial expenses',
+        'investments',
+        'others',
+        'shopping',
+      ],
       FinancialEntryType: ['income', 'expense'],
+      SubcategoryFinancialEntryName: [
+        'groceries',
+        'restaurant',
+        'fast-food',
+        'bar',
+        'cafe',
+        'clothes',
+        'shoes',
+        'jewels',
+        'health',
+        'beauty',
+        'kids',
+        'home',
+        'garden',
+        'pets',
+        'animals',
+        'electronics',
+        'gifts',
+        'stationery',
+        'hobby',
+        'drug-store',
+        'chemist',
+        'rent',
+        'mortgage',
+        'energy',
+        'services',
+        'maintenance',
+        'property insurance',
+        'public transport',
+        'taxi',
+        'plane',
+        'business trips',
+        'fuel',
+        'parking',
+        'vehicle maintenance',
+        'rentals',
+        'vehicle insurance',
+        'leasing',
+        'health care',
+        'wellness',
+        'active sport',
+        'theatre',
+        'life events',
+        'hobbies',
+        'education',
+        'books',
+        'streaming',
+        'holiday',
+        'charity',
+        'alcohol',
+        'tobacco',
+        'trips',
+        'hotels',
+        'cinema',
+        'lottery',
+        'gambling',
+        'phone',
+        'internet',
+        'software',
+        'apps',
+        'games',
+        'postal services',
+        'taxes',
+        'insurances',
+        'loan',
+        'interests',
+        'fines',
+        'advisory',
+        'charges',
+        'fees',
+        'child support',
+        'vehicles',
+        'financial investments',
+        'savings',
+        'collections',
+        'wage',
+        'invoices',
+        'dividends',
+        'sale',
+        'rental income',
+        'dues',
+        'grants',
+        'lending',
+        'renting',
+        'checks',
+        'coupons',
+        'refunds',
+        'realty',
+      ],
     },
   },
 } as const;

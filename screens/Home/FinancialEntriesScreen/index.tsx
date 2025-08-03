@@ -48,7 +48,7 @@ const FinancialEntriesScreen = ({
         title='Financial entries'
       />
       <FloatingAddButton
-        onPress={() => navigation?.navigate(Screens.AddFinancialEntry)}
+        onPress={() => navigation?.navigate(Screens.AddFinancialEntry, {})}
       />
       <FlashList
         showsVerticalScrollIndicator={false}

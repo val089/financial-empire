@@ -10,4 +10,6 @@ export enum Queries {
   DownloadImage = 'downloadImage',
   FinancialEntries = 'financialEntries',
   FinancialEntriesTotalAmount = 'financialEntriesTotalAmount',
+  CategoriesFinancialEntries = 'categoriesFinancialEntries',
+  SubcategoryFinancialEntries = 'subcategoryFinancialEntries',
 }

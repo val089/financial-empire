@@ -77,7 +77,9 @@ const FinancialEntryItem = ({
           )}
         >
           <View>
-            <Text className='text-h3'>{item.category || 'Uncategorized'}</Text>
+            <Text className='text-h3'>
+              {item.category_name || 'Uncategorized'}
+            </Text>
             <Text className='text-h4 text-gray-400'>
               {Formatter.timeFromDate(item.created_at)}
             </Text>
