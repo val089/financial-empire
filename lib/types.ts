@@ -17,3 +17,15 @@ export const FinancialEntryTypeList = {
   expense: 'expense',
   income: 'income',
 } as const satisfies Record<FinancialEntryType, FinancialEntryType>;
+
+export type CategoryFinancialEntry =
+  Database['public']['Tables']['categories-financial-entries']['Row'];
+
+export type CategoryFinancialEntryName =
+  Database['public']['Enums']['CategoryFinancialEntryName'];
+
+export type SubcategoryFinancialEntry =
+  Database['public']['Tables']['subcategories-financial-entries']['Row'];
+
+export type SubcategoryFinancialEntryName =
+  Database['public']['Enums']['SubcategoryFinancialEntryName'];
