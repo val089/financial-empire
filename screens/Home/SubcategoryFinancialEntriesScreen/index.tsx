@@ -13,7 +13,7 @@ const SubcategoryFinancialEntriesScreen = ({
   const { category_name } = route?.params || {};
 
   const { data: subcategories, isLoading } = useSubcategoryFinancialEntries({
-    category_name: null,
+    category_name,
   });
 
   if (isLoading) {
