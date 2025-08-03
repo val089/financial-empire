@@ -7,6 +7,7 @@ import Radio from './Radio';
 import CheckableButton from './CheckableButton';
 import Button from './Button';
 import Loader from './Loader';
+import CategoryButton from '../molecules/CategoryButton';
 
 export {
   Avatar,
@@ -18,4 +19,5 @@ export {
   CheckableButton,
   Button,
   Loader,
+  CategoryButton,
 };
