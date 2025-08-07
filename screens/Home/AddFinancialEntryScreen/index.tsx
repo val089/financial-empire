@@ -15,18 +15,16 @@ const AddFinancialEntryScreen = ({
   navigation,
   route,
 }: AddFinancialEntryScreenProps) => {
-  const { onSubmit, formMethods, handleNumberPadOnChange } =
-    useAddFinancialEntryScreen({
-      navigation,
-      route,
-    });
+  const { onSubmit, formMethods } = useAddFinancialEntryScreen({
+    navigation,
+    route,
+  });
 
   const {
     handleSubmit,
     watch,
     formState: { isSubmitting },
     setValue,
-    getValues,
   } = formMethods;
 
   return (
@@ -43,18 +41,12 @@ const AddFinancialEntryScreen = ({
               <View className='flex-row justify-between w-full mt-4 gap-4'>
                 <CheckableButton
                   label='Expense'
-                  onPress={() => {
-                    onChange(FinancialEntryTypeList.expense);
-                    setValue('amount', (getValues('amount') || 0) * -1);
-                  }}
+                  onPress={() => onChange(FinancialEntryTypeList.expense)}
                   isSelected={value === FinancialEntryTypeList.expense}
                 />
                 <CheckableButton
                   label='Income'
-                  onPress={() => {
-                    onChange(FinancialEntryTypeList.income);
-                    setValue('amount', (getValues('amount') || 0) * -1);
-                  }}
+                  onPress={() => onChange(FinancialEntryTypeList.income)}
                   isSelected={value === FinancialEntryTypeList.income}
                 />
               </View>
@@ -97,7 +89,11 @@ const AddFinancialEntryScreen = ({
               numberOfLines={1}
               adjustsFontSizeToFit
             >
-              {watch('amount') || '0 PLN'}
+              {watch('type') === FinancialEntryTypeList.expense ? '-' : '+'}
+              {watch('amount') || '0'}
+
+              {/* TODO: set currency in the future */}
+              {' PLN'}
             </Text>
           </View>
 
@@ -108,7 +104,11 @@ const AddFinancialEntryScreen = ({
           />
         </View>
 
-        <NumberPad onChange={handleNumberPadOnChange} className='flex-1' />
+        <NumberPad
+          value={watch('amount')?.toString() || '0'}
+          onChange={(value) => setValue('amount', value)}
+          className='flex-1'
+        />
       </FormProvider>
     </View>
   );
