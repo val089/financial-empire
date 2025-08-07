@@ -25,6 +25,8 @@ const AddFinancialEntryScreen = ({
     handleSubmit,
     watch,
     formState: { isSubmitting },
+    setValue,
+    getValues,
   } = formMethods;
 
   return (
@@ -41,12 +43,18 @@ const AddFinancialEntryScreen = ({
               <View className='flex-row justify-between w-full mt-4 gap-4'>
                 <CheckableButton
                   label='Expense'
-                  onPress={() => onChange(FinancialEntryTypeList.expense)}
+                  onPress={() => {
+                    onChange(FinancialEntryTypeList.expense);
+                    setValue('amount', (getValues('amount') || 0) * -1);
+                  }}
                   isSelected={value === FinancialEntryTypeList.expense}
                 />
                 <CheckableButton
                   label='Income'
-                  onPress={() => onChange(FinancialEntryTypeList.income)}
+                  onPress={() => {
+                    onChange(FinancialEntryTypeList.income);
+                    setValue('amount', (getValues('amount') || 0) * -1);
+                  }}
                   isSelected={value === FinancialEntryTypeList.income}
                 />
               </View>
