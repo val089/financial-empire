@@ -14,3 +14,10 @@ export const Keys = {
 } as const;
 
 export type KeysType = keyof typeof Keys;
+
+export type NumberPadProps = {
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+  display?: boolean;
+};
