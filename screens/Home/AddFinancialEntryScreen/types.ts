@@ -4,8 +4,10 @@ import { Screens } from 'utils/Screens';
 
 export type FormData = Pick<
   FinancialEntry,
-  'category_name' | 'type' | 'amount' | 'subcategory_name'
->;
+  'category_name' | 'type' | 'subcategory_name'
+> & {
+  amount: string;
+};
 
 export type AddFinancialEntryScreenProps = ScreenProps<
   HomeStackParamList,
