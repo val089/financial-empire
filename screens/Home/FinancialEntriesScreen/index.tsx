@@ -10,6 +10,8 @@ import { Formatter } from 'utils/Formatter/Formatter';
 import FinancialEntryItem from './components/FinancialEntryItem';
 import useRefreshOnScroll from 'hooks/useRefreshOnScroll';
 import { ScreenHeader } from 'components/organisms';
+import useDeleteFinancialEntry from 'api/mutations/useDeleteFinancialEntry';
+import useDefaultToast from 'hooks/useDefaultToast';
 
 const FinancialEntriesScreen = ({
   navigation,
@@ -25,6 +27,10 @@ const FinancialEntriesScreen = ({
     select: (queryData) => queryData.pages.flatMap((data) => data),
   });
 
+  const { mutate: deleteFinancialEntry } = useDeleteFinancialEntry();
+
+  const { showDefaultToastOnError } = useDefaultToast();
+
   const { refreshControl } = useRefreshOnScroll({ refetch });
 
   const renderItem: ListRenderItem<FinancialEntry> = useCallback(
@@ -36,9 +42,19 @@ const FinancialEntriesScreen = ({
           : null;
       const showMainDate = currentDateString !== previousDateString;
 
-      return <FinancialEntryItem {...{ item, showMainDate }} />;
+      return (
+        <FinancialEntryItem
+          {...{ item, showMainDate }}
+          onDelete={() => {
+            deleteFinancialEntry(item.id, {
+              onSuccess: () => refetch(),
+              onError: () => showDefaultToastOnError(),
+            });
+          }}
+        />
+      );
     },
-    [financialEntries]
+    [financialEntries, deleteFinancialEntry, refetch, showDefaultToastOnError]
   );
 
   return (

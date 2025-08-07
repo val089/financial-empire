@@ -10,6 +10,7 @@ import { SwipeableMethods } from 'react-native-gesture-handler/ReanimatedSwipeab
 const FinancialEntryItem = ({
   item,
   showMainDate,
+  onDelete,
 }: FinancialEntryItemProps) => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const swipeableRef = useRef<SwipeableMethods>(null);
@@ -63,6 +64,7 @@ const FinancialEntryItem = ({
           <RightAction
             {...{ dragAnimatedValue }}
             className={showMainDate ? 'border-t' : ''}
+            onPress={onDelete}
           />
         )}
         onSwipeableOpen={handleSwipeableOpen}
