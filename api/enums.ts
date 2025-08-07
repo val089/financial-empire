@@ -3,6 +3,7 @@ export enum Mutations {
   UploadAvatar = 'uploadAvatar',
   DownloadImage = 'downloadImage',
   AddFinancialEntry = 'addFinancialEntry',
+  DeleteFinancialEntry = 'deleteFinancialEntry',
 }
 
 export enum Queries {
