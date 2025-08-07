@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { numberPadLayout } from './consts';
 import { NumberPadButton } from './NumberPadButton';
-import { Keys, KeysType } from './types';
+import { Keys, KeysType, NumberPadProps } from './types';
 import { testIDs } from 'utils/testIDs';
 
 const NumberPad = ({
@@ -11,14 +11,7 @@ const NumberPad = ({
   className,
   display = false,
   value,
-}: {
-  value: string;
-  onChange: (value: string) => void;
-  className?: string;
-  display?: boolean;
-}) => {
-  // const [value, setValue] = useState(initialValue || '');
-
+}: NumberPadProps) => {
   const updateValue = useCallback(
     (value: string) => {
       onChange(value);
