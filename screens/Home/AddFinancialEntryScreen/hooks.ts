@@ -5,7 +5,7 @@ import useDefaultToast from 'hooks/useDefaultToast';
 import { useQueryClient } from '@tanstack/react-query';
 import { Queries } from 'api/enums';
 import { FinancialEntryTypeList } from 'lib/types';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export const useAddFinancialEntryScreen = ({
   navigation,
@@ -19,14 +19,14 @@ export const useAddFinancialEntryScreen = ({
   const methods = useForm<FormData>({
     defaultValues: {
       type: FinancialEntryTypeList.expense,
-      amount: 0,
+      amount: '0',
       category_name: null,
       subcategory_name: null,
     },
     mode: 'onChange',
   });
 
-  const { setValue, watch } = methods;
+  const { setValue } = methods;
 
   useEffect(() => {
     if (category_name) {
@@ -41,9 +41,17 @@ export const useAddFinancialEntryScreen = ({
   }, [category_name, setValue, subcategory_name]);
 
   const onSubmit = (formData: FormData) => {
+    const formattedAmount =
+      formData.type === FinancialEntryTypeList.expense &&
+      formData.amount !== '' &&
+      formData.amount !== '0'
+        ? -Number(formData.amount)
+        : Number(formData.amount);
+
     addFinancialEntry(
       {
         ...formData,
+        amount: formattedAmount,
       },
       {
         onSuccess: () => {
@@ -61,18 +69,8 @@ export const useAddFinancialEntryScreen = ({
     );
   };
 
-  const handleNumberPadOnChange = useCallback(
-    (number: number) => {
-      const amount =
-        watch('type') === FinancialEntryTypeList.expense ? -number : number;
-      setValue('amount', amount);
-    },
-    [setValue, watch]
-  );
-
   return {
     onSubmit,
     formMethods: methods,
-    handleNumberPadOnChange,
   };
 };
