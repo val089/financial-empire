@@ -43,7 +43,8 @@ export const useAddFinancialEntryScreen = ({
   const onSubmit = (formData: FormData) => {
     const formattedAmount =
       formData.type === FinancialEntryTypeList.expense &&
-      formData.amount != null
+      formData.amount !== '' &&
+      formData.amount !== '0'
         ? -Number(formData.amount)
         : Number(formData.amount);
 
