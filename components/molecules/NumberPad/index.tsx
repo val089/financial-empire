@@ -1,26 +1,20 @@
 import { View, Text } from 'react-native';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { numberPadLayout } from './consts';
 import { NumberPadButton } from './NumberPadButton';
-import { Keys, KeysType } from './types';
+import { Keys, KeysType, NumberPadProps } from './types';
 import { testIDs } from 'utils/testIDs';
 
 const NumberPad = ({
   onChange,
   className,
   display = false,
-}: {
-  onChange?: (value: number) => void;
-  className?: string;
-  display?: boolean;
-}) => {
-  const [value, setValue] = useState('');
-
+  value,
+}: NumberPadProps) => {
   const updateValue = useCallback(
     (value: string) => {
-      setValue(value);
-      onChange?.(Number(value));
+      onChange(value);
     },
     [onChange]
   );
@@ -35,6 +29,12 @@ const NumberPad = ({
 
       // Handle digits
       if (/[0-9]/.test(key)) {
+        // Prevent leading zeros (if the value is '0', replace it with the pressed digit)
+        if (value === '0' && key !== Keys['.']) {
+          updateValue(key);
+          return;
+        }
+
         // Prevent leading zeros (don't allow 0 as first digit unless followed by decimal point)
         if (value === '' && key === '0') {
           return;
@@ -55,7 +55,6 @@ const NumberPad = ({
         if (value === '' || value.includes('.')) {
           return;
         }
-
         const newValue = value + key;
         updateValue(newValue);
         return;
