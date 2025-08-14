@@ -7,7 +7,7 @@ export type Json =
   | Json[];
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: '12.2.3 (519615d)';
@@ -149,13 +149,13 @@ export type Database = {
     };
     Functions: {
       get_monthly_financial_summary: {
-        Args: Record<PropertyKey, never>;
+        Args: Record<PropertyKey, never> | { filter_year: number };
         Returns: {
-          id: string;
-          year: number;
-          month: number;
-          income: number;
           expense: number;
+          id: string;
+          income: number;
+          month: number;
+          year: number;
         }[];
       };
       get_total_financial_entries_amount: {
