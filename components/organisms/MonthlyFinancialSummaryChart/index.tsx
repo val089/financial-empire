@@ -11,7 +11,10 @@ import { MonthlyFinancialSummaryChartProps } from './types';
 const MonthlyFinancialSummaryChart = ({
   className,
 }: MonthlyFinancialSummaryChartProps) => {
-  const { data, isFetching } = useMonthlyFinancialSummary();
+  // TODO: add legend for chart and year select
+  const { data, isFetching } = useMonthlyFinancialSummary({
+    filter_year: 2025,
+  });
 
   const chartData = useMemo(() => formatChartData(data), [data]);
 

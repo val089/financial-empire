@@ -8,3 +8,7 @@ export type UseMonthlyFinancialSummaryQueryReturnType = UseQueryResult<
 export type UseMonthlyFinancialSummaryQueryOptions = UseQueryOptions<
   MonthlyFinancialSummary[] | null
 >;
+
+export type UseMonthlyFinancialSummarytQueryParameters = {
+  filter_year: number;
+};
