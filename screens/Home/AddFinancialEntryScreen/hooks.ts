@@ -61,6 +61,9 @@ export const useAddFinancialEntryScreen = ({
           queryClient.invalidateQueries({
             queryKey: [Queries.FinancialEntriesTotalAmount],
           });
+          queryClient.invalidateQueries({
+            queryKey: [Queries.MonthlyFinancialSummary],
+          });
           showSuccessToast('Financial entry added successfully!');
           navigation?.goBack();
         },
