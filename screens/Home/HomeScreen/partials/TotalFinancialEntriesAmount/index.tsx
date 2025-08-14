@@ -9,17 +9,22 @@ const TotalFinancialEntriesAmount = () => {
     useFinancialEntriesTotalAmount();
 
   return (
-    <View className='h-[400px] bg-primary-blue-400 justify-center items-center'>
+    <View className='bg-white rounded-md my-4 px-4'>
       {isFetchingTotalAmount ? (
         <Loader color={colors.primary.white} />
       ) : (
-        <Text
-          className='text-h1 text-white'
-          adjustsFontSizeToFit
-          numberOfLines={1}
-        >
-          {Formatter.formatAmount(totalAmount ?? 0)} PLN
-        </Text>
+        <View>
+          <Text className='text-h4 mb-2 text-gray-500 font-interRegular'>
+            Total balance
+          </Text>
+          <Text
+            className='text-h3 font-interMedium'
+            adjustsFontSizeToFit
+            numberOfLines={1}
+          >
+            {Formatter.formatAmount(totalAmount ?? 0)} PLN
+          </Text>
+        </View>
       )}
     </View>
   );

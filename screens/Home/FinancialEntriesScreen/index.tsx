@@ -12,6 +12,8 @@ import useRefreshOnScroll from 'hooks/useRefreshOnScroll';
 import { ScreenHeader } from 'components/organisms';
 import useDeleteFinancialEntry from 'api/mutations/useDeleteFinancialEntry';
 import useDefaultToast from 'hooks/useDefaultToast';
+import { useQueryClient } from '@tanstack/react-query';
+import { Queries } from 'api/enums';
 
 const FinancialEntriesScreen = ({
   navigation,
@@ -26,6 +28,8 @@ const FinancialEntriesScreen = ({
   } = useFinancialEntries({
     select: (queryData) => queryData.pages.flatMap((data) => data),
   });
+
+  const queryClient = useQueryClient();
 
   const { mutate: deleteFinancialEntry } = useDeleteFinancialEntry();
 
@@ -47,14 +51,28 @@ const FinancialEntriesScreen = ({
           {...{ item, showMainDate }}
           onDelete={() => {
             deleteFinancialEntry(item.id, {
-              onSuccess: () => refetch(),
+              onSuccess: () => {
+                refetch();
+                queryClient.invalidateQueries({
+                  queryKey: [Queries.FinancialEntriesTotalAmount],
+                });
+                queryClient.invalidateQueries({
+                  queryKey: [Queries.MonthlyFinancialSummary],
+                });
+              },
               onError: () => showDefaultToastOnError(),
             });
           }}
         />
       );
     },
-    [financialEntries, deleteFinancialEntry, refetch, showDefaultToastOnError]
+    [
+      financialEntries,
+      deleteFinancialEntry,
+      refetch,
+      queryClient,
+      showDefaultToastOnError,
+    ]
   );
 
   return (

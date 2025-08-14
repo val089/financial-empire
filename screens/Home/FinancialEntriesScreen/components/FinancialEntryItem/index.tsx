@@ -81,6 +81,7 @@ const FinancialEntryItem = ({
           <View>
             <Text className='text-h3'>
               {item.category_name || 'Uncategorized'}
+              {item.subcategory_name ? ` / ${item.subcategory_name}` : ''}
             </Text>
             <Text className='text-h4 text-gray-400'>
               {Formatter.timeFromDate(item.created_at)}
