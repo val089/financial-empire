@@ -30,7 +30,7 @@ const ScreenHeader = ({
   return (
     <View
       className={clsx(
-        'h-[100px] max-w-full flex-row items-center justify-between px-4'
+        'h-28 max-w-full flex-row items-center justify-between px-4 bg-white'
       )}
       style={{ paddingTop: top }}
       testID={testIDs.screenHeader}
@@ -43,6 +43,7 @@ const ScreenHeader = ({
         )}
       </View>
 
+      {/* TODO: add logout icon */}
       {showMainSideMenu && (
         <View className='flex-row items-center justify-end'>
           <TouchableOpacity

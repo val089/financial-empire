@@ -55,6 +55,5 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     storybookEnabled: process.env.STORYBOOK_ENABLED,
     enableFPSMonitor: getFPSMonitorEnabled(),
   },
-
   // New architecture is enabled by default from Expo SDK 53.
 });
