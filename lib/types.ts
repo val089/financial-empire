@@ -29,3 +29,6 @@ export type SubcategoryFinancialEntry =
 
 export type SubcategoryFinancialEntryName =
   Database['public']['Enums']['SubcategoryFinancialEntryName'];
+
+export type MonthlyFinancialSummary =
+  Database['public']['Functions']['get_monthly_financial_summary']['Returns'][number];

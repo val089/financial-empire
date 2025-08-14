@@ -1,8 +1,11 @@
 import useAuthentication from 'hooks/useAuthentication';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { HomeScreenProps } from './types';
 import { Screens } from 'utils/Screens';
-import { ScreenHeader } from 'components/organisms';
+import {
+  MonthlyFinancialSummaryChart,
+  ScreenHeader,
+} from 'components/organisms';
 import { useUserContext } from 'contexts/UserContext';
 import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
 import { Button } from 'components/atoms';
@@ -38,9 +41,13 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           );
         }}
         avatarUrl={user?.avatar_url || ''}
+        showMainSideMenu
       />
-      <View className='flex-1'>
+      <ScrollView className='flex-1 bg-white'>
         <TotalFinancialEntriesAmount />
+
+        <MonthlyFinancialSummaryChart />
+
         <View className='px-4'>
           <Text className='text-h1 text-center mt-20'>
             Welcome to the home screen
@@ -53,7 +60,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
             label='Financial Entries'
           />
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 };

@@ -6,6 +6,7 @@ import colors from 'theme/colors';
 const Loader = ({ className, ...rest }: LoaderProps) => (
   <View
     className={mergeClasses('flex-1 items-center justify-center', className)}
+    testID='loader'
   >
     <ActivityIndicator color={colors.primary.blue[400]} {...rest} />
   </View>

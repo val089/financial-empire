@@ -13,4 +13,5 @@ export enum Queries {
   FinancialEntriesTotalAmount = 'financialEntriesTotalAmount',
   CategoriesFinancialEntries = 'categoriesFinancialEntries',
   SubcategoryFinancialEntries = 'subcategoryFinancialEntries',
+  MonthlyFinancialSummary = 'monthlyFinancialSummary',
 }

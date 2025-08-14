@@ -148,6 +148,16 @@ export type Database = {
       [_ in never]: never;
     };
     Functions: {
+      get_monthly_financial_summary: {
+        Args: Record<PropertyKey, never>;
+        Returns: {
+          id: string;
+          year: number;
+          month: number;
+          income: number;
+          expense: number;
+        }[];
+      };
       get_total_financial_entries_amount: {
         Args: Record<PropertyKey, never>;
         Returns: number;
