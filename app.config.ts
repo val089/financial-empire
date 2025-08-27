@@ -14,6 +14,7 @@ const getFPSMonitorEnabled = () => {
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
+  owner: 'kamildev',
   name: 'financial-empire',
   slug: 'financial-empire',
   version: '1.0.0',
@@ -23,6 +24,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.kamildev.financialempire',
+    infoPlist: {
+      ITSAppUsesNonExemptEncryption: false,
+    },
   },
   android: {
     adaptiveIcon: {
@@ -54,6 +58,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   extra: {
     storybookEnabled: process.env.STORYBOOK_ENABLED,
     enableFPSMonitor: getFPSMonitorEnabled(),
+    eas: {
+      projectId: '9d7cbfae-9a8f-4eb5-a304-b1267625910b',
+    },
   },
   // New architecture is enabled by default from Expo SDK 53.
 });
