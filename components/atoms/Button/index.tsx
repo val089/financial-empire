@@ -1,31 +1,60 @@
 import { TouchableOpacity, Text } from 'react-native';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { ButtonProps } from './types';
+import Loader from '../Loader';
+import { Ionicons } from '@expo/vector-icons';
 
 const Button = ({
   label,
   className,
   textClassName,
   disabled,
+  iconPosition = 'right',
+  isLoading,
+  iconProps,
   ...rest
-}: ButtonProps) => (
-  <TouchableOpacity
-    className={mergeClasses(
-      'bg-primary-blue-400 p-4 rounded-lg justify-center items-center',
-      { 'opacity-50': disabled },
-      className
-    )}
-    {...rest}
-  >
-    <Text
+}: ButtonProps) => {
+  const renderIcon = () => {
+    if (isLoading) {
+      return <Loader />;
+    }
+
+    if (iconProps) {
+      return (
+        <Ionicons
+          {...iconProps}
+          className={mergeClasses('', {
+            'mr-2': iconPosition === 'left',
+            'ml-2': iconPosition === 'right',
+          })}
+        />
+      );
+    }
+
+    return null;
+  };
+
+  return (
+    <TouchableOpacity
       className={mergeClasses(
-        'text-h3 text-white font-interMedium',
-        textClassName
+        'bg-primary-blue-400 p-4 rounded-lg justify-center items-center flex-row',
+        { 'opacity-50': disabled },
+        className
       )}
+      {...rest}
     >
-      {label}
-    </Text>
-  </TouchableOpacity>
-);
+      {iconPosition === 'left' && renderIcon()}
+      <Text
+        className={mergeClasses(
+          'text-h3 text-white font-interMedium',
+          textClassName
+        )}
+      >
+        {label}
+      </Text>
+      {iconPosition === 'right' && renderIcon()}
+    </TouchableOpacity>
+  );
+};
 
 export default Button;

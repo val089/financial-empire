@@ -33,9 +33,7 @@ const Input = ({
 
   return (
     <View className={mergeClasses('', containerClassName)}>
-      {label && (
-        <Text className='pb-1 text-h4 text-primary-black'>{label}</Text>
-      )}
+      {label && <Text className='pb-1 text-h4 text-gray-400'>{label}</Text>}
       <View className='justify-center'>
         {LeftIcon && (
           <TouchableOpacity
