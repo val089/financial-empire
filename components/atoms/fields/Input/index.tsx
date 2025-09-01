@@ -57,7 +57,6 @@ const Input = ({
           })}
           onFocus={toggleFocus}
           onBlur={toggleFocus}
-          // editable={!rest.disabled}
           {...rest}
         />
         {RightIcon && (

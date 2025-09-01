@@ -43,7 +43,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
     <SafeAreaWrapper>
       <ScreenContentWrapper isScrollable>
         <FormProvider {...formMethods}>
-          <View className='justify-center items-center'>
+          <View className='justify-center items-center mt-10'>
             <Image
               className='mr-2 h-36 w-36'
               resizeMode='cover'
@@ -88,16 +88,19 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
             )}
           />
 
-          <LinkButton label='Forgot Password?' className='mt-4 items-end' />
+          {/* TODO: add forgot password link */}
+          {/* <LinkButton label='Forgot Password?' className='mt-4 items-end' /> */}
+
           <Button
             label='Login'
             onPress={handleSubmit(onSubmit)}
-            className='my-4'
+            className='mt-8'
             isLoading={isSubmitting}
             disabled={isSubmitting}
           />
 
-          <View className='flex-row items-center mb-4 justify-center'>
+          {/* TODO: add social login buttons */}
+          {/* <View className='flex-row items-center mb-4 justify-center'>
             <View className='w-10 border border-gray-300' />
             <Text className='mx-4 font-interRegular text-gray-400 text-h4'>
               Or continue with
@@ -118,7 +121,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
             onPress={() => {}}
             iconPosition='left'
             iconProps={{ name: 'logo-facebook', size: 24, color: 'white' }}
-          />
+          /> */}
 
           <View className='flex-row justify-center items-center py-10'>
             <Text className='text-gray-400 text-h4'>Haven't any account? </Text>
