@@ -10,7 +10,6 @@ const Input = ({
   leftIcon,
   rightIcon,
   className,
-  containerClassName,
   ...rest
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -32,10 +31,8 @@ const Input = ({
   };
 
   return (
-    <View className={mergeClasses('', containerClassName)}>
-      {label && (
-        <Text className='pb-1 text-h4 text-primary-black'>{label}</Text>
-      )}
+    <View className={mergeClasses('', className)}>
+      {label && <Text className='pb-1 text-h4 text-black'>{label}</Text>}
       <View className='justify-center'>
         {LeftIcon && (
           <TouchableOpacity
@@ -52,16 +49,12 @@ const Input = ({
           style={{
             includeFontPadding: false,
           }}
-          className={mergeClasses(
-            'rounded-xl border p-3 text-h3 bg-white',
-            {
-              'border-gray-300': !isFocused && !errorMessage,
-              'border-primary-red': errorMessage,
-              'border-primary-blue-400': isFocused && !errorMessage,
-              'pl-12': LeftIcon,
-            },
-            className
-          )}
+          className={mergeClasses('rounded-xl border p-3 text-h3 bg-white', {
+            'border-gray-300': !isFocused && !errorMessage,
+            'border-primary-red': errorMessage,
+            'border-primary-blue-400': isFocused && !errorMessage,
+            'pl-12': LeftIcon,
+          })}
           onFocus={toggleFocus}
           onBlur={toggleFocus}
           {...rest}

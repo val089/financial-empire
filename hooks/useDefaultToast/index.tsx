@@ -1,7 +1,7 @@
 import Toast from 'react-native-toast-message';
 
 const useDefaultToast = () => {
-  const showDefaultToastOnError = (message?: string) =>
+  const showErrorToast = (message?: string) =>
     Toast.show({
       type: 'error',
       text1: 'Error',
@@ -19,9 +19,18 @@ const useDefaultToast = () => {
       position: 'top',
     });
 
+  const showInfoToast = (message: string) =>
+    Toast.show({
+      type: 'info',
+      text1: 'Info',
+      text2: message,
+      position: 'top',
+    });
+
   return {
-    showDefaultToastOnError,
+    showErrorToast,
     showSuccessToast,
+    showInfoToast,
   };
 };
 
