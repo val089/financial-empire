@@ -1,10 +1,10 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNavigation from './AuthNavigation';
 import HomeNavigation from './HomeNavigation';
 import { useUserContext } from 'contexts/UserContext';
 import { ActivityIndicator, View } from 'react-native';
 
-const { Screen, Navigator } = createStackNavigator();
+const { Screen, Navigator } = createNativeStackNavigator();
 
 const RootNavigation = () => {
   const { isLoggedIn, isAuthenticating } = useUserContext();

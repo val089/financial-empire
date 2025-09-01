@@ -11,6 +11,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import Toast from 'react-native-toast-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import FPSMonitor from 'components/utils/FPSMonitor';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import './theme/global.css';
 
@@ -32,21 +33,23 @@ const App = () => {
   });
 
   return loaded ? (
-    <QueryClientProvider client={queryClient}>
-      <UserContextWrapper>
-        <NavigationContainer onReady={() => SplashScreen.hide()}>
-          <SafeAreaProvider>
-            <GestureHandlerRootView style={{ flex: 1 }}>
-              <StatusBar style='dark' />
-              <RootNavigation />
-              {/* Global FPSMonitor - controlled by EXPO_PUBLIC_ENABLE_FPS_MONITOR */}
-              <FPSMonitor />
-            </GestureHandlerRootView>
-          </SafeAreaProvider>
-          <Toast />
-        </NavigationContainer>
-      </UserContextWrapper>
-    </QueryClientProvider>
+    <KeyboardProvider>
+      <QueryClientProvider client={queryClient}>
+        <UserContextWrapper>
+          <NavigationContainer onReady={() => SplashScreen.hide()}>
+            <SafeAreaProvider>
+              <GestureHandlerRootView style={{ flex: 1 }}>
+                <StatusBar style='dark' />
+                <RootNavigation />
+                {/* Global FPSMonitor - controlled by EXPO_PUBLIC_ENABLE_FPS_MONITOR */}
+                <FPSMonitor />
+              </GestureHandlerRootView>
+            </SafeAreaProvider>
+            <Toast />
+          </NavigationContainer>
+        </UserContextWrapper>
+      </QueryClientProvider>
+    </KeyboardProvider>
   ) : null;
 };
 
