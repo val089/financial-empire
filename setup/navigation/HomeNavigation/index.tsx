@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from 'screens/Home/HomeScreen';
 import { HomeStackParamList } from './types';
 import { Screens } from 'utils/Screens';
@@ -8,7 +8,7 @@ import CategoryFinancialEntriesScreen from 'screens/Home/CategoryFinancialEntrie
 import SubcategoryFinancialEntriesScreen from 'screens/Home/SubcategoryFinancialEntriesScreen';
 // import { ScreenHeader } from 'components/organisms';
 
-const { Screen, Navigator } = createStackNavigator<HomeStackParamList>();
+const { Screen, Navigator } = createNativeStackNavigator<HomeStackParamList>();
 
 const HomeNavigation = () => (
   <Navigator

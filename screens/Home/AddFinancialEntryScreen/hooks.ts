@@ -13,7 +13,7 @@ export const useAddFinancialEntryScreen = ({
 }: AddFinancialEntryScreenProps) => {
   const { category_name, subcategory_name } = route?.params || {};
   const { mutate: addFinancialEntry } = useAddFinancialEntry();
-  const { showDefaultToastOnError, showSuccessToast } = useDefaultToast();
+  const { showErrorToast, showSuccessToast } = useDefaultToast();
   const queryClient = useQueryClient();
 
   const methods = useForm<FormData>({
@@ -67,7 +67,7 @@ export const useAddFinancialEntryScreen = ({
           showSuccessToast('Financial entry added successfully!');
           navigation?.goBack();
         },
-        onError: () => showDefaultToastOnError(),
+        onError: () => showErrorToast(),
       }
     );
   };
