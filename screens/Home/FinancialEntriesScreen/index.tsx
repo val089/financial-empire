@@ -33,7 +33,7 @@ const FinancialEntriesScreen = ({
 
   const { mutate: deleteFinancialEntry } = useDeleteFinancialEntry();
 
-  const { showDefaultToastOnError } = useDefaultToast();
+  const { showErrorToast } = useDefaultToast();
 
   const { refreshControl } = useRefreshOnScroll({ refetch });
 
@@ -60,7 +60,7 @@ const FinancialEntriesScreen = ({
                   queryKey: [Queries.MonthlyFinancialSummary],
                 });
               },
-              onError: () => showDefaultToastOnError(),
+              onError: () => showErrorToast(),
             });
           }}
         />
@@ -71,7 +71,7 @@ const FinancialEntriesScreen = ({
       deleteFinancialEntry,
       refetch,
       queryClient,
-      showDefaultToastOnError,
+      showErrorToast,
     ]
   );
 

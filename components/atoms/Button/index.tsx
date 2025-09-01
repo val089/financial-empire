@@ -3,6 +3,7 @@ import { mergeClasses } from 'utils/functions/mergeClasses';
 import { ButtonProps } from './types';
 import Loader from '../Loader';
 import { Ionicons } from '@expo/vector-icons';
+import colors from 'theme/colors';
 
 const Button = ({
   label,
@@ -16,7 +17,15 @@ const Button = ({
 }: ButtonProps) => {
   const renderIcon = () => {
     if (isLoading) {
-      return <Loader />;
+      return (
+        <Loader
+          color={colors.primary.white}
+          className={mergeClasses('', {
+            'mr-2': iconPosition === 'left',
+            'ml-2': iconPosition === 'right',
+          })}
+        />
+      );
     }
 
     if (iconProps) {
@@ -41,6 +50,7 @@ const Button = ({
         { 'opacity-50': disabled },
         className
       )}
+      disabled={disabled}
       {...rest}
     >
       {iconPosition === 'left' && renderIcon()}

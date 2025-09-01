@@ -10,5 +10,4 @@ export type InputProps = TextInputProps & {
   errorMessage?: string;
   leftIcon?: InputIconProps;
   rightIcon?: InputIconProps;
-  containerClassName?: string;
 };
