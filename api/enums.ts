@@ -1,4 +1,5 @@
 export enum Mutations {
+  Login = 'login',
   UpdateUserProfile = 'updateUserProfile',
   UploadAvatar = 'uploadAvatar',
   DownloadImage = 'downloadImage',
