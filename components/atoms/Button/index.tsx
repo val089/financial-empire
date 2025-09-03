@@ -19,6 +19,7 @@ const Button = ({
     if (isLoading) {
       return (
         <Loader
+          testID='button-loader'
           color={colors.primary.white}
           className={mergeClasses('', {
             'mr-2': iconPosition === 'left',
