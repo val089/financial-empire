@@ -52,7 +52,6 @@ const FinancialEntriesScreen = ({
           onDelete={() => {
             deleteFinancialEntry(item.id, {
               onSuccess: () => {
-                refetch();
                 queryClient.invalidateQueries({
                   queryKey: [Queries.FinancialEntriesTotalAmount],
                 });
