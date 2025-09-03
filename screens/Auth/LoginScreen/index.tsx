@@ -1,6 +1,5 @@
 import { FormProvider, Controller, useForm } from 'react-hook-form';
 import { View, Text, Image } from 'react-native';
-import { supabase } from 'lib/supabase';
 import {
   Input,
   PasswordInput,
@@ -15,8 +14,11 @@ import { Screens } from 'utils/Screens';
 import { loginValidationSchema } from './loginValidationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import useDefaultToast from 'hooks/useDefaultToast';
+import useLoginMutation from 'api/mutations/useLoginMutation';
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
+  const { mutate: login, isPending } = useLoginMutation();
+
   const formMethods = useForm<LoginFormData>({
     defaultValues: {
       email: '',
@@ -28,15 +30,14 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
   const { showErrorToast } = useDefaultToast();
 
-  const {
-    control,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = formMethods;
+  const { control, handleSubmit } = formMethods;
 
   const onSubmit = async (data: LoginFormData) => {
-    const { error } = await supabase.auth.signInWithPassword(data);
-    if (error) showErrorToast(error.message);
+    login(data, {
+      onError: (error) => {
+        showErrorToast(error.message);
+      },
+    });
   };
 
   return (
@@ -92,11 +93,12 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
           {/* <LinkButton label='Forgot Password?' className='mt-4 items-end' /> */}
 
           <Button
+            testID='login-button'
             label='Login'
             onPress={handleSubmit(onSubmit)}
             className='mt-8'
-            isLoading={isSubmitting}
-            disabled={isSubmitting}
+            isLoading={isPending}
+            disabled={isPending}
           />
 
           {/* TODO: add social login buttons */}
