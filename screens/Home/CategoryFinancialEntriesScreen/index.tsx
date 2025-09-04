@@ -1,6 +1,6 @@
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
 import useCategoriesFinancialEntries from 'api/queries/useCategoriesFinancialEntries';
-import { Loader, CategoryButton } from 'components/atoms';
+import { Loader, CategoryButton, ScreenContentWrapper } from 'components/atoms';
 import { ScreenHeader } from 'components/organisms';
 import { CategoryFinancialEntriesScreenProps } from './types';
 import { Screens } from 'utils/Screens';
@@ -25,7 +25,7 @@ const CategoryFinancialEntriesScreen = ({
         onBackPress={() => navigation?.goBack()}
         title='Choose category'
       />
-      <ScrollView className='flex-1'>
+      <ScreenContentWrapper className='p-0' isScrollable>
         {categories?.map((category) => (
           <CategoryButton
             key={category.id}
@@ -47,7 +47,7 @@ const CategoryFinancialEntriesScreen = ({
             }}
           />
         ))}
-      </ScrollView>
+      </ScreenContentWrapper>
     </>
   );
 };

@@ -14,7 +14,7 @@ const NumberPad = ({
 }: NumberPadProps) => {
   const updateValue = useCallback(
     (value: string) => {
-      onChange(value);
+      onChange(value === '' ? '0' : value);
     },
     [onChange]
   );

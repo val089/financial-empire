@@ -65,13 +65,7 @@ const FinancialEntriesScreen = ({
         />
       );
     },
-    [
-      financialEntries,
-      deleteFinancialEntry,
-      refetch,
-      queryClient,
-      showErrorToast,
-    ]
+    [financialEntries, deleteFinancialEntry, queryClient, showErrorToast]
   );
 
   return (
@@ -81,7 +75,7 @@ const FinancialEntriesScreen = ({
         title='Financial entries'
       />
       <FloatingAddButton
-        onPress={() => navigation?.navigate(Screens.AddFinancialEntry, {})}
+        onPress={() => navigation?.navigate(Screens.AddFinancialEntry)}
       />
       <FlashList
         showsVerticalScrollIndicator={false}

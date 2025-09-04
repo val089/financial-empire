@@ -6,16 +6,15 @@ import FinancialEntriesScreen from 'screens/Home/FinancialEntriesScreen';
 import AddEntryScreen from 'screens/Home/AddFinancialEntryScreen';
 import CategoryFinancialEntriesScreen from 'screens/Home/CategoryFinancialEntriesScreen';
 import SubcategoryFinancialEntriesScreen from 'screens/Home/SubcategoryFinancialEntriesScreen';
-// import { ScreenHeader } from 'components/organisms';
+import colors from 'theme/colors';
 
 const { Screen, Navigator } = createNativeStackNavigator<HomeStackParamList>();
 
 const HomeNavigation = () => (
   <Navigator
-  // TODO: fix back button
-  // screenOptions={{
-  //   header: ({ options }) => <ScreenHeader {...options} />,
-  // }}
+    screenOptions={{
+      contentStyle: { backgroundColor: colors.primary.white },
+    }}
   >
     <Screen
       name={Screens.Home}
