@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { useRef, useEffect } from 'react';
 import { Formatter } from 'utils/Formatter/Formatter';
 import RightAction from '../RightAction';
@@ -11,6 +11,7 @@ const FinancialEntryItem = ({
   item,
   showMainDate,
   onDelete,
+  onPress,
 }: FinancialEntryItemProps) => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const swipeableRef = useRef<SwipeableMethods>(null);
@@ -71,28 +72,30 @@ const FinancialEntryItem = ({
         onSwipeableWillClose={handleSwipeableWillClose}
       >
         <View
-          className={mergeClasses(
-            'p-4 flex-row justify-between items-center border-b border-gray-200',
-            {
-              'border-t': showMainDate,
-            }
-          )}
+          className={mergeClasses('border-b border-gray-200', {
+            'border-t': showMainDate,
+          })}
         >
-          <View>
-            <Text className='text-h3'>
-              {item.category_name || 'Uncategorized'}
-              {item.subcategory_name ? ` / ${item.subcategory_name}` : ''}
-            </Text>
-            <Text className='text-h4 text-gray-400'>
-              {Formatter.timeFromDate(item.created_at)}
-            </Text>
-          </View>
+          <TouchableOpacity
+            className='flex-row p-4 justify-between items-center'
+            onPress={onPress}
+          >
+            <View>
+              <Text className='text-h3'>
+                {item.category_name || 'Uncategorized'}
+                {item.subcategory_name ? ` / ${item.subcategory_name}` : ''}
+              </Text>
+              <Text className='text-h4 text-gray-400'>
+                {Formatter.timeFromDate(item.created_at)}
+              </Text>
+            </View>
 
-          {item.type === 'income' ? (
-            <Text className='text-h3 text-green-500'>{item.amount}</Text>
-          ) : (
-            <Text className='text-h3 text-red-500'>{item.amount}</Text>
-          )}
+            {item.type === 'income' ? (
+              <Text className='text-h3 text-green-500'>{item.amount}</Text>
+            ) : (
+              <Text className='text-h3 text-red-500'>{item.amount}</Text>
+            )}
+          </TouchableOpacity>
         </View>
       </Swipeable>
     </View>

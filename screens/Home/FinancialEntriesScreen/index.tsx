@@ -14,10 +14,13 @@ import useDeleteFinancialEntry from 'api/mutations/useDeleteFinancialEntry';
 import useDefaultToast from 'hooks/useDefaultToast';
 import { useQueryClient } from '@tanstack/react-query';
 import { Queries } from 'api/enums';
+import { useAddFinancialEntryContext } from 'contexts/AddFinancialEntryContext';
 
 const FinancialEntriesScreen = ({
   navigation,
 }: FinancialEntriesScreenProps) => {
+  const { setDefaultValues, setIsEditting } = useAddFinancialEntryContext();
+
   const {
     data: financialEntries,
     isFetching,
@@ -62,10 +65,30 @@ const FinancialEntriesScreen = ({
               onError: () => showErrorToast(),
             });
           }}
+          onPress={() => {
+            setIsEditting(true);
+            setDefaultValues({
+              category_name: item.category_name,
+              subcategory_name: item.subcategory_name,
+              type: item.type,
+              amount: String(Math.abs(item.amount)),
+            });
+            navigation?.navigate(Screens.AddFinancialEntry, {
+              financialEntryId: item.id,
+            });
+          }}
         />
       );
     },
-    [financialEntries, deleteFinancialEntry, queryClient, showErrorToast]
+    [
+      financialEntries,
+      deleteFinancialEntry,
+      queryClient,
+      showErrorToast,
+      setDefaultValues,
+      navigation,
+      setIsEditting,
+    ]
   );
 
   return (
@@ -75,7 +98,11 @@ const FinancialEntriesScreen = ({
         title='Financial entries'
       />
       <FloatingAddButton
-        onPress={() => navigation?.navigate(Screens.AddFinancialEntry)}
+        onPress={() => {
+          setIsEditting(false);
+          setDefaultValues(null);
+          navigation?.navigate(Screens.AddFinancialEntry, {});
+        }}
       />
       <FlashList
         showsVerticalScrollIndicator={false}

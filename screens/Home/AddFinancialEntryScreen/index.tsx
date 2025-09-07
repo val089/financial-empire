@@ -14,23 +14,23 @@ import useDefaultToast from 'hooks/useDefaultToast';
 import { useQueryClient } from '@tanstack/react-query';
 import { Queries } from 'api/enums';
 import { useAddFinancialEntryContext } from 'contexts/AddFinancialEntryContext';
+import useEditFinancialEntry from 'api/mutations/useEditFinancialEntry';
 
 const AddFinancialEntryScreen = ({
   navigation,
+  route,
 }: AddFinancialEntryScreenProps) => {
+  const { financialEntryId } = route?.params || {};
   const { mutate: addFinancialEntry, isPending } = useAddFinancialEntry();
+  const { mutate: editFinancialEntry } = useEditFinancialEntry();
   const { showErrorToast, showSuccessToast } = useDefaultToast();
   const queryClient = useQueryClient();
 
   const {
-    category_name,
-    subcategory_name,
-    amount,
-    type,
-    setAmount,
-    setType,
-    setCategoryName,
-    setSubcategoryName,
+    financialEntry: { amount, category_name, subcategory_name, type },
+    setFinancialEntry,
+    setDefaultValues,
+    isEditting,
   } = useAddFinancialEntryContext();
 
   const onSubmit = () => {
@@ -38,6 +38,31 @@ const AddFinancialEntryScreen = ({
       type === FinancialEntryTypeList.expense && amount !== ''
         ? -Number(amount)
         : Number(amount);
+
+    if (isEditting && financialEntryId) {
+      editFinancialEntry(
+        {
+          id: financialEntryId,
+          type,
+          category_name,
+          subcategory_name,
+          amount: formattedAmount,
+        },
+        {
+          onSuccess: () => {
+            setDefaultValues(null);
+
+            queryClient.invalidateQueries({
+              queryKey: [Queries.FinancialEntries],
+            });
+            navigation?.popTo(Screens.FinancialEntries);
+          },
+          onError: () => showErrorToast(),
+        }
+      );
+
+      return;
+    }
 
     addFinancialEntry(
       {
@@ -48,10 +73,7 @@ const AddFinancialEntryScreen = ({
       },
       {
         onSuccess: () => {
-          setAmount('0');
-          setType(FinancialEntryTypeList.expense);
-          setCategoryName(null);
-          setSubcategoryName(null);
+          setDefaultValues(null);
 
           queryClient.invalidateQueries({
             queryKey: [Queries.FinancialEntries],
@@ -65,7 +87,7 @@ const AddFinancialEntryScreen = ({
 
           showSuccessToast('Financial entry added successfully!');
 
-          navigation?.goBack();
+          navigation?.popTo(Screens.FinancialEntries);
         },
         onError: () => showErrorToast(),
       }
@@ -83,12 +105,22 @@ const AddFinancialEntryScreen = ({
         <View className='flex-row justify-between w-full mt-4 gap-4'>
           <CheckableButton
             label='Expense'
-            onPress={() => setType(FinancialEntryTypeList.expense)}
+            onPress={() =>
+              setFinancialEntry((prevState) => ({
+                ...prevState,
+                type: FinancialEntryTypeList.expense,
+              }))
+            }
             isSelected={type === FinancialEntryTypeList.expense}
           />
           <CheckableButton
             label='Income'
-            onPress={() => setType(FinancialEntryTypeList.income)}
+            onPress={() =>
+              setFinancialEntry((prevState) => ({
+                ...prevState,
+                type: FinancialEntryTypeList.income,
+              }))
+            }
             isSelected={type === FinancialEntryTypeList.income}
           />
         </View>
@@ -127,7 +159,7 @@ const AddFinancialEntryScreen = ({
             adjustsFontSizeToFit
           >
             {type === FinancialEntryTypeList.expense ? '-' : '+'}
-            {amount}
+            {Math.abs(Number(amount))}
 
             {/* TODO: set currency in the future */}
             {' PLN'}
@@ -135,13 +167,22 @@ const AddFinancialEntryScreen = ({
         </View>
 
         <Button
-          label='Add'
+          label={isEditting ? 'Save changes' : 'Add'}
           onPress={onSubmit}
           disabled={isPending || amount === '0'}
         />
       </View>
 
-      <NumberPad value={amount} onChange={setAmount} className='flex-1' />
+      <NumberPad
+        value={amount}
+        onChange={(value) => {
+          setFinancialEntry((prevState) => ({
+            ...prevState,
+            amount: value,
+          }));
+        }}
+        className='flex-1'
+      />
     </View>
   );
 };
