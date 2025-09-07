@@ -12,7 +12,6 @@ describe('FinancialEntryItem', () => {
     created_at: '2025-07-07T11:15:20.280647+00:00',
     category_name: 'food & drinks',
     subcategory_name: 'restaurant',
-    name: 'Test Expense',
     user_id: '1',
   };
 

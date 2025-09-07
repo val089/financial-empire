@@ -5,10 +5,12 @@ import { ScreenHeader } from 'components/organisms';
 import { CategoryFinancialEntriesScreenProps } from './types';
 import { Screens } from 'utils/Screens';
 import Toast from 'react-native-toast-message';
+import { useAddFinancialEntryContext } from 'contexts/AddFinancialEntryContext';
 
 const CategoryFinancialEntriesScreen = ({
   navigation,
 }: CategoryFinancialEntriesScreenProps) => {
+  const { setFinancialEntry } = useAddFinancialEntryContext();
   const { data: categories, isLoading } = useCategoriesFinancialEntries();
 
   if (isLoading) {
@@ -41,9 +43,11 @@ const CategoryFinancialEntriesScreen = ({
                 return;
               }
 
-              navigation?.navigate(Screens.SubcategoryFinancialEntries, {
+              setFinancialEntry((prevState) => ({
+                ...prevState,
                 category_name: category.name,
-              });
+              }));
+              navigation?.navigate(Screens.SubcategoryFinancialEntries);
             }}
           />
         ))}

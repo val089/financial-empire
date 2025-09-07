@@ -40,46 +40,43 @@ export type Database = {
       };
       'financial-entries': {
         Row: {
-          amount: number | null;
+          amount: number;
           category_name:
             | Database['public']['Enums']['CategoryFinancialEntryName']
             | null;
           created_at: string;
           id: number;
-          name: string | null;
           subcategory_name:
             | Database['public']['Enums']['SubcategoryFinancialEntryName']
             | null;
           type: Database['public']['Enums']['FinancialEntryType'];
-          user_id: string | null;
+          user_id: string;
         };
         Insert: {
-          amount?: number | null;
+          amount: number;
           category_name?:
             | Database['public']['Enums']['CategoryFinancialEntryName']
             | null;
           created_at?: string;
           id?: number;
-          name?: string | null;
           subcategory_name?:
             | Database['public']['Enums']['SubcategoryFinancialEntryName']
             | null;
           type: Database['public']['Enums']['FinancialEntryType'];
-          user_id?: string | null;
+          user_id?: string;
         };
         Update: {
-          amount?: number | null;
+          amount?: number;
           category_name?:
             | Database['public']['Enums']['CategoryFinancialEntryName']
             | null;
           created_at?: string;
           id?: number;
-          name?: string | null;
           subcategory_name?:
             | Database['public']['Enums']['SubcategoryFinancialEntryName']
             | null;
           type?: Database['public']['Enums']['FinancialEntryType'];
-          user_id?: string | null;
+          user_id?: string;
         };
         Relationships: [];
       };

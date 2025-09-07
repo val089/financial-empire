@@ -5,17 +5,17 @@ import {
   SubcategoryFinancialEntryName,
 } from 'lib/types';
 
-export type AddFinancialEntryContextProps = {
-  type: FinancialEntryType;
-  setType: Dispatch<SetStateAction<FinancialEntryType>>;
+export type FinancialEntryContextDataType = {
   amount: string;
-  setAmount: Dispatch<SetStateAction<string>>;
-  category_name: CategoryFinancialEntryName | null | undefined;
-  setCategoryName: Dispatch<
-    SetStateAction<CategoryFinancialEntryName | null | undefined>
-  >;
-  subcategory_name: SubcategoryFinancialEntryName | null | undefined;
-  setSubcategoryName: Dispatch<
-    SetStateAction<SubcategoryFinancialEntryName | null | undefined>
-  >;
+  category_name: CategoryFinancialEntryName | null;
+  subcategory_name: SubcategoryFinancialEntryName | null;
+  type: FinancialEntryType;
+};
+
+export type AddFinancialEntryContextProps = {
+  financialEntry: FinancialEntryContextDataType;
+  setFinancialEntry: Dispatch<SetStateAction<FinancialEntryContextDataType>>;
+  setDefaultValues: (entry: FinancialEntryContextDataType | null) => void;
+  isEditting: boolean;
+  setIsEditting: Dispatch<SetStateAction<boolean>>;
 };

@@ -6,6 +6,9 @@ export type FinancialEntry =
 export type FinancialEntryInsert =
   Database['public']['Tables']['financial-entries']['Insert'];
 
+export type FinancialEntryUpdate =
+  Database['public']['Tables']['financial-entries']['Update'];
+
 export type Profile = Database['public']['Tables']['profiles']['Row'];
 
 export type ProfileUpdate = Database['public']['Tables']['profiles']['Update'];
