@@ -32,7 +32,7 @@ const SubcategoryFinancialEntriesScreen = ({
           onPress={() => {
             setFinancialEntry((prevState) => ({
               ...prevState,
-              category_name: 'communication, pc',
+              category_name: financialEntry.category_name,
               subcategory_name: null,
               amount: '0',
               type: 'expense',
