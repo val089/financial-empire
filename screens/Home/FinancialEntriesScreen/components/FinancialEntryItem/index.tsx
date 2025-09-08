@@ -93,7 +93,7 @@ const FinancialEntryItem = ({
             {item.type === 'income' ? (
               <Text className='text-h3 text-green-500'>{item.amount}</Text>
             ) : (
-              <Text className='text-h3 text-red-500'>{item.amount}</Text>
+              <Text className='text-h3 text-red-500'>-{item.amount}</Text>
             )}
           </TouchableOpacity>
         </View>

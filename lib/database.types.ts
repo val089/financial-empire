@@ -41,9 +41,7 @@ export type Database = {
       'financial-entries': {
         Row: {
           amount: number;
-          category_name:
-            | Database['public']['Enums']['CategoryFinancialEntryName']
-            | null;
+          category_name: Database['public']['Enums']['CategoryFinancialEntryName'];
           created_at: string;
           id: number;
           subcategory_name:
@@ -54,9 +52,7 @@ export type Database = {
         };
         Insert: {
           amount: number;
-          category_name?:
-            | Database['public']['Enums']['CategoryFinancialEntryName']
-            | null;
+          category_name: Database['public']['Enums']['CategoryFinancialEntryName'];
           created_at?: string;
           id?: number;
           subcategory_name?:
@@ -67,9 +63,7 @@ export type Database = {
         };
         Update: {
           amount?: number;
-          category_name?:
-            | Database['public']['Enums']['CategoryFinancialEntryName']
-            | null;
+          category_name?: Database['public']['Enums']['CategoryFinancialEntryName'];
           created_at?: string;
           id?: number;
           subcategory_name?:

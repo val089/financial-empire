@@ -33,9 +33,6 @@ const SubcategoryFinancialEntriesScreen = ({
             setFinancialEntry((prevState) => ({
               ...prevState,
               category_name: financialEntry.category_name,
-              subcategory_name: null,
-              amount: '0',
-              type: 'expense',
             }));
             navigation?.navigate(Screens.AddFinancialEntry, {});
           }}

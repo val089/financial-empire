@@ -71,7 +71,7 @@ const FinancialEntriesScreen = ({
               category_name: item.category_name,
               subcategory_name: item.subcategory_name,
               type: item.type,
-              amount: String(Math.abs(item.amount)),
+              amount: String(Math.abs(item.amount)), // Convert to positive for UI, type will determine sign
             });
             navigation?.navigate(Screens.AddFinancialEntry, {
               financialEntryId: item.id,
