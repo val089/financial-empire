@@ -8,16 +8,13 @@ import { Screens } from 'utils/Screens';
 import { useAddFinancialEntryContext } from 'contexts/AddFinancialEntryContext';
 
 const SubcategoryFinancialEntriesScreen = ({
-  route,
   navigation,
 }: SubcategoryFinancialEntriesScreenProps) => {
-  const { category_name } = route?.params || {};
+  const { setFinancialEntry, financialEntry } = useAddFinancialEntryContext();
 
   const { data: subcategories, isLoading } = useSubcategoryFinancialEntries({
-    category_name,
+    category_name: financialEntry.category_name,
   });
-
-  const { setCategoryName, setSubcategoryName } = useAddFinancialEntryContext();
 
   if (isLoading) {
     return <Loader />;
@@ -27,19 +24,22 @@ const SubcategoryFinancialEntriesScreen = ({
     <>
       <ScreenHeader
         onBackPress={() => navigation?.goBack()}
-        title={category_name}
+        title={financialEntry.category_name || ''}
       />
       <ScreenContentWrapper className='p-0'>
         <TouchableOpacity
           className='flex-row my-5 items-center p-4 border-y border-gray-200'
           onPress={() => {
-            setCategoryName(category_name);
-            navigation?.navigate(Screens.AddFinancialEntry);
+            setFinancialEntry((prevState) => ({
+              ...prevState,
+              category_name: financialEntry.category_name,
+            }));
+            navigation?.navigate(Screens.AddFinancialEntry, {});
           }}
         >
-          <CategoryIcon categoryName={category_name} />
+          <CategoryIcon categoryName={financialEntry.category_name} />
           <Text className='text-h4 font-interRegular ml-4'>
-            {category_name}
+            {financialEntry.category_name}
           </Text>
         </TouchableOpacity>
 
@@ -49,9 +49,12 @@ const SubcategoryFinancialEntriesScreen = ({
               key={subcategory.id}
               className='flex-row justify-between items-center p-4 border-b border-gray-200'
               onPress={() => {
-                setCategoryName(category_name);
-                setSubcategoryName(subcategory.name);
-                navigation?.popTo(Screens.AddFinancialEntry);
+                setFinancialEntry((prevState) => ({
+                  ...prevState,
+                  category_name: financialEntry.category_name,
+                  subcategory_name: subcategory.name,
+                }));
+                navigation?.popTo(Screens.AddFinancialEntry, {});
               }}
             >
               <Text className='text-h4 font-interRegular'>

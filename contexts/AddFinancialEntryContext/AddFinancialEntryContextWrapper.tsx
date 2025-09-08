@@ -1,36 +1,29 @@
 import { ReactNode, useState } from 'react';
 import { AddFinancialEntryContextProvider } from '.';
-import {
-  CategoryFinancialEntryName,
-  FinancialEntryType,
-  SubcategoryFinancialEntryName,
-} from 'lib/types';
+import { FinancialEntryContextDataType } from './types';
+import { defaultFinancialEntry } from './consts';
 
 const AddFinancialEntryContextWrapper = ({
   children,
 }: {
   children: ReactNode;
 }) => {
-  const [type, setType] = useState<FinancialEntryType>('expense');
-  const [amount, setAmount] = useState('0');
-  const [category_name, setCategoryName] = useState<
-    CategoryFinancialEntryName | null | undefined
-  >(null);
-  const [subcategory_name, setSubcategoryName] = useState<
-    SubcategoryFinancialEntryName | null | undefined
-  >(null);
+  const [financialEntry, setFinancialEntry] =
+    useState<FinancialEntryContextDataType>(defaultFinancialEntry);
+  const [isEditting, setIsEditting] = useState(false);
+
+  const setDefaultValues = (entry: FinancialEntryContextDataType | null) => {
+    setFinancialEntry(entry || defaultFinancialEntry);
+  };
 
   return (
     <AddFinancialEntryContextProvider
       value={{
-        type,
-        setType,
-        amount,
-        setAmount,
-        category_name,
-        setCategoryName,
-        subcategory_name,
-        setSubcategoryName,
+        financialEntry,
+        setFinancialEntry,
+        setDefaultValues,
+        isEditting,
+        setIsEditting,
       }}
     >
       {children}
