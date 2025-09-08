@@ -78,14 +78,15 @@ yarn-error.*
 
 # @end expo-cli
 
-# Android
-android/
+# Android builds
 *.apk
 *.aab
 
-# iOS
-ios/
+# iOS builds
 *.ipa
+
+# Keep native directories for bare workflow
+# android/ and ios/ directories are now tracked
 
 .yarn
 NOTES/
