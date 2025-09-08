@@ -5,6 +5,7 @@ export enum Mutations {
   DownloadImage = 'downloadImage',
   AddFinancialEntry = 'addFinancialEntry',
   DeleteFinancialEntry = 'deleteFinancialEntry',
+  EditFinancialEntry = 'editFinancialEntry',
 }
 
 export enum Queries {
