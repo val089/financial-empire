@@ -34,10 +34,12 @@ const AddFinancialEntryScreen = ({
   } = useAddFinancialEntryContext();
 
   const onSubmit = () => {
-    const formattedAmount =
-      type === FinancialEntryTypeList.expense && amount !== ''
-        ? -Number(amount)
-        : Number(amount);
+    const numericAmount = Number(amount);
+
+    if (!category_name) {
+      showErrorToast('Please select a category', 'Category is required');
+      return;
+    }
 
     if (isEditting && financialEntryId) {
       editFinancialEntry(
@@ -46,7 +48,7 @@ const AddFinancialEntryScreen = ({
           type,
           category_name,
           subcategory_name,
-          amount: formattedAmount,
+          amount: numericAmount,
         },
         {
           onSuccess: () => {
@@ -69,7 +71,7 @@ const AddFinancialEntryScreen = ({
         type,
         category_name,
         subcategory_name,
-        amount: formattedAmount,
+        amount: numericAmount,
       },
       {
         onSuccess: () => {
@@ -159,8 +161,7 @@ const AddFinancialEntryScreen = ({
             adjustsFontSizeToFit
           >
             {type === FinancialEntryTypeList.expense ? '-' : '+'}
-            {Math.abs(Number(amount))}
-
+            {amount}
             {/* TODO: set currency in the future */}
             {' PLN'}
           </Text>

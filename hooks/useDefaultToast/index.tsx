@@ -1,10 +1,10 @@
 import Toast from 'react-native-toast-message';
 
 const useDefaultToast = () => {
-  const showErrorToast = (message?: string) =>
+  const showErrorToast = (message?: string, title?: string) =>
     Toast.show({
       type: 'error',
-      text1: 'Error',
+      text1: title || 'Error',
       text2:
         message ||
         'Something was wrong. Please try again or contact the administrator if the error occurs again.',
