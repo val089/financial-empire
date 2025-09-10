@@ -23,7 +23,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   userInterfaceStyle: 'automatic',
   ios: {
     supportsTablet: true,
-    bundleIdentifier: 'com.kamildev.financialempire',
+    bundleIdentifier: 'com.kamildev.financialempire.dev',
     infoPlist: {
       ITSAppUsesNonExemptEncryption: false,
     },
