@@ -53,7 +53,10 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
         <View className='px-4'>
           <Text className='text-h2 text-center mt-2'>
-            Battery Level: {batteryLevel ?? 'Battery level is not available'}%
+            Battery Level:{' '}
+            {batteryLevel != null
+              ? `${batteryLevel}%`
+              : 'Battery level is not available'}
           </Text>
 
           <Text className='text-h1 text-center mt-20'>
