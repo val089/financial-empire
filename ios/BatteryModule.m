@@ -11,7 +11,7 @@
 @interface RCT_EXTERN_MODULE(BatteryModule, NSObject)
 
 
-// RCT_EXTERN_MODULE - jest kluczowy dla React Native, aby moduł był prawidłowo zarejestrowany.
-RCT_EXTERN_METHOD(getBatteryLevel:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+// RCT_EXTERN_MODULE - is crucial for React Native to properly register the module.
+RCT_EXTERN_METHOD(getBatteryLevel:(RCTPromiseResolveBlock)resolve rejector:(RCTPromiseRejectBlock)reject)
 
 @end
