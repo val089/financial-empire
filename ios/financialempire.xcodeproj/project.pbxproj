@@ -10,6 +10,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		43CFFDF8888E37C7D12250AC /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D0B28CFB814A607B77700 /* ExpoModulesProvider.swift */; };
+		96E5AE302E7170D70015F3CB /* BatteryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E5AE2F2E7170D70015F3CB /* BatteryModule.swift */; };
+		96E5AE322E71714F0015F3CB /* BatteryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5AE312E71714F0015F3CB /* BatteryModule.m */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		C69F8C1ACCDBC4B147833933 /* libPods-financialempire.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A1685FE4D9AD6C8BC86F78 /* libPods-financialempire.a */; };
 		EF9C2A7CEEF17FBD0584AC2B /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3352BCD4680536E9B47661A5 /* PrivacyInfo.xcprivacy */; };
@@ -21,10 +23,12 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = financialempire/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = financialempire/Info.plist; sourceTree = "<group>"; };
 		327AA00A4C75567AB455F36F /* Pods-financialempire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-financialempire.debug.xcconfig"; path = "Target Support Files/Pods-financialempire/Pods-financialempire.debug.xcconfig"; sourceTree = "<group>"; };
-		3352BCD4680536E9B47661A5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = financialempire/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3352BCD4680536E9B47661A5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = financialempire/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3E9D0B28CFB814A607B77700 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-financialempire/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		44A1685FE4D9AD6C8BC86F78 /* libPods-financialempire.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-financialempire.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D8F4A3BC827DC23FC835424 /* Pods-financialempire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-financialempire.release.xcconfig"; path = "Target Support Files/Pods-financialempire/Pods-financialempire.release.xcconfig"; sourceTree = "<group>"; };
+		96E5AE2F2E7170D70015F3CB /* BatteryModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryModule.swift; sourceTree = "<group>"; };
+		96E5AE312E71714F0015F3CB /* BatteryModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BatteryModule.m; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = financialempire/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -54,6 +58,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
 				3352BCD4680536E9B47661A5 /* PrivacyInfo.xcprivacy */,
+				96E5AE2F2E7170D70015F3CB /* BatteryModule.swift */,
+				96E5AE312E71714F0015F3CB /* BatteryModule.m */,
 			);
 			name = financialempire;
 			sourceTree = "<group>";
@@ -89,7 +95,6 @@
 				327AA00A4C75567AB455F36F /* Pods-financialempire.debug.xcconfig */,
 				8D8F4A3BC827DC23FC835424 /* Pods-financialempire.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -328,6 +333,8 @@
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
 				43CFFDF8888E37C7D12250AC /* ExpoModulesProvider.swift in Sources */,
+				96E5AE302E7170D70015F3CB /* BatteryModule.swift in Sources */,
+				96E5AE322E71714F0015F3CB /* BatteryModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +349,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = financialempire/financialempire.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DG4QBDD94B;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -360,7 +368,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kamildev.financialempire;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamildev.financialempire.dev;
 				PRODUCT_NAME = financialempire;
 				SWIFT_OBJC_BRIDGING_HEADER = "financialempire/financialempire-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -378,6 +386,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = financialempire/financialempire.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DG4QBDD94B;
 				INFOPLIST_FILE = financialempire/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -391,7 +400,7 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kamildev.financialempire;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamildev.financialempire.dev;
 				PRODUCT_NAME = financialempire;
 				SWIFT_OBJC_BRIDGING_HEADER = "financialempire/financialempire-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -455,10 +464,7 @@
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -513,10 +519,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
