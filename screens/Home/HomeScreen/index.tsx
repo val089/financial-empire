@@ -10,12 +10,15 @@ import { useUserContext } from 'contexts/UserContext';
 import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
 import { Button } from 'components/atoms';
 import TotalFinancialEntriesAmount from './partials/TotalFinancialEntriesAmount';
+import useBatteryLevel from 'hooks/useBatteryLevel';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const { logOut } = useAuthentication();
   const { user } = useUserContext();
   // TODO: Move to Profile Screen
   const { mutate } = useUpdateUserProfileMutation();
+
+  const batteryLevel = useBatteryLevel();
 
   return (
     <>
@@ -49,6 +52,13 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         <MonthlyFinancialSummaryChart />
 
         <View className='px-4'>
+          <Text className='text-h2 text-center mt-2'>
+            Battery Level:{' '}
+            {batteryLevel != null
+              ? `${batteryLevel}%`
+              : 'Battery level is not available'}
+          </Text>
+
           <Text className='text-h1 text-center mt-20'>
             Welcome to the home screen
           </Text>
