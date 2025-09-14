@@ -1,7 +1,7 @@
 import colors from 'theme/colors';
 
 export const DEFAULT_HEADER_ICONS_PROPS = {
-  size: 24,
+  size: 32,
   color: colors.primary.blue[400],
 };
 

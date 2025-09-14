@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNavigation from './AuthNavigation';
-import HomeNavigation from './HomeNavigation';
 import { useUserContext } from 'contexts/UserContext';
 import { ActivityIndicator, View } from 'react-native';
+import BottomBarNavigation from './BottomBarNavigation';
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
@@ -14,7 +14,9 @@ const RootNavigation = () => {
       return <Screen name='AuthNav' component={AuthNavigation} />;
     }
 
-    return <Screen name='HomeNav' component={HomeNavigation} />;
+    return (
+      <Screen name='BottomBarNavigation' component={BottomBarNavigation} />
+    );
   };
 
   return isAuthenticating ? (
@@ -23,6 +25,7 @@ const RootNavigation = () => {
     </View>
   ) : (
     <Navigator
+      initialRouteName={isLoggedIn ? 'BottomBarNavigation' : 'AuthNav'}
       screenOptions={{
         headerShown: false,
       }}

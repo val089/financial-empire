@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NativeModules } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 const { BatteryModule } = NativeModules;
 
@@ -19,6 +20,13 @@ const useBatteryLevel = (pollingInterval: number = 5000) => {
   };
 
   useEffect(() => {
+    if (DeviceInfo.isEmulatorSync()) {
+      console.warn(
+        'useBatteryLevel hook is not supported on simulators/emulators.'
+      );
+      return;
+    }
+
     fetchBatteryLevel();
     const interval = setInterval(fetchBatteryLevel, pollingInterval);
 

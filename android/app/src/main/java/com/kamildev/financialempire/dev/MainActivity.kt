@@ -1,4 +1,4 @@
-package com.kamildev.financialempire
+package com.kamildev.financialempire.dev
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

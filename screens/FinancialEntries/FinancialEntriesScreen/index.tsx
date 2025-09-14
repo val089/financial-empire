@@ -93,10 +93,7 @@ const FinancialEntriesScreen = ({
 
   return (
     <View className='flex-1 bg-white'>
-      <ScreenHeader
-        onBackPress={() => navigation?.goBack()}
-        title='Financial entries'
-      />
+      <ScreenHeader title='Financial entries' />
       <FloatingAddButton
         onPress={() => {
           setIsEditting(false);
