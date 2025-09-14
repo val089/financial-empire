@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.kamildev.financialempire'
+    namespace 'com.kamildev.financialempire.dev'
     defaultConfig {
-        applicationId 'com.kamildev.financialempire'
+        applicationId 'com.kamildev.financialempire.dev'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
