@@ -13,4 +13,5 @@ export enum testIDs {
   numberPadButton = 'number-pad-button',
   notificationsButton = 'notifications-button',
   settingsButton = 'settings-button',
+  logoutButton = 'logout-button',
 }
