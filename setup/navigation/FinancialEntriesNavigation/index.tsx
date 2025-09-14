@@ -1,26 +1,22 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from 'screens/Home/HomeScreen';
-import { HomeStackParamList } from './types';
 import { Screens } from 'utils/Screens';
 import FinancialEntriesScreen from 'screens/FinancialEntries/FinancialEntriesScreen';
 import AddEntryScreen from 'screens/FinancialEntries/AddFinancialEntryScreen';
 import CategoryFinancialEntriesScreen from 'screens/FinancialEntries/CategoryFinancialEntriesScreen';
 import SubcategoryFinancialEntriesScreen from 'screens/FinancialEntries/SubcategoryFinancialEntriesScreen';
 import colors from 'theme/colors';
+import { FinancialEntriesStackParamList } from './types';
 
-const { Screen, Navigator } = createNativeStackNavigator<HomeStackParamList>();
+const { Screen, Navigator } =
+  createNativeStackNavigator<FinancialEntriesStackParamList>();
 
-const HomeNavigation = () => (
+const FinancialEntriesNavigation = () => (
   <Navigator
+    initialRouteName={Screens.FinancialEntries}
     screenOptions={{
       contentStyle: { backgroundColor: colors.primary.white },
     }}
   >
-    <Screen
-      name={Screens.Home}
-      component={HomeScreen}
-      options={{ headerShown: false }}
-    />
     <Screen
       name={Screens.FinancialEntries}
       component={FinancialEntriesScreen}
@@ -52,4 +48,4 @@ const HomeNavigation = () => (
   </Navigator>
 );
 
-export default HomeNavigation;
+export default FinancialEntriesNavigation;

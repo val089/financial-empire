@@ -1,19 +1,15 @@
-import useAuthentication from 'hooks/useAuthentication';
 import { ScrollView, Text, View } from 'react-native';
 import { HomeScreenProps } from './types';
-import { Screens } from 'utils/Screens';
 import {
   MonthlyFinancialSummaryChart,
   ScreenHeader,
 } from 'components/organisms';
 import { useUserContext } from 'contexts/UserContext';
 import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
-import { Button } from 'components/atoms';
 import TotalFinancialEntriesAmount from './partials/TotalFinancialEntriesAmount';
 import useBatteryLevel from 'hooks/useBatteryLevel';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
-  const { logOut } = useAuthentication();
   const { user } = useUserContext();
   // TODO: Move to Profile Screen
   const { mutate } = useUpdateUserProfileMutation();
@@ -58,17 +54,6 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
               ? `${batteryLevel}%`
               : 'Battery level is not available'}
           </Text>
-
-          <Text className='text-h1 text-center mt-20'>
-            Welcome to the home screen
-          </Text>
-
-          <Button label='Logout' onPress={logOut} className='mb-4' />
-
-          <Button
-            onPress={() => navigation?.navigate(Screens.FinancialEntries)}
-            label='Financial Entries'
-          />
         </View>
       </ScrollView>
     </>

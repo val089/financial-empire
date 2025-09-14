@@ -33,7 +33,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#ffffff',
     },
-    package: 'com.kamildev.financialempire',
+    package: 'com.kamildev.financialempire.dev',
   },
   web: {
     favicon: './assets/favicon.png',
