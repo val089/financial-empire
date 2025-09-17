@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { NativeModules } from 'react-native';
+import { NativeModules, NativeEventEmitter } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 const { BatteryModule } = NativeModules;
+const batteryEmitter = new NativeEventEmitter(BatteryModule);
 
 // Native modules work only on real devices, not on simulators/emulators
 
@@ -11,7 +12,7 @@ const useBatteryLevel = (pollingInterval: number = 5000) => {
 
   const fetchBatteryLevel = async () => {
     try {
-      const level = await BatteryModule.getBatteryLevel();
+      const level = (await BatteryModule.getBatteryLevel()) as number;
       setBatteryLevel(level);
     } catch (error) {
       console.error('Error fetching battery level:', error);
@@ -28,9 +29,14 @@ const useBatteryLevel = (pollingInterval: number = 5000) => {
     }
 
     fetchBatteryLevel();
-    const interval = setInterval(fetchBatteryLevel, pollingInterval);
+    const subscription = batteryEmitter.addListener(
+      'BatteryLevelChanged',
+      (newLevel: number) => {
+        setBatteryLevel(newLevel);
+      }
+    );
 
-    return () => clearInterval(interval);
+    return () => subscription.remove();
   }, [pollingInterval]);
 
   return batteryLevel;
