@@ -32,6 +32,7 @@ const BottomBarNavigation: React.FC = () => {
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons name='home' color={color} size={size} />
           ),
+          title: 'Home',
         }}
       />
       <Screen
@@ -41,6 +42,7 @@ const BottomBarNavigation: React.FC = () => {
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons name='list' color={color} size={size} />
           ),
+          title: 'Financial entries',
         }}
       />
     </Navigator>
