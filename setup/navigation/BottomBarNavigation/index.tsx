@@ -15,7 +15,7 @@ const BottomBarNavigation: React.FC = () => {
 
   return (
     <Navigator
-      initialRouteName={Navigators.Home}
+      initialRouteName={Navigators.HomeNavigation}
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -27,7 +27,7 @@ const BottomBarNavigation: React.FC = () => {
     >
       <Screen
         component={HomeNavigation}
-        name={Navigators.Home}
+        name={Navigators.HomeNavigation}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons name='home' color={color} size={size} />
@@ -36,7 +36,7 @@ const BottomBarNavigation: React.FC = () => {
       />
       <Screen
         component={FinancialEntriesNavigation}
-        name={Navigators.FinancialEntries}
+        name={Navigators.FinancialEntriesNavigation}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons name='list' color={color} size={size} />
