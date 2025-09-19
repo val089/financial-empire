@@ -15,8 +15,7 @@ class BatteryModule: RCTEventEmitter {
   override init() {
     super.init()
     UIDevice.current.isBatteryMonitoringEnabled = true
-    NotificationCenter.default.addObserver(self, selector: #selector(self.batteryLevelDidChangeNotification), name: UIDevice.batteryLevelDidChangeNotification, object: nil
-    )
+    NotificationCenter.default.addObserver(self, selector: #selector(self.batteryLevelDidChange), name: UIDevice.batteryLevelDidChangeNotification, object: nil)
   }
 
   deinit {
