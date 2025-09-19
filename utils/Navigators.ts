@@ -1,4 +1,4 @@
 export enum Navigators {
-  Home = 'Home',
-  FinancialEntries = 'Financial entries',
+  HomeNavigation = 'HomeNavigator',
+  FinancialEntriesNavigation = 'FinancialEntriesNavigator',
 }
