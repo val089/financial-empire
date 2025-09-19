@@ -30,7 +30,7 @@ const useBatteryLevel = (pollingInterval: number = 5000) => {
 
     fetchBatteryLevel();
     const subscription = batteryEmitter.addListener(
-      'BatteryLevelChanged',
+      'batteryLevelDidChange',
       (newLevel: number) => {
         setBatteryLevel(newLevel);
       }
