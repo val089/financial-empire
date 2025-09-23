@@ -15,7 +15,7 @@ const useUserProfileQuery = (
     queryFn: async () => {
       const { data } = await supabase
         .from('profiles')
-        .select(`username, website, avatar_url`)
+        .select(`username, website, avatar_url, full_name `)
         .eq('id', userId)
         .single();
 

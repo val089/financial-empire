@@ -6,4 +6,5 @@ export enum Screens {
   AddFinancialEntry = 'Add financial entry',
   CategoryFinancialEntries = 'Category financial entries',
   SubcategoryFinancialEntries = 'Subcategory financial entries',
+  Profile = 'Profile',
 }

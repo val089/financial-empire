@@ -2,30 +2,40 @@ import clsx from 'clsx';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenHeaderProps } from './types';
-import { ArrowLeftButton } from 'components/atoms';
+import { ArrowLeftButton, Avatar } from 'components/atoms';
 import { testIDs } from 'utils/testIDs';
-import AvatarPicker from 'components/molecules/AvatarPicker';
 import { Ionicons } from '@expo/vector-icons';
 import { DEFAULT_HEADER_ICONS_PROPS, ICONS_HIT_SLOPE } from './consts';
 import useAuthentication from 'hooks/useAuthentication';
 import { mergeClasses } from 'utils/functions/mergeClasses';
+import { useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
 const ScreenHeader = ({
   avatarUrl,
   title,
-  onUpload,
   onBackPress,
   showMainSideMenu,
+  onAvatarPress,
+  navigation,
 }: ScreenHeaderProps) => {
   const { top } = useSafeAreaInsets();
   const { logOut } = useAuthentication();
 
-  // TODO: Move change avatar to Profile Screen
-  const renderLeftHeaderElement = () => {
-    if (avatarUrl && onUpload)
-      return <AvatarPicker {...{ avatarUrl, onUpload }} />;
+  const [canGoBack, setCanGoBack] = useState(navigation?.canGoBack());
 
-    if (onBackPress) return <ArrowLeftButton onPress={onBackPress} />;
+  useFocusEffect(() => {
+    setCanGoBack(navigation?.canGoBack());
+  });
+
+  const goBack = () => navigation?.goBack();
+
+  const renderLeftHeaderElement = () => {
+    if (avatarUrl && onAvatarPress)
+      return <Avatar url={avatarUrl} onAvatarPress={onAvatarPress} />;
+
+    if (onBackPress || canGoBack)
+      return <ArrowLeftButton onPress={onBackPress || goBack} />;
 
     return null;
   };
@@ -33,7 +43,7 @@ const ScreenHeader = ({
   return (
     <View
       className={clsx(
-        'h-28 max-w-full flex-row items-center justify-between px-4 bg-white'
+        'h-30 max-w-full flex-row items-center justify-between px-4 bg-white'
       )}
       style={{ paddingTop: top }}
       testID={testIDs.screenHeader}
@@ -44,7 +54,7 @@ const ScreenHeader = ({
         {title && (
           <Text
             className={mergeClasses('font-interRegular text-h3', {
-              'ml-2': onBackPress,
+              'ml-2': onBackPress || avatarUrl || canGoBack,
             })}
           >
             {title}
@@ -52,22 +62,11 @@ const ScreenHeader = ({
         )}
       </View>
 
-      {/* TODO: add logout icon */}
       {showMainSideMenu && (
-        <View className='flex-row items-center justify-end'>
-          {/* <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => {}}
-            hitSlop={ICONS_HIT_SLOPE}
-            testID={testIDs.settingsButton}
-          >
-            <Ionicons
-              name='settings'
-              size={DEFAULT_HEADER_ICONS_PROPS.size}
-              color={DEFAULT_HEADER_ICONS_PROPS.color}
-            />
-          </TouchableOpacity> */}
-
+        <View
+          className='flex-row items-center justify-end'
+          testID={testIDs.mainSideMenu}
+        >
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={logOut}

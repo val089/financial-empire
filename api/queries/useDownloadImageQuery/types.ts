@@ -7,5 +7,7 @@ export type UseDownloadImageQueryResponse = {
 export type useDownloadImageQueryReturnType =
   UseQueryResult<UseDownloadImageQueryResponse | null>;
 
-export type UseUserProfileQueryOptions =
-  UseQueryOptions<UseDownloadImageQueryResponse | null>;
+export type UseUserProfileQueryOptions = Omit<
+  UseQueryOptions<UseDownloadImageQueryResponse | null>,
+  'queryKey' | 'queryFn'
+>;
