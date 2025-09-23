@@ -16,7 +16,6 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
     }
   );
 
-  // Pobierz avatar jeśli użytkownik ma avatar_url
   const { data: avatarData, isLoading: isAvatarLoading } =
     useDownloadImageQuery({
       storageName: 'avatars',
@@ -40,11 +39,9 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
       setSession(session);
       setUserId(session.user.id);
       setIsLoggedIn(true);
-      // setUser(session.user);
     });
   }, []);
 
-  // Stwórz obiekt użytkownika z pobranym avatarem
   const userWithAvatar = data
     ? {
         ...data,
