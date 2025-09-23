@@ -35,15 +35,15 @@ class BatteryModule: RCTEventEmitter {
     return ["batteryLevelDidChange"]
   }
   
-  @objc
-  func getBatteryLevel(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
-    let level = UIDevice.current.batteryLevel
-    if level < 0 {
-      reject("E_BATTERY", "Battery level not available", nil)
-    } else {
-      resolve(Int(level * 100))
-    }
+@objc
+func getBatteryLevel(_ resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+  let level = UIDevice.current.batteryLevel
+  if level < 0 {
+    reject("E_BATTERY", "Battery level not available", nil)
+  } else {
+    resolve(Int(level * 100))
   }
+}
 
   @objc
   static func requireMainQueue() -> Bool {
