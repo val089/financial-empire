@@ -3,6 +3,7 @@ import { Session } from '@supabase/supabase-js';
 import { supabase } from 'lib/supabase';
 import { UserContextProvider } from '.';
 import useUserProfileQuery from 'api/queries/useUserProfileQuery';
+import useDownloadImageQuery from 'api/queries/useDownloadImageQuery';
 
 const UserContextWrapper = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,7 +16,17 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
     }
   );
 
-  const isAuthenticating = isUserProfileLoading;
+  // Pobierz avatar jeśli użytkownik ma avatar_url
+  const { data: avatarData, isLoading: isAvatarLoading } =
+    useDownloadImageQuery({
+      storageName: 'avatars',
+      path: data?.avatar_url || '',
+      options: {
+        enabled: Boolean(data?.avatar_url),
+      },
+    });
+
+  const isAuthenticating = isUserProfileLoading || isAvatarLoading;
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -33,15 +44,24 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
+  // Stwórz obiekt użytkownika z pobranym avatarem
+  const userWithAvatar = data
+    ? {
+        ...data,
+        avatar_url: avatarData?.avatar_url ?? data.avatar_url,
+      }
+    : null;
+
   return (
     <UserContextProvider
       value={{
         isLoggedIn,
         setIsLoggedIn,
         session,
-        user: data ?? null,
+        user: userWithAvatar,
         userId,
         isAuthenticating,
+        avatarDataUrl: avatarData?.avatar_url ?? null,
       }}
     >
       {children}

@@ -3,7 +3,7 @@ import { Profile } from 'lib/types';
 
 export type UseUserProfileQueryResponse = Pick<
   Profile,
-  'username' | 'website' | 'avatar_url'
+  'username' | 'website' | 'avatar_url' | 'full_name'
 > | null;
 
 export type UseUserProfileQueryReturnType =

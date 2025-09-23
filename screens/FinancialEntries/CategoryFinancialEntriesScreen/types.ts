@@ -1,7 +1,7 @@
-import { HomeStackParamList } from 'setup/navigation/HomeNavigation/types';
+import { FinancialEntriesStackParamList } from 'setup/navigation/FinancialEntriesNavigation/types';
 import { Screens } from 'utils/Screens';
 
 export type CategoryFinancialEntriesScreenProps = ScreenProps<
-  HomeStackParamList,
+  FinancialEntriesStackParamList,
   Screens.CategoryFinancialEntries
 >;

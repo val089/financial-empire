@@ -9,4 +9,5 @@ export type UserContextProps = {
   user: UseUserProfileQueryResponse | null;
   userId: string | null;
   isAuthenticating: boolean;
+  avatarDataUrl: string | null;
 };

@@ -11,6 +11,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+// Mock Expo vector icons globally to avoid rendering issues during tests
+jest.mock('@expo/vector-icons', () => ({
+  Ionicons: 'Ionicons',
+  MaterialIcons: 'MaterialIcons',
+  FontAwesome: 'FontAwesome',
+  AntDesign: 'AntDesign',
+  Feather: 'Feather',
+  MaterialCommunityIcons: 'MaterialCommunityIcons',
+}));
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
