@@ -2,11 +2,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from 'screens/Home/HomeScreen';
 import { HomeStackParamList } from './types';
 import { Screens } from 'utils/Screens';
-import FinancialEntriesScreen from 'screens/FinancialEntries/FinancialEntriesScreen';
-import AddEntryScreen from 'screens/FinancialEntries/AddFinancialEntryScreen';
-import CategoryFinancialEntriesScreen from 'screens/FinancialEntries/CategoryFinancialEntriesScreen';
-import SubcategoryFinancialEntriesScreen from 'screens/FinancialEntries/SubcategoryFinancialEntriesScreen';
 import colors from 'theme/colors';
+import ProfileScreen from 'screens/Home/ProfileScreen';
+import ScreenHeader from 'components/organisms/ScreenHeader';
 
 const { Screen, Navigator } = createNativeStackNavigator<HomeStackParamList>();
 
@@ -14,6 +12,9 @@ const HomeNavigation = () => (
   <Navigator
     screenOptions={{
       contentStyle: { backgroundColor: colors.primary.white },
+      header: ({ options, navigation }) => (
+        <ScreenHeader {...options} navigation={navigation} />
+      ),
     }}
   >
     <Screen
@@ -22,32 +23,9 @@ const HomeNavigation = () => (
       options={{ headerShown: false }}
     />
     <Screen
-      name={Screens.FinancialEntries}
-      component={FinancialEntriesScreen}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <Screen
-      name={Screens.AddFinancialEntry}
-      component={AddEntryScreen}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <Screen
-      name={Screens.CategoryFinancialEntries}
-      component={CategoryFinancialEntriesScreen}
-      options={{
-        headerShown: false,
-      }}
-    />
-    <Screen
-      name={Screens.SubcategoryFinancialEntries}
-      component={SubcategoryFinancialEntriesScreen}
-      options={{
-        headerShown: false,
-      }}
+      name={Screens.Profile}
+      component={ProfileScreen}
+      options={{ title: 'My Profile' }}
     />
   </Navigator>
 );

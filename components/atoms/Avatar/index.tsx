@@ -1,13 +1,19 @@
-import React from 'react';
-import { ActivityIndicator, Image, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  TouchableOpacity,
+  View,
+  Text,
+} from 'react-native';
 import { AvatarProps } from './types';
 import { testIDs } from 'utils/testIDs';
 
-const Avatar = ({ url, isLoading }: AvatarProps) => {
+const Avatar = ({ url, isLoading, onAvatarPress, size = 40 }: AvatarProps) => {
   if (isLoading) {
     return (
       <View
-        className='h-10 w-10 items-center justify-center rounded-full bg-gray-400'
+        className='items-center justify-center rounded-full bg-gray-400'
+        style={{ height: size, width: size }}
         testID={testIDs.avatarLoader}
       >
         <ActivityIndicator size='small' color='white' />
@@ -16,21 +22,25 @@ const Avatar = ({ url, isLoading }: AvatarProps) => {
   }
 
   return (
-    <>
+    <TouchableOpacity onPress={onAvatarPress} testID={testIDs.avatarButton}>
       {url ? (
         <Image
-          className='mr-2 h-10 w-10 rounded-full'
+          className={'mr-2 rounded-full'}
+          style={{ height: size, width: size }}
           resizeMode='cover'
           source={{ uri: url }}
           testID={testIDs.avatar}
         />
       ) : (
         <View
-          className='h-10 w-10 rounded-full bg-gray-400'
+          className='rounded-full bg-gray-400 mr-2 items-center justify-center'
+          style={{ height: size, width: size }}
           testID={testIDs.avatarPlaceholder}
-        />
+        >
+          <Text className='text-white text-h1'>{'?'}</Text>
+        </View>
       )}
-    </>
+    </TouchableOpacity>
   );
 };
 

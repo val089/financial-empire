@@ -1,6 +1,7 @@
 export enum testIDs {
   avatar = 'avatar',
   avatarPlaceholder = 'avatar-placeholder',
+  avatarButton = 'avatar-button',
   screenHeader = 'screen-header',
   arrowLeftButton = 'arrow-left-button',
   inputLeftIcon = 'input-left-icon',
@@ -14,4 +15,5 @@ export enum testIDs {
   notificationsButton = 'notifications-button',
   settingsButton = 'settings-button',
   logoutButton = 'logout-button',
+  mainSideMenu = 'main-side-menu',
 }

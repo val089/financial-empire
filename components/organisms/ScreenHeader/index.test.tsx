@@ -1,4 +1,4 @@
-import { render } from 'setup/testing-library';
+import { fireEvent, render, act } from 'setup/testing-library';
 import ScreenHeader from '.';
 import { testIDs } from 'utils/testIDs';
 
@@ -18,20 +18,36 @@ describe('ScreenHeader', () => {
     expect(queryByText('Title')).toBeNull();
   });
 
-  // TODO: replace test for avatar, avatar picker will move to Profile Screen
-  test('renders with avatar picker', () => {
+  test('renders with avatar', () => {
+    const onAvatarPress = jest.fn();
     const { getByTestId } = render(
       <ScreenHeader
         avatarUrl='https://example.com/avatar.png'
-        onUpload={() => {}}
+        onAvatarPress={onAvatarPress}
       />
     );
-    expect(getByTestId(testIDs.avatarPicker)).toBeTruthy();
+    expect(getByTestId(testIDs.avatar)).toBeTruthy();
+  });
+
+  test('calls onAvatarPress when avatar is pressed', () => {
+    const onAvatarPress = jest.fn();
+    const { getByTestId } = render(
+      <ScreenHeader
+        avatarUrl='https://example.com/avatar.png'
+        onAvatarPress={onAvatarPress}
+      />
+    );
+
+    act(() => {
+      fireEvent.press(getByTestId(testIDs.avatarButton));
+    });
+
+    expect(onAvatarPress).toHaveBeenCalled();
   });
 
   test('renders without avatar', () => {
     const { queryByTestId } = render(<ScreenHeader />);
-    expect(queryByTestId(testIDs.avatarPicker)).toBeNull();
+    expect(queryByTestId(testIDs.avatar)).toBeNull();
   });
 
   test('renders with back button', () => {
@@ -46,6 +62,6 @@ describe('ScreenHeader', () => {
 
   test('renders with main side menu icons', () => {
     const { getByTestId } = render(<ScreenHeader showMainSideMenu={true} />);
-    expect(getByTestId(testIDs.logoutButton)).toBeTruthy();
+    expect(getByTestId(testIDs.mainSideMenu)).toBeTruthy();
   });
 });
