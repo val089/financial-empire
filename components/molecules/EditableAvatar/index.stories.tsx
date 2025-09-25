@@ -6,7 +6,6 @@ const meta = {
   component: EditableAvatar,
   args: {
     url: 'https://avatars.githubusercontent.com/u/4726921?v=4',
-    onPress: () => console.log('avatar pressed'),
   },
   parameters: {
     notes: `

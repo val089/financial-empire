@@ -2,7 +2,6 @@ export enum Mutations {
   Login = 'login',
   UpdateUserProfile = 'updateUserProfile',
   UploadAvatar = 'uploadAvatar',
-  DownloadImage = 'downloadImage',
   AddFinancialEntry = 'addFinancialEntry',
   DeleteFinancialEntry = 'deleteFinancialEntry',
   EditFinancialEntry = 'editFinancialEntry',
@@ -16,4 +15,5 @@ export enum Queries {
   CategoriesFinancialEntries = 'categoriesFinancialEntries',
   SubcategoryFinancialEntries = 'subcategoryFinancialEntries',
   MonthlyFinancialSummary = 'monthlyFinancialSummary',
+  ImageUrl = 'imageUrl',
 }

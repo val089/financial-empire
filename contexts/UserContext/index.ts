@@ -10,7 +10,7 @@ export const UserContext = createContext<UserContextProps>({
   user: {} as UseUserProfileQueryResponse,
   userId: '',
   isAuthenticating: false,
-  avatarDataUrl: null,
+  isAvatarLoading: false,
 });
 
 export const UserContextProvider = UserContext.Provider;

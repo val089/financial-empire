@@ -10,7 +10,7 @@ import useBatteryLevel from 'hooks/useBatteryLevel';
 import { Screens } from 'utils/Screens';
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
-  const { user } = useUserContext();
+  const { user, isAvatarLoading } = useUserContext();
 
   const batteryLevel = useBatteryLevel();
 
@@ -18,8 +18,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     <>
       <ScreenHeader
         title={`Hi, ${user?.username || 'user'}`}
-        avatarUrl={user?.avatar_url || ''}
+        avatarUrl={user?.avatar_url}
         onAvatarPress={() => navigation?.navigate(Screens.Profile)}
+        isAvatarLoading={isAvatarLoading}
         showMainSideMenu
       />
       <ScrollView className='flex-1 bg-white'>
