@@ -1,31 +1,36 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from 'lib/supabase';
 import { UserContextProvider } from '.';
 import useUserProfileQuery from 'api/queries/useUserProfileQuery';
-import useDownloadImageQuery from 'api/queries/useDownloadImageQuery';
+import useImageUrlQuery from 'api/queries/useImageUrlQuery';
+import { UserContextWrapperProps } from './types';
 
-const UserContextWrapper = ({ children }: { children: ReactNode }) => {
+const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const [userId, setUserId] = useState('');
-  const { data, isLoading: isUserProfileLoading } = useUserProfileQuery(
-    userId,
-    {
-      enabled: userId !== null,
-    }
-  );
 
-  const { data: avatarData, isLoading: isAvatarLoading } =
-    useDownloadImageQuery({
-      storageName: 'avatars',
-      path: data?.avatar_url || '',
-      options: {
-        enabled: Boolean(data?.avatar_url),
-      },
+  const { data: userProfile, isLoading: isUserProfileLoading } =
+    useUserProfileQuery(userId, {
+      enabled: userId !== null,
     });
 
-  const isAuthenticating = isUserProfileLoading || isAvatarLoading;
+  const { data: avatar_url, isLoading: isAvatarLoading } = useImageUrlQuery({
+    storageName: 'avatars',
+    path: userProfile?.avatar_url || '',
+    options: {
+      enabled: Boolean(userProfile?.avatar_url),
+    },
+  });
+
+  const isAuthenticating = isUserProfileLoading;
+
+  // Only show avatar loading when we have avatar_url path but haven't loaded the public URL yet
+  // This prevents "perpetual loading" issue after app reload by only showing loading
+  // when we actually need to fetch the public URL for an existing avatar path
+  const shouldShowAvatarLoading =
+    Boolean(userProfile?.avatar_url) && isAvatarLoading;
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -42,10 +47,10 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
-  const userWithAvatar = data
+  const userWithAvatar = userProfile
     ? {
-        ...data,
-        avatar_url: avatarData?.avatar_url ?? data.avatar_url,
+        ...userProfile,
+        avatar_url: avatar_url || null,
       }
     : null;
 
@@ -58,7 +63,7 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
         user: userWithAvatar,
         userId,
         isAuthenticating,
-        avatarDataUrl: avatarData?.avatar_url ?? null,
+        isAvatarLoading: shouldShowAvatarLoading,
       }}
     >
       {children}
