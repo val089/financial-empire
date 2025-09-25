@@ -3,7 +3,6 @@ import { Session } from '@supabase/supabase-js';
 import { supabase } from 'lib/supabase';
 import { UserContextProvider } from '.';
 import useUserProfileQuery from 'api/queries/useUserProfileQuery';
-import useImageUrlQuery from 'api/queries/useImageUrlQuery';
 import { UserContextWrapperProps } from './types';
 
 const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
@@ -13,24 +12,24 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
 
   const { data: userProfile, isLoading: isUserProfileLoading } =
     useUserProfileQuery(userId, {
-      enabled: userId !== null,
+      enabled: userId !== '',
+      select: (data) => {
+        if (!data) return data;
+
+        // Generate public URL for avatar if avatar_url exists
+        const avatar_url = data.avatar_url
+          ? supabase.storage.from('avatars').getPublicUrl(data.avatar_url).data
+              .publicUrl
+          : null;
+
+        return {
+          ...data,
+          avatar_url: avatar_url,
+        };
+      },
     });
 
-  const { data: avatar_url, isLoading: isAvatarLoading } = useImageUrlQuery({
-    storageName: 'avatars',
-    path: userProfile?.avatar_url || '',
-    options: {
-      enabled: Boolean(userProfile?.avatar_url),
-    },
-  });
-
   const isAuthenticating = isUserProfileLoading;
-
-  // Only show avatar loading when we have avatar_url path but haven't loaded the public URL yet
-  // This prevents "perpetual loading" issue after app reload by only showing loading
-  // when we actually need to fetch the public URL for an existing avatar path
-  const shouldShowAvatarLoading =
-    Boolean(userProfile?.avatar_url) && isAvatarLoading;
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -47,23 +46,15 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
     });
   }, []);
 
-  const userWithAvatar = userProfile
-    ? {
-        ...userProfile,
-        avatar_url: avatar_url || null,
-      }
-    : null;
-
   return (
     <UserContextProvider
       value={{
         isLoggedIn,
         setIsLoggedIn,
         session,
-        user: userWithAvatar,
+        user: userProfile,
         userId,
         isAuthenticating,
-        isAvatarLoading: shouldShowAvatarLoading,
       }}
     >
       {children}

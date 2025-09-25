@@ -10,7 +10,6 @@ export const UserContext = createContext<UserContextProps>({
   user: {} as UseUserProfileQueryResponse,
   userId: '',
   isAuthenticating: false,
-  isAvatarLoading: false,
 });
 
 export const UserContextProvider = UserContext.Provider;

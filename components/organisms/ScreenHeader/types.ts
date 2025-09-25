@@ -8,5 +8,4 @@ export type ScreenHeaderProps = {
   showMainSideMenu?: boolean;
   onAvatarPress?: () => void;
   navigation?: NativeStackNavigationProp<ParamListBase, string, undefined>;
-  isAvatarLoading?: boolean;
 };
