@@ -18,7 +18,6 @@ const ScreenHeader = ({
   showMainSideMenu,
   onAvatarPress,
   navigation,
-  isAvatarLoading,
 }: ScreenHeaderProps) => {
   const { top } = useSafeAreaInsets();
   const { logOut } = useAuthentication();
@@ -35,7 +34,7 @@ const ScreenHeader = ({
     if (onAvatarPress)
       return (
         <TouchableOpacity onPress={onAvatarPress} testID={testIDs.avatarButton}>
-          <Avatar url={avatarUrl} isLoading={isAvatarLoading} />
+          <Avatar url={avatarUrl} />
         </TouchableOpacity>
       );
 

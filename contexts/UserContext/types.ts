@@ -9,7 +9,6 @@ export type UserContextProps = {
   user: UseUserProfileQueryResponse | undefined;
   userId: string | null;
   isAuthenticating: boolean;
-  isAvatarLoading: boolean;
 };
 
 export type UserContextWrapperProps = {

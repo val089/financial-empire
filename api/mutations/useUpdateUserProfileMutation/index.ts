@@ -45,25 +45,26 @@ const useUpdateUserProfileMutation = () => {
       });
 
       // Snapshot the previous value
-      const previousProfile = queryClient.getQueryData([
-        Queries.UserProfile,
-        userId,
-      ]);
+      const previousProfile =
+        queryClient.getQueryData<UseUserProfileQueryResponse>([
+          Queries.UserProfile,
+          userId,
+        ]);
 
       queryClient.setQueryData(
         [Queries.UserProfile, userId],
-        (oldData: UseUserProfileQueryResponse) => {
-          // Update cache only if avatar_url has changed - this will trigger useDownloadImageQuery to refetch the new avatar
-          if (oldData?.avatar_url !== data.avatar_url) {
-            return {
-              ...oldData,
-              avatar_url: data.avatar_url,
-            };
-          }
-
-          return oldData;
-        }
+        (oldData: UseUserProfileQueryResponse) => ({
+          ...oldData,
+          ...data, // Apply all updates optimistically
+        })
       );
+
+      // If avatar_url changed, invalidate the image URL query to force refetch
+      if (data.avatar_url && previousProfile?.avatar_url !== data.avatar_url) {
+        queryClient.invalidateQueries({
+          queryKey: [Queries.ImageUrl, 'avatars', data.avatar_url],
+        });
+      }
 
       return { previousProfile };
     },
