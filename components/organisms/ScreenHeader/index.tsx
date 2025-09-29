@@ -31,8 +31,12 @@ const ScreenHeader = ({
   const goBack = () => navigation?.goBack();
 
   const renderLeftHeaderElement = () => {
-    if (avatarUrl && onAvatarPress)
-      return <Avatar url={avatarUrl} onAvatarPress={onAvatarPress} />;
+    if (onAvatarPress)
+      return (
+        <TouchableOpacity onPress={onAvatarPress} testID={testIDs.avatarButton}>
+          <Avatar url={avatarUrl} />
+        </TouchableOpacity>
+      );
 
     if (onBackPress || canGoBack)
       return <ArrowLeftButton onPress={onBackPress || goBack} />;

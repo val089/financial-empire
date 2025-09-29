@@ -6,8 +6,11 @@ export type UserContextProps = {
   isLoggedIn: boolean;
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
   session: Session | null;
-  user: UseUserProfileQueryResponse | null;
+  user: UseUserProfileQueryResponse | undefined;
   userId: string | null;
   isAuthenticating: boolean;
-  avatarDataUrl: string | null;
+};
+
+export type UserContextWrapperProps = {
+  children: React.ReactNode;
 };

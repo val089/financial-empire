@@ -18,7 +18,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     <>
       <ScreenHeader
         title={`Hi, ${user?.username || 'user'}`}
-        avatarUrl={user?.avatar_url || ''}
+        avatarUrl={user?.avatar_url}
         onAvatarPress={() => navigation?.navigate(Screens.Profile)}
         showMainSideMenu
       />
