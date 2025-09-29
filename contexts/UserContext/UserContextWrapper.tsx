@@ -12,7 +12,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
 
   const { data: userProfile, isLoading: isUserProfileLoading } =
     useUserProfileQuery(userId, {
-      enabled: userId !== '',
+      enabled: userId !== null && userId !== '',
       select: (data) => {
         if (!data) return data;
 

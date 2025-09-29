@@ -33,7 +33,8 @@ const Avatar = ({ url, isLoading, size = 40 }: AvatarProps) => {
         <View>
           <Image
             className={'mr-2 rounded-full'}
-            style={{ height: size, width: size, resizeMode: 'cover' }}
+            style={{ height: size, width: size }}
+            resizeMode='cover'
             source={{ uri: url }}
             testID={testIDs.avatar}
             onLoad={() => setIsImageLoading(false)}
