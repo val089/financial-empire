@@ -1,4 +1,4 @@
-import { ActivityIndicator, Image, View } from 'react-native';
+import { Image, View } from 'react-native';
 import { AvatarProps } from './types';
 import { testIDs } from 'utils/testIDs';
 import { Ionicons } from '@expo/vector-icons';
@@ -42,12 +42,12 @@ const Avatar = ({ url, isLoading, size = 40 }: AvatarProps) => {
             onError={() => setIsImageLoading(false)}
           />
           {(isImageLoading || isLoading) && (
-            <View
-              className='absolute inset-0 items-center justify-center rounded-full bg-gray-400'
+            <Loader
+              className='absolute inset-0 rounded-full bg-gray-400'
               style={{ height: size, width: size }}
-            >
-              <ActivityIndicator size='small' color='white' />
-            </View>
+              size='small'
+              color={colors.primary.white}
+            />
           )}
         </View>
       ) : (

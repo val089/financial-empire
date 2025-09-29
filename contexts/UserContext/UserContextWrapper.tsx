@@ -19,7 +19,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
         // Generate public URL for avatar if avatar_url exists
         const avatar_url = data.avatar_url
           ? supabase.storage.from('avatars').getPublicUrl(data.avatar_url).data
-              .publicUrl
+              ?.publicUrl
           : null;
 
         return {
