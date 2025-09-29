@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1759150434109" clover="3.2.0">
+  <project timestamp="1759150434109" name="All files">
+    <metrics statements="318" coveredstatements="201" conditionals="195" coveredconditionals="117" methods="96" coveredmethods="55" elements="609" coveredelements="373" complexity="0" loc="318" ncloc="318" packages="41" files="51" classes="51"/>
+    <package name="api">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="enums.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/api/enums.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="api.mutations.useLoginMutation">
+      <metrics statements="6" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/api/mutations/useLoginMutation/index.ts">
+        <metrics statements="6" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="api.mutations.useUpdateUserProfileMutation">
+      <metrics statements="21" coveredstatements="1" conditionals="10" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/api/mutations/useUpdateUserProfileMutation/index.ts">
+        <metrics statements="21" coveredstatements="1" conditionals="10" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="63" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="api.mutations.useUploadAvatarMutation">
+      <metrics statements="14" coveredstatements="1" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/api/mutations/useUploadAvatarMutation/index.ts">
+        <metrics statements="14" coveredstatements="1" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="39" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="api.queries.useMonthlyFinancialSummary">
+      <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/api/queries/useMonthlyFinancialSummary/index.tsx">
+        <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="assets.images">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/assets/images/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="logo.png" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/assets/images/logo.png">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="assets.svg">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/assets/svg/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="components.atoms">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="components.atoms.ArrowLeftButton">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/ArrowLeftButton/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.Avatar">
+      <metrics statements="10" coveredstatements="8" conditionals="10" coveredconditionals="10" methods="4" coveredmethods="2"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/Avatar/index.tsx">
+        <metrics statements="10" coveredstatements="8" conditionals="10" coveredconditionals="10" methods="4" coveredmethods="2"/>
+        <line num="9" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="29" type="stmt"/>
+        <line num="14" count="29" type="stmt"/>
+        <line num="15" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="13" type="stmt"/>
+        <line num="20" count="29" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="31" count="24" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.Button">
+      <metrics statements="8" coveredstatements="7" conditionals="9" coveredconditionals="7" methods="2" coveredmethods="2"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/Button/index.tsx">
+        <metrics statements="8" coveredstatements="7" conditionals="9" coveredconditionals="7" methods="2" coveredmethods="2"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="18" count="12" type="stmt"/>
+        <line num="19" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="32" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="44" count="8" type="stmt"/>
+        <line num="47" count="12" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.CategoryIcon">
+      <metrics statements="3" coveredstatements="1" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/CategoryIcon/index.tsx">
+        <metrics statements="3" coveredstatements="1" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="7" count="5" type="cond" truecount="0" falsecount="1"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.CheckableButton">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/CheckableButton/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.FloatingAddButton">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/FloatingAddButton/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.LinkButton">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/LinkButton/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="13" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.Loader">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/Loader/index.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.Radio">
+      <metrics statements="4" coveredstatements="4" conditionals="5" coveredconditionals="4" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/Radio/index.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="5" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.SafeAreaWrapper">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/SafeAreaWrapper/index.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="11" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.ScreenContentWrapper">
+      <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/ScreenContentWrapper/index.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
+        <line num="32" count="10" type="cond" truecount="1" falsecount="1"/>
+      </file>
+    </package>
+    <package name="components.atoms.fields.Input">
+      <metrics statements="7" coveredstatements="6" conditionals="20" coveredconditionals="19" methods="3" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/fields/Input/index.tsx">
+        <metrics statements="7" coveredstatements="6" conditionals="20" coveredconditionals="19" methods="3" coveredmethods="1"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="15" count="41" type="stmt"/>
+        <line num="21" count="41" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="41" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="41" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="41" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms.fields.PasswordInput">
+      <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/atoms/fields/PasswordInput/index.tsx">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="21" type="stmt"/>
+        <line num="8" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="21" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.molecules">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="components.molecules.CategoryButton">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/CategoryButton/index.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.molecules.EditableAvatar">
+      <metrics statements="11" coveredstatements="11" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/EditableAvatar/index.tsx">
+        <metrics statements="11" coveredstatements="11" conditionals="7" coveredconditionals="7" methods="3" coveredmethods="3"/>
+        <line num="11" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="11" type="stmt"/>
+        <line num="15" count="11" type="stmt"/>
+        <line num="18" count="11" type="stmt"/>
+        <line num="20" count="11" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="28" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="32" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="39" count="11" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.molecules.NumberPad">
+      <metrics statements="34" coveredstatements="30" conditionals="29" coveredconditionals="25" methods="7" coveredmethods="7"/>
+      <file name="NumberPadButton.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/NumberPad/NumberPadButton.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="15" count="180" type="stmt"/>
+      </file>
+      <file name="consts.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/NumberPad/consts.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/NumberPad/index.tsx">
+        <metrics statements="30" coveredstatements="26" conditionals="29" coveredconditionals="25" methods="6" coveredmethods="6"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="15" count="15" type="stmt"/>
+        <line num="17" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="15" type="stmt"/>
+        <line num="24" count="31" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="31" count="27" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="21" type="cond" truecount="4" falsecount="0"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="39" count="20" type="cond" truecount="2" falsecount="2"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="20" type="stmt"/>
+        <line num="45" count="20" type="cond" truecount="4" falsecount="0"/>
+        <line num="46" count="4" type="stmt"/>
+        <line num="49" count="16" type="stmt"/>
+        <line num="50" count="16" type="stmt"/>
+        <line num="51" count="16" type="stmt"/>
+        <line num="54" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="55" count="6" type="cond" truecount="3" falsecount="1"/>
+        <line num="56" count="6" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="66" count="15" type="stmt"/>
+        <line num="84" count="60" type="stmt"/>
+        <line num="89" count="180" type="stmt"/>
+        <line num="91" count="31" type="stmt"/>
+      </file>
+      <file name="types.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/NumberPad/types.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.molecules.RadioGroup">
+      <metrics statements="6" coveredstatements="1" conditionals="3" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/RadioGroup/index.tsx">
+        <metrics statements="6" coveredstatements="1" conditionals="3" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.molecules.Swipeable">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/molecules/Swipeable/index.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.organisms.MonthlyFinancialSummaryChart">
+      <metrics statements="31" coveredstatements="31" conditionals="18" coveredconditionals="18" methods="6" coveredmethods="6"/>
+      <file name="consts.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/organisms/MonthlyFinancialSummaryChart/consts.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/organisms/MonthlyFinancialSummaryChart/index.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="22" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="29" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+      </file>
+      <file name="utils.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/organisms/MonthlyFinancialSummaryChart/utils.ts">
+        <metrics statements="15" coveredstatements="15" conditionals="14" coveredconditionals="14" methods="3" coveredmethods="3"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="17" type="stmt"/>
+        <line num="14" count="17" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="14" type="stmt"/>
+        <line num="17" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="22" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="25" count="4" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="31" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="34" count="10" type="stmt"/>
+        <line num="36" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.organisms.ScreenHeader">
+      <metrics statements="16" coveredstatements="16" conditionals="15" coveredconditionals="14" methods="4" coveredmethods="3"/>
+      <file name="consts.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/organisms/ScreenHeader/consts.ts">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/components/organisms/ScreenHeader/index.tsx">
+        <metrics statements="14" coveredstatements="14" conditionals="15" coveredconditionals="14" methods="4" coveredmethods="3"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+        <line num="28" count="9" type="stmt"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="33" count="9" type="stmt"/>
+        <line num="34" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="41" count="7" type="cond" truecount="4" falsecount="0"/>
+        <line num="42" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="6" type="stmt"/>
+        <line num="47" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="contexts.UserContext">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/contexts/UserContext/index.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.useAuthentication">
+      <metrics statements="9" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/hooks/useAuthentication/index.ts">
+        <metrics statements="9" coveredstatements="4" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="9" type="stmt"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.useDefaultToast">
+      <metrics statements="8" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/hooks/useDefaultToast/index.tsx">
+        <metrics statements="8" coveredstatements="5" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="10" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="17" count="10" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="25" count="10" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="33" count="10" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks.useImagePicker">
+      <metrics statements="23" coveredstatements="1" conditionals="12" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/hooks/useImagePicker/index.ts">
+        <metrics statements="23" coveredstatements="1" conditionals="12" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens.Auth.LoginScreen">
+      <metrics statements="13" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/screens/Auth/LoginScreen/index.tsx">
+        <metrics statements="12" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="10" type="stmt"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="31" count="10" type="stmt"/>
+        <line num="33" count="10" type="stmt"/>
+        <line num="35" count="10" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="43" count="10" type="stmt"/>
+        <line num="65" count="13" type="stmt"/>
+        <line num="81" count="14" type="stmt"/>
+        <line num="132" count="0" type="stmt"/>
+      </file>
+      <file name="loginValidationSchema.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/screens/Auth/LoginScreen/loginValidationSchema.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens.FinancialEntries.FinancialEntriesScreen.components.FinancialEntryItem">
+      <metrics statements="20" coveredstatements="10" conditionals="16" coveredconditionals="7" methods="7" coveredmethods="4"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/screens/FinancialEntries/FinancialEntriesScreen/components/FinancialEntryItem/index.tsx">
+        <metrics statements="20" coveredstatements="10" conditionals="16" coveredconditionals="7" methods="7" coveredmethods="4"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="3" type="stmt"/>
+        <line num="65" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="screens.FinancialEntries.FinancialEntriesScreen.components.RightAction">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/screens/FinancialEntries/FinancialEntriesScreen/components/RightAction/index.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="13" count="9" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="setup.testing-library">
+      <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
+      <file name="index.tsx" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/setup/testing-library/index.tsx">
+        <metrics statements="8" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="24" count="13" type="stmt"/>
+        <line num="37" count="13" type="stmt"/>
+        <line num="38" count="70" type="stmt"/>
+        <line num="45" count="13" type="stmt"/>
+        <line num="46" count="70" type="stmt"/>
+        <line num="48" count="13" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="theme">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="colors.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/theme/colors.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="7" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="Screens.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/utils/Screens.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="testIDs.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/utils/testIDs.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="utils.Formatter">
+      <metrics statements="10" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="2"/>
+      <file name="Formatter.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/utils/Formatter/Formatter.ts">
+        <metrics statements="10" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="2"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="26" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils.functions">
+      <metrics statements="17" coveredstatements="4" conditionals="12" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="getFinancialCategoryIcon.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/utils/functions/getFinancialCategoryIcon.ts">
+        <metrics statements="14" coveredstatements="1" conditionals="12" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="6" count="0" type="cond" truecount="0" falsecount="12"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+      </file>
+      <file name="mergeClasses.ts" path="/Users/kamil.szerlag/Desktop/Projekty/financial-empire/utils/functions/mergeClasses.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="13" count="13" type="stmt"/>
+        <line num="14" count="547" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
