@@ -19,6 +19,6 @@ describe('Avatar', () => {
 
   test('renders Avatar loader when isLoading is true', () => {
     const { getByTestId } = render(<Avatar isLoading />);
-    expect(getByTestId(testIDs.avatarLoader)).toBeTruthy();
+    expect(getByTestId(testIDs.loader)).toBeTruthy();
   });
 });

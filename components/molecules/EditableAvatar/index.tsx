@@ -6,6 +6,7 @@ import colors from 'theme/colors';
 import useImagePicker from 'hooks/useImagePicker';
 import useUploadAvatarMutation from 'api/mutations/useUploadAvatarMutation';
 import useUpdateUserProfileMutation from 'api/mutations/useUpdateUserProfileMutation';
+import { testIDs } from 'utils/testIDs';
 
 const EditableAvatar = ({ url, size = 80 }: EditableAvatarProps) => {
   const { pickImage } = useImagePicker();
@@ -41,6 +42,7 @@ const EditableAvatar = ({ url, size = 80 }: EditableAvatarProps) => {
       onPress={handleAvatarPress}
       className='relative'
       style={{ width: size, height: size }}
+      testID={testIDs.editableAvatarTouchable}
     >
       <Avatar
         {...{

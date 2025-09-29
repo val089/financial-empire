@@ -3,6 +3,8 @@ import { AvatarProps } from './types';
 import { testIDs } from 'utils/testIDs';
 import { Ionicons } from '@expo/vector-icons';
 import { useState, useEffect } from 'react';
+import Loader from '../Loader';
+import colors from 'theme/colors';
 
 const Avatar = ({ url, isLoading, size = 40 }: AvatarProps) => {
   const [isImageLoading, setIsImageLoading] = useState(false);
@@ -17,13 +19,12 @@ const Avatar = ({ url, isLoading, size = 40 }: AvatarProps) => {
 
   if (isLoading) {
     return (
-      <View
-        className='items-center justify-center rounded-full bg-gray-400'
+      <Loader
         style={{ height: size, width: size }}
-        testID={testIDs.avatarLoader}
-      >
-        <ActivityIndicator size='small' color='white' />
-      </View>
+        className='rounded-full bg-gray-400'
+        color={colors.primary.white}
+        size='small'
+      />
     );
   }
 

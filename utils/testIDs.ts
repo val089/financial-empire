@@ -16,4 +16,6 @@ export enum testIDs {
   settingsButton = 'settings-button',
   logoutButton = 'logout-button',
   mainSideMenu = 'main-side-menu',
+  loader = 'loader',
+  editableAvatarTouchable = 'editable-avatar-touchable',
 }
