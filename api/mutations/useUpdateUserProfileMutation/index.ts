@@ -19,7 +19,7 @@ const useUpdateUserProfileMutation = () => {
 
         // filter fields that are actually passed
         const filteredUpdates = Object.fromEntries(
-          Object.entries(updates).filter(([_, value]) => value !== undefined)
+          Object.entries(updates).filter(([key, value]) => value !== undefined)
         );
 
         const { error } = await supabase
