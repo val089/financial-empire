@@ -1,31 +1,35 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Session } from '@supabase/supabase-js';
 import { supabase } from 'lib/supabase';
 import { UserContextProvider } from '.';
 import useUserProfileQuery from 'api/queries/useUserProfileQuery';
-import useDownloadImageQuery from 'api/queries/useDownloadImageQuery';
+import { UserContextWrapperProps } from './types';
 
-const UserContextWrapper = ({ children }: { children: ReactNode }) => {
+const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const [userId, setUserId] = useState('');
-  const { data, isLoading: isUserProfileLoading } = useUserProfileQuery(
-    userId,
-    {
-      enabled: userId !== null,
-    }
-  );
 
-  const { data: avatarData, isLoading: isAvatarLoading } =
-    useDownloadImageQuery({
-      storageName: 'avatars',
-      path: data?.avatar_url || '',
-      options: {
-        enabled: Boolean(data?.avatar_url),
+  const { data: userProfile, isLoading: isUserProfileLoading } =
+    useUserProfileQuery(userId, {
+      enabled: userId !== null && userId !== '',
+      select: (data) => {
+        if (!data) return data;
+
+        // Generate public URL for avatar if avatar_url exists
+        const avatar_url = data.avatar_url
+          ? supabase.storage.from('avatars').getPublicUrl(data.avatar_url).data
+              ?.publicUrl
+          : null;
+
+        return {
+          ...data,
+          avatar_url: avatar_url,
+        };
       },
     });
 
-  const isAuthenticating = isUserProfileLoading || isAvatarLoading;
+  const isAuthenticating = isUserProfileLoading;
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -42,23 +46,15 @@ const UserContextWrapper = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
-  const userWithAvatar = data
-    ? {
-        ...data,
-        avatar_url: avatarData?.avatar_url ?? data.avatar_url,
-      }
-    : null;
-
   return (
     <UserContextProvider
       value={{
         isLoggedIn,
         setIsLoggedIn,
         session,
-        user: userWithAvatar,
+        user: userProfile,
         userId,
         isAuthenticating,
-        avatarDataUrl: avatarData?.avatar_url ?? null,
       }}
     >
       {children}

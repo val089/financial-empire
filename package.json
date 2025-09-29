@@ -14,6 +14,7 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "test": "jest --silent",
+    "test:coverage": "npx jest --coverage",
     "eas-build-pre-install": "node ./easHooks/pre-install.js",
     "storybook-generate": "sb-rn-get-stories",
     "generate-types-supabase": "supabase gen types typescript --project-id khagimhahmqobusbsdyy > lib/database.types.ts --debug",
