@@ -35,8 +35,6 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
               : 'Battery level is not available'}
           </Text>
         </View>
-
-        <Text className='text-h2 text-center mt-2'>VERSION 3 TEST</Text>
       </ScrollView>
     </>
   );
