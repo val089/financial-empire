@@ -9,6 +9,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const [userId, setUserId] = useState('');
+  const [isInitializing, setIsInitializing] = useState(true);
 
   const { data: userProfile, isLoading: isUserProfileLoading } =
     useUserProfileQuery(userId, {
@@ -29,21 +30,51 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
       },
     });
 
-  const isAuthenticating = isUserProfileLoading;
+  const isAuthenticating = isInitializing || isUserProfileLoading;
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
+  // Helper function to update auth state consistently
+  const updateAuthState = (session: Session | null) => {
+    setSession(session);
 
-    supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
-        return;
-      }
-      setSession(session);
+    if (session) {
       setUserId(session.user.id);
       setIsLoggedIn(true);
+    } else {
+      setUserId('');
+      setIsLoggedIn(false);
+    }
+  };
+
+  useEffect(() => {
+    // Initialize session
+    const initializeAuth = async () => {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        // Handle error: clear session/user state to avoid inconsistent state
+        updateAuthState(null);
+      } else {
+        updateAuthState(session);
+      }
+
+      setIsInitializing(false);
+    };
+
+    initializeAuth();
+
+    // Listen to auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      updateAuthState(session);
     });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   return (
