@@ -9,6 +9,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const [userId, setUserId] = useState('');
+  const [isInitializing, setIsInitializing] = useState(true);
 
   const { data: userProfile, isLoading: isUserProfileLoading } =
     useUserProfileQuery(userId, {
@@ -29,21 +30,54 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
       },
     });
 
-  const isAuthenticating = isUserProfileLoading;
+  const isAuthenticating = isInitializing || isUserProfileLoading;
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // Initialize session
+    const initializeAuth = async () => {
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+
+        setSession(session);
+
+        if (session) {
+          setUserId(session.user.id);
+          setIsLoggedIn(true);
+        } else {
+          setUserId('');
+          setIsLoggedIn(false);
+        }
+      } catch {
+        setIsLoggedIn(false);
+      } finally {
+        setIsInitializing(false);
+      }
+    };
+
+    initializeAuth();
+
+    // Listen to auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+
+      if (session) {
+        setUserId(session.user.id);
+        setIsLoggedIn(true);
+      } else {
+        setUserId('');
+        setIsLoggedIn(false);
+      }
+
+      setIsInitializing(false);
     });
 
-    supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
-        return;
-      }
-      setSession(session);
-      setUserId(session.user.id);
-      setIsLoggedIn(true);
-    });
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   return (
