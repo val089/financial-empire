@@ -32,28 +32,35 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
 
   const isAuthenticating = isInitializing || isUserProfileLoading;
 
+  // Helper function to update auth state consistently
+  const updateAuthState = (session: Session | null) => {
+    setSession(session);
+
+    if (session) {
+      setUserId(session.user.id);
+      setIsLoggedIn(true);
+    } else {
+      setUserId('');
+      setIsLoggedIn(false);
+    }
+  };
+
   useEffect(() => {
     // Initialize session
     const initializeAuth = async () => {
-      try {
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
 
-        setSession(session);
-
-        if (session) {
-          setUserId(session.user.id);
-          setIsLoggedIn(true);
-        } else {
-          setUserId('');
-          setIsLoggedIn(false);
-        }
-      } catch {
-        setIsLoggedIn(false);
-      } finally {
-        setIsInitializing(false);
+      if (error) {
+        // Handle error: clear session/user state to avoid inconsistent state
+        updateAuthState(null);
+      } else {
+        updateAuthState(session);
       }
+
+      setIsInitializing(false);
     };
 
     initializeAuth();
@@ -62,17 +69,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-
-      if (session) {
-        setUserId(session.user.id);
-        setIsLoggedIn(true);
-      } else {
-        setUserId('');
-        setIsLoggedIn(false);
-      }
-
-      setIsInitializing(false);
+      updateAuthState(session);
     });
 
     return () => {
