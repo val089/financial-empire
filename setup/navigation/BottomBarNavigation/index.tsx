@@ -6,6 +6,7 @@ import colors from 'theme/colors';
 import { Ionicons } from '@expo/vector-icons';
 import FinancialEntriesNavigation from '../FinancialEntriesNavigation';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import InvestmentsNavigation from '../InvestmentsNavigation';
 
 const { Navigator, Screen } =
   createBottomTabNavigator<BottomBarStackParamList>();
@@ -43,6 +44,16 @@ const BottomBarNavigation: React.FC = () => {
             <Ionicons name='list' color={color} size={size} />
           ),
           title: 'Financial entries',
+        }}
+      />
+      <Screen
+        component={InvestmentsNavigation}
+        name={Navigators.InvestmentsNavigation}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name='cellular' color={color} size={size} />
+          ),
+          title: 'Investments',
         }}
       />
     </Navigator>

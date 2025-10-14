@@ -5,4 +5,5 @@ import { FinancialEntriesStackParamList } from '../FinancialEntriesNavigation/ty
 export type BottomBarStackParamList = {
   [Navigators.HomeNavigation]: HomeStackParamList;
   [Navigators.FinancialEntriesNavigation]: FinancialEntriesStackParamList;
+  [Navigators.InvestmentsNavigation]: undefined;
 };
