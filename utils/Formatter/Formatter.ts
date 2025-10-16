@@ -47,4 +47,47 @@ export class Formatter {
       maximumFractionDigits: 2,
     });
   }
+
+  /**
+   * Formats decimal input value with up to 4 decimal places
+   * Handles cases like: 12, 12., 12.0, 44444.33, 512.9456, 0.0000, .2342
+   */
+  public static formatDecimalInput(
+    value: string,
+    maxDecimalPlaces = 2
+  ): string {
+    let filtered = value.replace(/[^0-9.]/g, '');
+
+    // Delete all dots except the first one
+    const firstDotIndex = filtered.indexOf('.');
+    if (firstDotIndex !== -1) {
+      filtered =
+        filtered.substring(0, firstDotIndex + 1) +
+        filtered.substring(firstDotIndex + 1).replace(/\./g, '');
+    }
+
+    // Limit to maxDecimalPlaces digits after the decimal point
+    const parts = filtered.split('.');
+    if (parts.length === 2 && parts[1].length > maxDecimalPlaces) {
+      parts[1] = parts[1].slice(0, maxDecimalPlaces);
+      filtered = parts.join('.');
+    }
+
+    // Allow dot at the beginning (e.g. ".5")
+    if (filtered.startsWith('.')) {
+      filtered = '0' + filtered;
+    }
+
+    // Remove unnecessary leading zeros, but leave "0" before the dot
+    if (
+      filtered.length > 1 &&
+      filtered.startsWith('0') &&
+      filtered[1] !== '.'
+    ) {
+      filtered = filtered.replace(/^0+/, '');
+      if (filtered === '') filtered = '0';
+    }
+
+    return filtered;
+  }
 }

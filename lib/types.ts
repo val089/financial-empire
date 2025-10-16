@@ -35,3 +35,8 @@ export type SubcategoryFinancialEntryName =
 
 export type MonthlyFinancialSummary =
   Database['public']['Functions']['get_monthly_financial_summary']['Returns'][number];
+
+export type InvestmentItem = Database['public']['Tables']['investments']['Row'];
+
+export type InvestmentItemInsert =
+  Database['public']['Tables']['investments']['Insert'];
