@@ -26,10 +26,6 @@ const Input = ({
     onPress: onPressRightIcon,
   } = rightIcon || {};
 
-  const toggleFocus = () => {
-    setIsFocused((prev) => !prev);
-  };
-
   return (
     <View className={mergeClasses('', className)}>
       {label && <Text className='pb-1 text-h4 text-black'>{label}</Text>}
@@ -55,8 +51,8 @@ const Input = ({
             'border-primary-blue-400': isFocused && !errorMessage,
             'pl-12': LeftIcon,
           })}
-          onFocus={toggleFocus}
-          onBlur={toggleFocus}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           {...rest}
         />
         {RightIcon && (
