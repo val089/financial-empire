@@ -51,12 +51,15 @@ export class Formatter {
   /**
    * Formats decimal input value with up to 4 decimal places
    * Handles cases like: 12, 12., 12.0, 44444.33, 512.9456, 0.0000, .2342
+   * Accepts both dot (.) and comma (,) as decimal separators
    */
   public static formatDecimalInput(
     value: string,
     maxDecimalPlaces = 2
   ): string {
-    let filtered = value.replace(/[^0-9.]/g, '');
+    // Replace comma with dot to normalize decimal separator
+    let normalized = value.replace(',', '.');
+    let filtered = normalized.replace(/[^0-9.]/g, '');
 
     // Delete all dots except the first one
     const firstDotIndex = filtered.indexOf('.');
@@ -73,7 +76,7 @@ export class Formatter {
       filtered = parts.join('.');
     }
 
-    // Allow dot at the beginning (e.g. ".5")
+    // Allow dot at the beginning (e.g. ".5" or ",5")
     if (filtered.startsWith('.')) {
       filtered = '0' + filtered;
     }
