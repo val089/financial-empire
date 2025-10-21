@@ -40,3 +40,6 @@ export type InvestmentItem = Database['public']['Tables']['investments']['Row'];
 
 export type InvestmentItemInsert =
   Database['public']['Tables']['investments']['Insert'];
+
+// TODO: create enum or const for database names and set them in api calls
+// export type DatabaseNames = keyof Database['public']['Tables'];

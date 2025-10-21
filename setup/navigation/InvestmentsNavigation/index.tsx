@@ -4,7 +4,7 @@ import { Screens } from 'utils/Screens';
 import colors from 'theme/colors';
 import ScreenHeader from 'components/organisms/ScreenHeader';
 import InvestmentsScreen from 'screens/Investments/InvestmentsScreen';
-import AddInvestmentScreen from 'screens/Investments/AddInvestment';
+import AddInvestmentScreen from 'screens/Investments/AddInvestmentScreen';
 
 const { Screen, Navigator } =
   createNativeStackNavigator<InvestmentsStackParamList>();

@@ -5,7 +5,7 @@ import colors from 'theme/colors';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { RightActionProps } from './types';
 
-const RightAction = ({
+const SwipeableSideAction = ({
   dragAnimatedValue,
   className,
   onPress,
@@ -35,4 +35,4 @@ const RightAction = ({
   );
 };
 
-export default RightAction;
+export default SwipeableSideAction;
