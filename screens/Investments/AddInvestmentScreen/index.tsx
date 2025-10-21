@@ -5,30 +5,63 @@ import {
   AddInvestmentSchema,
 } from './types';
 import { useForm, FormProvider, Controller } from 'react-hook-form';
-import { Button, Input, ScreenContentWrapper } from 'components/atoms';
-import { format } from 'date-fns';
+import {
+  Button,
+  CheckableButton,
+  Input,
+  ScreenContentWrapper,
+} from 'components/atoms';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Formatter } from 'utils/Formatter/Formatter';
-
-const currency = 'PLN';
+import useAddInvestmentMutation from 'api/mutations/useAddInvestmentMutation';
+import useDefaultToast from 'hooks/useDefaultToast';
+import { useQueryClient } from '@tanstack/react-query';
+import { Queries } from 'api/enums';
+import { View } from 'react-native';
 
 const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
+  const { mutate: addInvestment } = useAddInvestmentMutation();
+
+  const { showSuccessToast, showErrorToast } = useDefaultToast();
+
+  const queryClient = useQueryClient();
+
   const formMethods = useForm<AddInvestmentFormData>({
     defaultValues: {
       name: '',
-      purchase_date: format(new Date(), 'yyyy-MM-dd'),
+      // purchase_date: format(new Date(), 'yyyy-MM-dd'),
+      purchase_date: new Date().toISOString(),
       share_price: '',
       shares_amount: '',
+      currency: 'PLN',
     },
     mode: 'onChange',
     resolver: zodResolver(AddInvestmentSchema),
   });
 
-  const { handleSubmit } = formMethods;
+  const { handleSubmit, setValue, watch } = formMethods;
 
   const onSubmit = (data: AddInvestmentFormData) => {
-    //TODO: Handle form submission
-    console.log(data);
+    addInvestment(
+      {
+        name: data.name,
+        purchase_date: data.purchase_date,
+        share_price: parseFloat(data.share_price),
+        shares_amount: parseFloat(data.shares_amount),
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: [Queries.Investments],
+          });
+
+          showSuccessToast('Investment added successfully');
+        },
+        onError: (error) => {
+          showErrorToast('Failed to add investment');
+        },
+      }
+    );
   };
 
   return (
@@ -39,6 +72,20 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
       />
       <FormProvider {...formMethods}>
         <ScreenContentWrapper className='mt-8' isScrollable>
+          {/* TODO: add select screen with list of currency, country flags and search bar */}
+          <View className='flex-row justify-between w-full mb-4 gap-4'>
+            <CheckableButton
+              label='PLN'
+              onPress={() => setValue('currency', 'PLN')}
+              isSelected={watch('currency') === 'PLN'}
+            />
+            <CheckableButton
+              label='USD'
+              onPress={() => setValue('currency', 'USD')}
+              isSelected={watch('currency') === 'USD'}
+            />
+          </View>
+
           <Controller
             name='name'
             render={({ field, fieldState: { error } }) => (
@@ -70,7 +117,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
             render={({ field, fieldState: { error } }) => (
               <Input
                 label='Share price:'
-                placeholder={`0 ${currency}`}
+                placeholder={`0 ${watch('currency')}`}
                 className='mb-4'
                 value={field.value.toString()}
                 keyboardType='decimal-pad'
@@ -100,7 +147,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
           />
 
           <Button
-            label='Add Investment'
+            label='Add'
             className='mt-4'
             onPress={handleSubmit(onSubmit)}
           />

@@ -5,6 +5,7 @@ export enum Mutations {
   AddFinancialEntry = 'addFinancialEntry',
   DeleteFinancialEntry = 'deleteFinancialEntry',
   EditFinancialEntry = 'editFinancialEntry',
+  AddInvestment = 'addInvestment',
 }
 
 export enum Queries {
@@ -16,4 +17,5 @@ export enum Queries {
   SubcategoryFinancialEntries = 'subcategoryFinancialEntries',
   MonthlyFinancialSummary = 'monthlyFinancialSummary',
   ImageUrl = 'imageUrl',
+  Investments = 'investments',
 }
