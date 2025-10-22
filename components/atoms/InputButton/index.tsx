@@ -21,7 +21,7 @@ const InputButton = ({
 
   return (
     <>
-      {label && <Text className='mb-2 text-h3'>{label}</Text>}
+      {label && <Text className='pb-1 text-h4 text-black'>{label}</Text>}
       <Pressable
         accessible
         accessibilityRole='button'
