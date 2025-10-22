@@ -18,18 +18,23 @@ import useDefaultToast from 'hooks/useDefaultToast';
 import { useQueryClient } from '@tanstack/react-query';
 import { Queries } from 'api/enums';
 import { View } from 'react-native';
-// import DateTimePicker, {
-//   DateTimePickerEvent,
-// } from '@react-native-community/datetimepicker';
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from '@react-native-community/datetimepicker';
 import InputButton from 'components/atoms/InputButton';
 import { format } from 'date-fns';
 import { useRef } from 'react';
 import { InputButtonHandle } from 'components/atoms/InputButton/types';
+import MainModal from 'components/molecules/Modal/templates/MainModal';
+import { IS_ANDROID, IS_IOS } from 'consts/environment';
+import useModal from 'hooks/useModal';
 
 const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
+  const { visible, closeModal, openModal } = useModal();
+
   const inputButtonRef = useRef<InputButtonHandle>(null);
 
-  const { mutate: addInvestment } = useAddInvestmentMutation();
+  const { mutate: addInvestment, isPending } = useAddInvestmentMutation();
 
   const { showSuccessToast, showErrorToast } = useDefaultToast();
 
@@ -65,6 +70,8 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
           });
 
           showSuccessToast('Investment added successfully');
+
+          navigation?.goBack();
         },
         onError: (error) => {
           showErrorToast('Failed to add investment');
@@ -109,23 +116,18 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
             )}
           />
 
-          <InputButton
-            ref={inputButtonRef}
-            onPress={() => {}}
-            value={format(new Date(), 'yyyy-MM-dd')}
-            className='mb-4'
+          <Controller
+            name='purchase_date'
+            render={({ field }) => (
+              <InputButton
+                label='Purchase date:'
+                ref={inputButtonRef}
+                onPress={openModal}
+                value={format(field.value, 'yyyy-MM-dd')}
+                className='mb-4'
+              />
+            )}
           />
-
-          {/* <DateTimePicker
-            style={{
-              backgroundColor: '#fff',
-            }}
-            value={field.value}
-            display='spinner'
-            onChange={(event: DateTimePickerEvent, date) => {
-              field.onChange(date);
-            }}
-          /> */}
 
           <Controller
             name='share_price'
@@ -167,9 +169,40 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
             label='Add'
             className='mt-4'
             onPress={handleSubmit(onSubmit)}
+            isLoading={isPending}
+            disabled={isPending}
           />
         </ScreenContentWrapper>
       </FormProvider>
+
+      {IS_ANDROID && visible && (
+        <DateTimePicker
+          value={watch('purchase_date')}
+          display='calendar'
+          onChange={(event: DateTimePickerEvent, date) => {
+            if (date) {
+              setValue('purchase_date', date);
+              closeModal();
+            }
+          }}
+        />
+      )}
+
+      {IS_IOS && (
+        <MainModal isVisible={visible} onClose={closeModal}>
+          <DateTimePicker
+            value={watch('purchase_date')}
+            display='spinner'
+            onChange={(event: DateTimePickerEvent, date) => {
+              if (date) {
+                setValue('purchase_date', date);
+              }
+            }}
+          />
+
+          <Button label='Close' onPress={closeModal} />
+        </MainModal>
+      )}
     </>
   );
 };

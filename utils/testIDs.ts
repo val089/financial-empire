@@ -18,4 +18,5 @@ export enum testIDs {
   mainSideMenu = 'main-side-menu',
   loader = 'loader',
   editableAvatarTouchable = 'editable-avatar-touchable',
+  modalBackdrop = 'modal-backdrop',
 }

@@ -4157,6 +4157,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4":
+  version: 4.17.20
+  resolution: "@types/lodash@npm:4.17.20"
+  checksum: 10c0/98cdd0faae22cbb8079a01a3bb65aa8f8c41143367486c1cbf5adc83f16c9272a2a5d2c1f541f61d0d73da543c16ee1d21cf2ef86cb93cd0cc0ac3bced6dd88f
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 22.10.1
   resolution: "@types/node@npm:22.10.1"
@@ -7962,6 +7969,7 @@ __metadata:
     "@tanstack/react-query": "npm:^5.59.16"
     "@testing-library/react-native": "npm:^12.9.0"
     "@types/jest": "npm:^29.5.14"
+    "@types/lodash": "npm:^4"
     "@types/react": "npm:~19.0.10"
     "@types/react-dom": "npm:^18"
     babel-loader: "npm:^8.4.1"
@@ -7988,6 +7996,7 @@ __metadata:
     jest: "npm:^29.7.0"
     jest-expo: "npm:~53.0.9"
     lint-staged: "npm:^15.2.7"
+    lodash: "npm:^4.17.21"
     metro-react-native-babel-transformer: "npm:^0.77.0"
     nativewind: "npm:^4.1.23"
     prettier: "npm:^3.5.1"

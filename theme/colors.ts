@@ -1,3 +1,5 @@
+import { rgba } from './utils';
+
 const colors = {
   primary: {
     blue: {
@@ -6,6 +8,7 @@ const colors = {
     black: '#000',
     red: '#E70202',
     white: '#FFF',
+    blackTransparent: rgba('#070709', 0.5),
   },
   secondary: {
     green: {
