@@ -18,8 +18,17 @@ import useDefaultToast from 'hooks/useDefaultToast';
 import { useQueryClient } from '@tanstack/react-query';
 import { Queries } from 'api/enums';
 import { View } from 'react-native';
+// import DateTimePicker, {
+//   DateTimePickerEvent,
+// } from '@react-native-community/datetimepicker';
+import InputButton from 'components/atoms/InputButton';
+import { format } from 'date-fns';
+import { useRef } from 'react';
+import { InputButtonHandle } from 'components/atoms/InputButton/types';
 
 const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
+  const inputButtonRef = useRef<InputButtonHandle>(null);
+
   const { mutate: addInvestment } = useAddInvestmentMutation();
 
   const { showSuccessToast, showErrorToast } = useDefaultToast();
@@ -29,8 +38,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
   const formMethods = useForm<AddInvestmentFormData>({
     defaultValues: {
       name: '',
-      // purchase_date: format(new Date(), 'yyyy-MM-dd'),
-      purchase_date: new Date().toISOString(),
+      purchase_date: new Date(),
       share_price: '',
       shares_amount: '',
       currency: 'PLN',
@@ -45,9 +53,10 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
     addInvestment(
       {
         name: data.name,
-        purchase_date: data.purchase_date,
+        purchase_date: data.purchase_date.toISOString(),
         share_price: parseFloat(data.share_price),
         shares_amount: parseFloat(data.shares_amount),
+        currency: data.currency,
       },
       {
         onSuccess: () => {
@@ -95,22 +104,28 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
                 value={field.value}
                 onChangeText={field.onChange}
                 errorMessage={error?.message}
+                onPress={inputButtonRef.current?.blur}
               />
             )}
           />
-          {/* TODO: Add date picker */}
-          <Controller
-            name='purchase_date'
-            render={({ field, fieldState: { error } }) => (
-              <Input
-                label='Purchase date:'
-                className='mb-4'
-                value={field.value}
-                onChangeText={field.onChange}
-                errorMessage={error?.message}
-              />
-            )}
+
+          <InputButton
+            ref={inputButtonRef}
+            onPress={() => {}}
+            value={format(new Date(), 'yyyy-MM-dd')}
+            className='mb-4'
           />
+
+          {/* <DateTimePicker
+            style={{
+              backgroundColor: '#fff',
+            }}
+            value={field.value}
+            display='spinner'
+            onChange={(event: DateTimePickerEvent, date) => {
+              field.onChange(date);
+            }}
+          /> */}
 
           <Controller
             name='share_price'
@@ -126,6 +141,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
                   field.onChange(formattedValue);
                 }}
                 errorMessage={error?.message}
+                onPress={inputButtonRef.current?.blur}
               />
             )}
           />
@@ -142,6 +158,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
                   field.onChange(formattedValue);
                 }}
                 errorMessage={error?.message}
+                onPress={inputButtonRef.current?.blur}
               />
             )}
           />

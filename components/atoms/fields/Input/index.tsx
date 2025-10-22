@@ -52,7 +52,9 @@ const Input = ({
             'pl-12': LeftIcon,
           })}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
           {...rest}
         />
         {RightIcon && (
