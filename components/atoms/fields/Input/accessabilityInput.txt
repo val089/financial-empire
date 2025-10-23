@@ -1,0 +1,131 @@
+import { useState } from 'react';
+import { TextInput, Text, View, TouchableOpacity } from 'react-native';
+import { InputProps } from './types';
+import { testIDs } from 'utils/testIDs';
+import { mergeClasses } from 'utils/functions/mergeClasses';
+
+const Input = ({
+  label,
+  errorMessage,
+  leftIcon,
+  rightIcon,
+  className,
+  ...rest
+}: InputProps) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const {
+    icon: LeftIcon,
+    color: leftIconColor,
+    onPress: onPressLeftIcon,
+  } = leftIcon || {};
+
+  const {
+    icon: RightIcon,
+    color: rightIconColor,
+    onPress: onPressRightIcon,
+  } = rightIcon || {};
+
+  return (
+    <View className={mergeClasses('', className)}>
+      {label && (
+        <Text
+          className='pb-1 text-h4 text-black'
+          accessibilityRole='text'
+          accessibilityLabel={label}
+        >
+          {label}
+        </Text>
+      )}
+      <View className='justify-center'>
+        {LeftIcon && (
+          <TouchableOpacity
+            className='absolute left-3 z-10'
+            onPress={onPressLeftIcon}
+            testID={testIDs.inputLeftIcon}
+            accessible={true}
+            accessibilityRole='button'
+            accessibilityLabel={
+              rest.accessibilityLabel
+                ? `${rest.accessibilityLabel} left icon`
+                : 'Left icon'
+            }
+            accessibilityHint={
+              onPressLeftIcon ? 'Double tap to activate' : undefined
+            }
+          >
+            <LeftIcon
+              className={`${leftIconColor ?? 'fill-primary-black'} h-6 w-6`}
+              accessibilityElementsHidden={true}
+              importantForAccessibility='no'
+            />
+          </TouchableOpacity>
+        )}
+        <TextInput
+          style={{
+            includeFontPadding: false,
+          }}
+          className={mergeClasses('rounded-xl border p-3 text-h3 bg-white', {
+            'border-gray-300': !isFocused && !errorMessage,
+            'border-primary-red': errorMessage,
+            'border-primary-blue-400': isFocused && !errorMessage,
+            'pl-12': LeftIcon,
+          })}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
+          accessible={true}
+          accessibilityLabel={
+            label || rest.accessibilityLabel || rest.placeholder
+          }
+          accessibilityState={{
+            disabled: rest.editable === false,
+          }}
+          accessibilityRole='none'
+          aria-label={label || rest.placeholder}
+          aria-invalid={!!errorMessage}
+          aria-describedby={errorMessage ? 'error-message' : undefined}
+          {...rest}
+        />
+        {RightIcon && (
+          <TouchableOpacity
+            className='absolute right-3'
+            onPress={onPressRightIcon}
+            testID={testIDs.inputRightIcon}
+            accessible={true}
+            accessibilityRole='button'
+            accessibilityLabel={
+              rest.accessibilityLabel
+                ? `${rest.accessibilityLabel} right icon`
+                : 'Right icon'
+            }
+            accessibilityHint={
+              onPressRightIcon ? 'Double tap to activate' : undefined
+            }
+          >
+            <RightIcon
+              className={`${rightIconColor ?? 'fill-primary-black'} h-6 w-6`}
+              accessibilityElementsHidden={true}
+              importantForAccessibility='no'
+            />
+          </TouchableOpacity>
+        )}
+      </View>
+
+      {errorMessage && (
+        <Text
+          className='pt-1 text-h4 text-primary-red'
+          accessibilityRole='alert'
+          accessibilityLiveRegion='polite'
+          nativeID='error-message'
+          accessible={true}
+        >
+          {errorMessage}
+        </Text>
+      )}
+    </View>
+  );
+};
+
+export default Input;
