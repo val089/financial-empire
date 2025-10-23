@@ -27,6 +27,7 @@
     "./lib/**/*",
     "./setup/**/*",
     "./utils/**/*",
+    "./consts/**/*",
     "nativewind-env.d.ts"
   ],
   "exclude": ["./android/**/*"]

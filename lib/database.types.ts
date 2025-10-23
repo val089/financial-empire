@@ -74,6 +74,39 @@ export type Database = {
         };
         Relationships: [];
       };
+      investments: {
+        Row: {
+          created_at: string;
+          currency: string | null;
+          id: number;
+          name: string;
+          purchase_date: string;
+          share_price: number;
+          shares_amount: number;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          currency?: string | null;
+          id?: number;
+          name: string;
+          purchase_date: string;
+          share_price: number;
+          shares_amount: number;
+          user_id?: string;
+        };
+        Update: {
+          created_at?: string;
+          currency?: string | null;
+          id?: number;
+          name?: string;
+          purchase_date?: string;
+          share_price?: number;
+          shares_amount?: number;
+          user_id?: string;
+        };
+        Relationships: [];
+      };
       profiles: {
         Row: {
           avatar_url: string | null;

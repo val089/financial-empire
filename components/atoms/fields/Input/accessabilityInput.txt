@@ -28,16 +28,36 @@ const Input = ({
 
   return (
     <View className={mergeClasses('', className)}>
-      {label && <Text className='pb-1 text-h4 text-black'>{label}</Text>}
+      {label && (
+        <Text
+          className='pb-1 text-h4 text-black'
+          accessibilityRole='text'
+          accessibilityLabel={label}
+        >
+          {label}
+        </Text>
+      )}
       <View className='justify-center'>
         {LeftIcon && (
           <TouchableOpacity
             className='absolute left-3 z-10'
             onPress={onPressLeftIcon}
             testID={testIDs.inputLeftIcon}
+            accessible={true}
+            accessibilityRole='button'
+            accessibilityLabel={
+              rest.accessibilityLabel
+                ? `${rest.accessibilityLabel} left icon`
+                : 'Left icon'
+            }
+            accessibilityHint={
+              onPressLeftIcon ? 'Double tap to activate' : undefined
+            }
           >
             <LeftIcon
               className={`${leftIconColor ?? 'fill-primary-black'} h-6 w-6`}
+              accessibilityElementsHidden={true}
+              importantForAccessibility='no'
             />
           </TouchableOpacity>
         )}
@@ -55,6 +75,17 @@ const Input = ({
           onBlur={() => {
             setIsFocused(false);
           }}
+          accessible={true}
+          accessibilityLabel={
+            label || rest.accessibilityLabel || rest.placeholder
+          }
+          accessibilityState={{
+            disabled: rest.editable === false,
+          }}
+          accessibilityRole='none'
+          aria-label={label || rest.placeholder}
+          aria-invalid={!!errorMessage}
+          aria-describedby={errorMessage ? 'error-message' : undefined}
           {...rest}
         />
         {RightIcon && (
@@ -62,16 +93,36 @@ const Input = ({
             className='absolute right-3'
             onPress={onPressRightIcon}
             testID={testIDs.inputRightIcon}
+            accessible={true}
+            accessibilityRole='button'
+            accessibilityLabel={
+              rest.accessibilityLabel
+                ? `${rest.accessibilityLabel} right icon`
+                : 'Right icon'
+            }
+            accessibilityHint={
+              onPressRightIcon ? 'Double tap to activate' : undefined
+            }
           >
             <RightIcon
               className={`${rightIconColor ?? 'fill-primary-black'} h-6 w-6`}
+              accessibilityElementsHidden={true}
+              importantForAccessibility='no'
             />
           </TouchableOpacity>
         )}
       </View>
 
       {errorMessage && (
-        <Text className='pt-1 text-h4 text-primary-red'>{errorMessage}</Text>
+        <Text
+          className='pt-1 text-h4 text-primary-red'
+          accessibilityRole='alert'
+          accessibilityLiveRegion='polite'
+          nativeID='error-message'
+          accessible={true}
+        >
+          {errorMessage}
+        </Text>
       )}
     </View>
   );

@@ -1,15 +1,18 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRef, useEffect } from 'react';
-import { Formatter } from 'utils/Formatter/Formatter';
-import RightAction from '../RightAction';
+import SwipeableSideAction from 'components/atoms/SwipeableSideAction';
 import { FinancialEntryItemProps } from './types';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { Swipeable } from 'components/molecules';
 import { SwipeableMethods } from 'react-native-gesture-handler/ReanimatedSwipeable';
 
 const FinancialEntryItem = ({
-  item,
-  showMainDate,
+  id,
+  title,
+  sectionTitle,
+  description,
+  rightText,
+  rightTextClassName,
   onDelete,
   onPress,
 }: FinancialEntryItemProps) => {
@@ -47,13 +50,13 @@ const FinancialEntryItem = ({
   };
 
   return (
-    <View testID={`swipeable-item-${item.id.toString()}`}>
-      {showMainDate && (
+    <View testID={`swipeable-item-${id}`}>
+      {sectionTitle && (
         <Text
           className='text-h2 px-4 mt-10 mb-5 font-interMedium'
-          testID='main-date'
+          testID='financial-entry-section-title'
         >
-          {Formatter.formatDate(item.created_at)}
+          {sectionTitle}
         </Text>
       )}
       <Swipeable
@@ -62,9 +65,9 @@ const FinancialEntryItem = ({
         enableTrackpadTwoFingerGesture
         rightThreshold={40}
         renderRightActions={(progressAnimatedValue, dragAnimatedValue) => (
-          <RightAction
+          <SwipeableSideAction
             {...{ dragAnimatedValue }}
-            className={showMainDate ? 'border-t' : ''}
+            className={sectionTitle ? 'border-t' : ''}
             onPress={onDelete}
           />
         )}
@@ -73,7 +76,7 @@ const FinancialEntryItem = ({
       >
         <View
           className={mergeClasses('border-b border-gray-200', {
-            'border-t': showMainDate,
+            'border-t': sectionTitle,
           })}
         >
           <TouchableOpacity
@@ -81,19 +84,16 @@ const FinancialEntryItem = ({
             onPress={onPress}
           >
             <View>
-              <Text className='text-h3'>
-                {item.category_name || 'Uncategorized'}
-                {item.subcategory_name ? ` / ${item.subcategory_name}` : ''}
-              </Text>
-              <Text className='text-h4 text-gray-400'>
-                {Formatter.timeFromDate(item.created_at)}
-              </Text>
+              <Text className='text-h3'>{title}</Text>
+              {description && (
+                <Text className='text-h4 text-gray-400'>{description}</Text>
+              )}
             </View>
 
-            {item.type === 'income' ? (
-              <Text className='text-h3 text-green-500'>{item.amount}</Text>
-            ) : (
-              <Text className='text-h3 text-red-500'>-{item.amount}</Text>
+            {rightText && (
+              <Text className={mergeClasses('text-h3', rightTextClassName)}>
+                {rightText}
+              </Text>
             )}
           </TouchableOpacity>
         </View>

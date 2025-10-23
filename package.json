@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
-    "@hookform/resolvers": "^5.2.1",
+    "@hookform/resolvers": "^5.2.2",
     "@react-native-async-storage/async-storage": "2.1.2",
     "@react-navigation/bottom-tabs": "^7.4.7",
     "@react-navigation/elements": "^2.6.4",
@@ -43,10 +43,11 @@
     "expo-linear-gradient": "~14.1.5",
     "expo-splash-screen": "~0.30.10",
     "expo-status-bar": "~2.2.3",
+    "lodash": "^4.17.21",
     "metro-react-native-babel-transformer": "^0.77.0",
     "nativewind": "^4.1.23",
     "react": "19.0.0",
-    "react-hook-form": "^7.56.3",
+    "react-hook-form": "^7.65.0",
     "react-native": "0.79.5",
     "react-native-device-info": "^14.0.4",
     "react-native-gesture-handler": "~2.24.0",
@@ -57,7 +58,8 @@
     "react-native-svg": "15.11.2",
     "react-native-toast-message": "^2.3.3",
     "tailwind-merge": "^3.0.1",
-    "yup": "^1.7.0"
+    "yup": "^1.7.1",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -71,6 +73,7 @@
     "@tanstack/eslint-plugin-query": "^5.59.7",
     "@testing-library/react-native": "^12.9.0",
     "@types/jest": "^29.5.14",
+    "@types/lodash": "^4",
     "@types/react": "~19.0.10",
     "@types/react-dom": "^18",
     "babel-loader": "^8.4.1",
@@ -104,7 +107,8 @@
     ],
     "moduleNameMapper": {
       "\\.svg": "<rootDir>/__mocks__/svgMock.js",
-      "^lib/supabase$": "<rootDir>/__mocks__/lib/supabase.ts"
+      "^lib/supabase$": "<rootDir>/__mocks__/lib/supabase.ts",
+      "^consts/(.*)$": "<rootDir>/consts/$1"
     },
     "setupFiles": [
       "<rootDir>/__mocks__/react-native-safe-area-context.js",

@@ -1,9 +1,12 @@
-import { FinancialEntry } from 'lib/types';
 import { TouchableOpacityProps } from 'react-native';
 
 export interface FinancialEntryItemProps {
-  item: FinancialEntry;
-  showMainDate: boolean;
+  id: string | number;
+  title: string;
+  sectionTitle?: string;
+  description?: string;
+  rightText?: string;
+  rightTextClassName?: string;
   onDelete: () => void;
   onPress?: TouchableOpacityProps['onPress'];
 }

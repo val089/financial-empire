@@ -57,7 +57,7 @@ const ScreenHeader = ({
 
         {title && (
           <Text
-            className={mergeClasses('font-interRegular text-h3', {
+            className={mergeClasses('text-h2 font-interBold', {
               'ml-2': onBackPress || avatarUrl || canGoBack,
             })}
           >
