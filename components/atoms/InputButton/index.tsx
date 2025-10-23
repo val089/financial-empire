@@ -40,8 +40,6 @@ const InputButton = ({
           Keyboard.dismiss();
           onPress();
         }}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
       >
         <Text className='text-h2'>{value || placeholder}</Text>
         <View className='absolute z-10 right-2'>
