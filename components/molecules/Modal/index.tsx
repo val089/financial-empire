@@ -27,7 +27,7 @@ const Modal = ({ onClose, isVisible, children, ...rest }: ModalProps) => {
         behavior='padding'
         keyboardVerticalOffset={IS_ANDROID ? 50 : 0}
       >
-        <View className='flex-1 justify-items-start bg-primary-blackTransparent'>
+        <View className='flex-1 items-start bg-primary-blackTransparent'>
           <TouchableOpacity
             className='flex-1 justify-center'
             onPress={onClose}

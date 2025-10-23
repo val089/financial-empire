@@ -111,7 +111,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
                 value={field.value}
                 onChangeText={field.onChange}
                 errorMessage={error?.message}
-                onPress={inputButtonRef.current?.blur}
+                onPress={() => inputButtonRef.current?.blur()}
               />
             )}
           />
@@ -143,7 +143,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
                   field.onChange(formattedValue);
                 }}
                 errorMessage={error?.message}
-                onPress={inputButtonRef.current?.blur}
+                onPress={() => inputButtonRef.current?.blur()}
               />
             )}
           />
@@ -160,7 +160,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
                   field.onChange(formattedValue);
                 }}
                 errorMessage={error?.message}
-                onPress={inputButtonRef.current?.blur}
+                onPress={() => inputButtonRef.current?.blur()}
               />
             )}
           />

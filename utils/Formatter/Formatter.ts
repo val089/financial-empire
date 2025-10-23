@@ -58,7 +58,7 @@ export class Formatter {
     maxDecimalPlaces = 2
   ): string {
     // Replace comma with dot to normalize decimal separator
-    let normalized = value.replace(',', '.');
+    let normalized = value.replace(/,/g, '.');
     let filtered = normalized.replace(/[^0-9.]/g, '');
 
     // Delete all dots except the first one
