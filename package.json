@@ -107,7 +107,7 @@
     ],
     "moduleNameMapper": {
       "\\.svg": "<rootDir>/__mocks__/svgMock.js",
-      "^lib/supabase$": "<rootDir>/__mocks__/lib/supabase.ts",
+      "^lib/supabase/supabase$": "<rootDir>/__mocks__/lib/supabase.ts",
       "^consts/(.*)$": "<rootDir>/consts/$1"
     },
     "setupFiles": [
