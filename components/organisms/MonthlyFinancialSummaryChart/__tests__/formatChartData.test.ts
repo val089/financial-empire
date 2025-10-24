@@ -1,4 +1,4 @@
-import { MonthlyFinancialSummary } from 'lib/types';
+import { MonthlyFinancialSummary } from 'lib/supabase/types';
 import { formatChartData } from '../utils';
 import {
   barWidth,

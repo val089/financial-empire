@@ -3,7 +3,7 @@ import {
   CategoryFinancialEntryName,
   FinancialEntryType,
   SubcategoryFinancialEntryName,
-} from 'lib/types';
+} from 'lib/supabase/types';
 
 export type FinancialEntryContextDataType = {
   amount: string;

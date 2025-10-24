@@ -5,7 +5,7 @@ import { FloatingAddButton, Loader } from 'components/atoms';
 import useFinancialEntries from 'api/queries/useFinancialEntries';
 import { Screens } from 'utils/Screens';
 import { FlashList, ListRenderItem } from '@shopify/flash-list';
-import { FinancialEntry } from 'lib/types';
+import { FinancialEntry } from 'lib/supabase/types';
 import { Formatter } from 'utils/Formatter/Formatter';
 import useRefreshOnScroll from 'hooks/useRefreshOnScroll';
 import { ScreenHeader } from 'components/organisms';

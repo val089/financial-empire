@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { Mutations } from 'api/enums';
-import { supabase } from 'lib/supabase';
+import { supabase } from 'lib/supabase/supabase';
 import { UseLoginMutationReturnType } from './types';
 
 const useLoginMutation = (): UseLoginMutationReturnType =>

@@ -1,4 +1,4 @@
-import { FinancialEntryTypeList } from 'lib/types';
+import { FinancialEntryTypeList } from 'lib/supabase/types';
 import { FinancialEntryContextDataType } from './types';
 
 export const defaultFinancialEntry: FinancialEntryContextDataType = {
