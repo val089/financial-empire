@@ -4,7 +4,7 @@ import { CheckableButton } from 'components/atoms';
 import { NumberPad } from 'components/molecules';
 import { Button } from 'components/atoms';
 import { ScreenHeader } from 'components/organisms';
-import { FinancialEntryTypeList } from 'lib/types';
+import { FinancialEntryTypeList } from 'lib/supabase/types';
 import { Ionicons } from '@expo/vector-icons';
 import { Screens } from 'utils/Screens';
 import CategoryIcon from 'components/atoms/CategoryIcon';

@@ -1,4 +1,4 @@
-import { CategoryFinancialEntryName } from 'lib/types';
+import { CategoryFinancialEntryName } from 'lib/supabase/types';
 
 export const getFinancialCategoryIcon = (
   categoryName: CategoryFinancialEntryName | null | undefined

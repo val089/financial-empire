@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Session } from '@supabase/supabase-js';
-import { supabase } from 'lib/supabase';
+import { supabase } from 'lib/supabase/supabase';
 import { UserContextProvider } from '.';
 import useUserProfileQuery from 'api/queries/useUserProfileQuery';
 import { UserContextWrapperProps } from './types';
@@ -25,7 +25,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
 
         return {
           ...data,
-          avatar_url: avatar_url,
+          avatar_url,
         };
       },
     });

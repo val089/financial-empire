@@ -1,5 +1,5 @@
 import { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
-import { MonthlyFinancialSummary } from 'lib/types';
+import { MonthlyFinancialSummary } from 'lib/supabase/types';
 
 export type UseMonthlyFinancialSummaryQueryReturnType = UseQueryResult<
   MonthlyFinancialSummary[] | null

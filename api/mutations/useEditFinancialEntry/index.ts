@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { Mutations } from 'api/enums';
 import { UseEditFinancialEntryReturnType } from './types';
-import { supabase } from 'lib/supabase';
+import { supabase } from 'lib/supabase/supabase';
 
 const useEditFinancialEntry = (): UseEditFinancialEntryReturnType =>
   useMutation({

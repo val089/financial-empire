@@ -1,6 +1,6 @@
 import { View, Image, Text } from 'react-native';
 import { FormProvider, Controller, useForm } from 'react-hook-form';
-import { supabase } from 'lib/supabase';
+import { supabase } from 'lib/supabase/supabase';
 import {
   Input,
   PasswordInput,

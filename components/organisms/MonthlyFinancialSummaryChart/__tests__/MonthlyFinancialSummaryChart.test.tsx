@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { BarChart } from 'react-native-gifted-charts';
 import MonthlyFinancialSummaryChart from '..';
 import useMonthlyFinancialSummary from 'api/queries/useMonthlyFinancialSummary';
-import { MonthlyFinancialSummary } from 'lib/types';
+import { MonthlyFinancialSummary } from 'lib/supabase/types';
 
 // Mock the hook
 jest.mock('api/queries/useMonthlyFinancialSummary');

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Mutations, Queries } from 'api/enums';
 import { UseUpdateUserProfileMutationParameters } from './types';
-import { supabase } from 'lib/supabase';
+import { supabase } from 'lib/supabase/supabase';
 import { useUserContext } from 'contexts/UserContext';
 import { Alert } from 'react-native';
 import { UseUserProfileQueryResponse } from 'api/queries/useUserProfileQuery/types';

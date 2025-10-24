@@ -1,5 +1,5 @@
 import { UseQueryOptions, UseQueryResult } from '@tanstack/react-query';
-import { Profile } from 'lib/types';
+import { Profile } from 'lib/supabase/types';
 
 export type UseUserProfileQueryResponse = Pick<
   Profile,

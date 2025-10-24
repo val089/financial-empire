@@ -1,5 +1,5 @@
 import { UseInfiniteQueryOptions, InfiniteData } from '@tanstack/react-query';
-import { FinancialEntry } from 'lib/types';
+import { FinancialEntry } from 'lib/supabase/types';
 
 export type UseFinancialEntriesQueryResponse = InfiniteData<FinancialEntry[]>;
 

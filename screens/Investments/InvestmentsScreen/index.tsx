@@ -6,7 +6,7 @@ import { Screens } from 'utils/Screens';
 import useInvestmentsQuery from 'api/queries/useInvestmentsQuery';
 import { FlashList, ListRenderItem } from '@shopify/flash-list';
 import { useCallback } from 'react';
-import { InvestmentItem } from 'lib/types';
+import { InvestmentItem } from 'lib/supabase/types';
 import { Formatter } from 'utils/Formatter/Formatter';
 import FinancialEntryItem from 'components/molecules/FinancialEntryItem';
 import useRefreshOnScroll from 'hooks/useRefreshOnScroll';

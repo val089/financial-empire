@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 import type { Meta, StoryObj } from '@storybook/react';
 import CategoryIcon from '.';
-import { CategoryFinancialEntryName } from 'lib/types';
+import { CategoryFinancialEntryName } from 'lib/supabase/types';
 
 const meta = {
   title: 'Atoms/CategoryIcon',

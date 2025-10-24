@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Mutations, Queries } from 'api/enums';
 import { UseFinancialEntriesQueryResponse } from 'api/queries/useFinancialEntries/types';
-import { supabase } from 'lib/supabase';
+import { supabase } from 'lib/supabase/supabase';
 
 const useDeleteFinancialEntry = () => {
   const queryClient = useQueryClient();
