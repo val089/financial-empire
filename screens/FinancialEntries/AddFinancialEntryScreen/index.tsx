@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { AddFinancialEntryScreenProps } from './types';
 import { CheckableButton } from 'components/atoms';
 import { NumberPad } from 'components/molecules';
@@ -15,6 +15,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { Queries } from 'api/enums';
 import { useAddFinancialEntryContext } from 'contexts/AddFinancialEntryContext';
 import useEditFinancialEntry from 'api/mutations/useEditFinancialEntry';
+import Typography from 'components/atoms/Typography';
 
 const AddFinancialEntryScreen = ({
   navigation,
@@ -57,6 +58,11 @@ const AddFinancialEntryScreen = ({
             queryClient.invalidateQueries({
               queryKey: [Queries.FinancialEntries],
             });
+
+            queryClient.invalidateQueries({
+              queryKey: [Queries.FinancialEntriesTotalAmount],
+            });
+
             navigation?.popTo(Screens.FinancialEntries);
           },
           onError: () => showErrorToast(),
@@ -136,16 +142,16 @@ const AddFinancialEntryScreen = ({
               hitSlop={10}
             >
               {!category_name ? (
-                <Text className='text-h3 font-interMedium'>
-                  Select category
-                </Text>
+                <Typography variant='h3'>Please select a category</Typography>
               ) : (
                 <>
                   <View className='flex-row items-center'>
                     <CategoryIcon size={20} categoryName={category_name} />
-                    <Text className='text-h3 font-interMedium ml-2'>
+
+                    <Typography variant='h3' className='ml-2'>
                       {`${category_name}${subcategory_name ? ` / ${subcategory_name}` : ''}`}
-                    </Text>
+                    </Typography>
+
                     <Ionicons name='chevron-forward' size={20} />
                   </View>
                 </>
@@ -155,8 +161,9 @@ const AddFinancialEntryScreen = ({
         </View>
 
         <View className='justify-center items-center h-36'>
-          <Text
-            className='items-center text-h1'
+          <Typography
+            variant='h1Regular'
+            className='items-center'
             numberOfLines={1}
             adjustsFontSizeToFit
           >
@@ -164,7 +171,7 @@ const AddFinancialEntryScreen = ({
             {amount}
             {/* TODO: set currency in the future */}
             {' PLN'}
-          </Text>
+          </Typography>
         </View>
 
         <Button

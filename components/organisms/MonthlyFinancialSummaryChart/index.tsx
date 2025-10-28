@@ -1,11 +1,13 @@
 import { useMemo } from 'react';
-import { Dimensions, Text } from 'react-native';
+import { Dimensions } from 'react-native';
 import useMonthlyFinancialSummary from 'api/queries/useMonthlyFinancialSummary';
 import { formatYLabel, formatChartData } from './utils';
 import { BarChart, ruleTypes } from 'react-native-gifted-charts';
 import { View } from 'react-native';
 import { Loader } from 'components/atoms';
 import { MonthlyFinancialSummaryChartProps } from './types';
+import Typography from 'components/atoms/Typography';
+import { testIDs } from 'utils/testIDs';
 
 // TODO: adjust chart to tablets
 const MonthlyFinancialSummaryChart = ({
@@ -28,9 +30,13 @@ const MonthlyFinancialSummaryChart = ({
 
     if (chartData?.length === 0) {
       return (
-        <Text className='mt-4 text-center text-gray-500' testID='no-data'>
-          No data available
-        </Text>
+        <Typography
+          variant='h4Regular'
+          className='my-14 text-center text-gray-500'
+          testID={testIDs.noMonthlySummaryChartDataAvailable}
+        >
+          No chart data available
+        </Typography>
       );
     }
 
@@ -58,12 +64,14 @@ const MonthlyFinancialSummaryChart = ({
 
   return (
     <View className={className} testID='monthly-chart-container'>
-      <Text
-        className='text-h4 px-4 mb-4 text-gray-500 font-interRegular'
-        testID='monthly-summary-title'
+      <Typography
+        variant='h4Regular'
+        className='px-4 mb-4 text-gray-500'
+        testID={testIDs.monthlyChartTitle}
       >
         Monthly summary
-      </Text>
+      </Typography>
+
       <View>{renderChart()}</View>
     </View>
   );

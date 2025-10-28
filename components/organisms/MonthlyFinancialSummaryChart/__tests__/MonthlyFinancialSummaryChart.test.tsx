@@ -5,6 +5,7 @@ import { BarChart } from 'react-native-gifted-charts';
 import MonthlyFinancialSummaryChart from '..';
 import useMonthlyFinancialSummary from 'api/queries/useMonthlyFinancialSummary';
 import { MonthlyFinancialSummary } from 'lib/supabase/types';
+import { testIDs } from 'utils/testIDs';
 
 // Mock the hook
 jest.mock('api/queries/useMonthlyFinancialSummary');
@@ -53,7 +54,7 @@ describe('MonthlyFinancialSummaryChart', () => {
     expect(screen.getByTestId('loader')).toBeTruthy();
   });
 
-  it('renders "No data available" when there is no data', () => {
+  it('renders "No chart data available" when there is no data', () => {
     mockUseMonthlyFinancialSummary.mockReturnValue({
       data: [],
       isFetching: false,
@@ -64,8 +65,10 @@ describe('MonthlyFinancialSummaryChart', () => {
 
     render(<MonthlyFinancialSummaryChart />);
 
-    expect(screen.getByTestId('monthly-summary-title')).toBeTruthy();
-    expect(screen.getByTestId('no-data')).toBeTruthy();
+    expect(screen.getByTestId(testIDs.monthlyChartTitle)).toBeTruthy();
+    expect(
+      screen.getByTestId(testIDs.noMonthlySummaryChartDataAvailable)
+    ).toBeTruthy();
   });
 
   it('renders chart when data is available', () => {

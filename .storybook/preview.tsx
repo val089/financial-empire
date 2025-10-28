@@ -2,13 +2,16 @@ import React from 'react';
 import { View, Appearance } from 'react-native';
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
 import type { Preview } from '@storybook/react';
+import { NavigationContainer } from '@react-navigation/native';
 
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <View style={{ padding: 8, flex: 1 }}>
-        <Story />
-      </View>
+      <NavigationContainer>
+        <View style={{ padding: 8, flex: 1 }}>
+          <Story />
+        </View>
+      </NavigationContainer>
     ),
     withBackgrounds,
   ],

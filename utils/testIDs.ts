@@ -19,4 +19,6 @@ export enum testIDs {
   loader = 'loader',
   editableAvatarTouchable = 'editable-avatar-touchable',
   modalBackdrop = 'modal-backdrop',
+  monthlyChartTitle = 'monthly-chart-title',
+  noMonthlySummaryChartDataAvailable = 'no-monthly-summary-chart-data-available',
 }
