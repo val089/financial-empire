@@ -57,6 +57,11 @@ const AddFinancialEntryScreen = ({
             queryClient.invalidateQueries({
               queryKey: [Queries.FinancialEntries],
             });
+
+            queryClient.invalidateQueries({
+              queryKey: [Queries.FinancialEntriesTotalAmount],
+            });
+
             navigation?.popTo(Screens.FinancialEntries);
           },
           onError: () => showErrorToast(),
