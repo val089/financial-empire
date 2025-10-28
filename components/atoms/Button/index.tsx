@@ -56,7 +56,10 @@ const Button = ({
       {...rest}
     >
       {iconPosition === 'left' && renderIcon()}
-      <Typography variant='h3' className='text-white'>
+      <Typography
+        variant='h3'
+        className={mergeClasses('text-white', textClassName)}
+      >
         {label}
       </Typography>
       {iconPosition === 'right' && renderIcon()}

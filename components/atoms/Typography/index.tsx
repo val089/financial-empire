@@ -32,7 +32,6 @@ const Typography = ({
       className
     )}
     {...rest}
-    allowFontScaling={false}
   >
     {children}
   </Text>
