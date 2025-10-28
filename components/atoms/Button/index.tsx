@@ -1,9 +1,10 @@
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { ButtonProps } from './types';
 import Loader from '../Loader';
 import { Ionicons } from '@expo/vector-icons';
 import colors from 'theme/colors';
+import Typography from '../Typography';
 
 const Button = ({
   label,
@@ -55,14 +56,9 @@ const Button = ({
       {...rest}
     >
       {iconPosition === 'left' && renderIcon()}
-      <Text
-        className={mergeClasses(
-          'text-h3 text-white font-interMedium',
-          textClassName
-        )}
-      >
+      <Typography variant='h3' className='text-white'>
         {label}
-      </Text>
+      </Typography>
       {iconPosition === 'right' && renderIcon()}
     </TouchableOpacity>
   );

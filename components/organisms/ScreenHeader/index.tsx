@@ -1,5 +1,4 @@
-import clsx from 'clsx';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScreenHeaderProps } from './types';
 import { ArrowLeftButton, Avatar } from 'components/atoms';
@@ -10,6 +9,7 @@ import useAuthentication from 'hooks/useAuthentication';
 import { mergeClasses } from 'utils/functions/mergeClasses';
 import { useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
+import Typography from 'components/atoms/Typography';
 
 const ScreenHeader = ({
   avatarUrl,
@@ -31,12 +31,17 @@ const ScreenHeader = ({
   const goBack = () => navigation?.goBack();
 
   const renderLeftHeaderElement = () => {
-    if (onAvatarPress)
+    if (onAvatarPress && avatarUrl) {
       return (
         <TouchableOpacity onPress={onAvatarPress} testID={testIDs.avatarButton}>
           <Avatar url={avatarUrl} />
         </TouchableOpacity>
       );
+    }
+
+    if (avatarUrl) {
+      return <Avatar url={avatarUrl} />;
+    }
 
     if (onBackPress || canGoBack)
       return <ArrowLeftButton onPress={onBackPress || goBack} />;
@@ -46,9 +51,7 @@ const ScreenHeader = ({
 
   return (
     <View
-      className={clsx(
-        'h-30 max-w-full flex-row items-center justify-between px-4 bg-white'
-      )}
+      className='h-30 max-w-full flex-row items-center justify-between px-4 bg-white'
       style={{ paddingTop: top }}
       testID={testIDs.screenHeader}
     >
@@ -56,13 +59,13 @@ const ScreenHeader = ({
         {renderLeftHeaderElement()}
 
         {title && (
-          <Text
+          <Typography
             className={mergeClasses('text-h2 font-interBold', {
               'ml-2': onBackPress || avatarUrl || canGoBack,
             })}
           >
             {title}
-          </Text>
+          </Typography>
         )}
       </View>
 

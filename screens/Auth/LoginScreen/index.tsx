@@ -1,5 +1,5 @@
 import { FormProvider, Controller, useForm } from 'react-hook-form';
-import { View, Text, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import {
   Input,
   PasswordInput,
@@ -15,6 +15,7 @@ import { loginValidationSchema } from './loginValidationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import useDefaultToast from 'hooks/useDefaultToast';
 import useLoginMutation from 'api/mutations/useLoginMutation';
+import Typography from 'components/atoms/Typography';
 
 const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const { mutate: login, isPending } = useLoginMutation();
@@ -51,12 +52,15 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
               source={ImageLogo}
             />
           </View>
-          <Text className='text-center text-h1 font-interBold my-6'>
+          <Typography variant='h1Bold' className='text-center my-6'>
             Sign In
-          </Text>
-          <Text className='font-interRegular text-h4 text-gray-400 text-center mb-6'>
+          </Typography>
+          <Typography
+            variant='h4Regular'
+            className='text-gray-400 text-center mb-6'
+          >
             Enter valid email and password to continue.
-          </Text>
+          </Typography>
 
           <Controller
             control={control}
@@ -126,7 +130,9 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
           /> */}
 
           <View className='flex-row justify-center items-center py-10'>
-            <Text className='text-gray-400 text-h4'>Haven't any account? </Text>
+            <Typography className='text-gray-400' variant='h4Regular'>
+              Haven't any account?{' '}
+            </Typography>
             <LinkButton
               label='Sign up'
               onPress={() => navigation?.navigate(Screens.SignUp)}

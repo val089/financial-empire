@@ -1,6 +1,7 @@
-import { Text, TouchableOpacity } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { CheckableButtonProps } from './types';
 import { mergeClasses } from 'utils/functions/mergeClasses';
+import Typography from '../Typography';
 
 const CheckableButton = ({
   label,
@@ -18,14 +19,15 @@ const CheckableButton = ({
     {...{ onPress }}
     {...rest}
   >
-    <Text
+    <Typography
+      variant='h4Regular'
       className={mergeClasses('', {
         'text-white': isSelected,
         'text-black': !isSelected,
       })}
     >
       {label}
-    </Text>
+    </Typography>
   </TouchableOpacity>
 );
 

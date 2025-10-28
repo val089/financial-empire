@@ -1,4 +1,4 @@
-import { View, Image, Text } from 'react-native';
+import { View, Image } from 'react-native';
 import { FormProvider, Controller, useForm } from 'react-hook-form';
 import { supabase } from 'lib/supabase/supabase';
 import {
@@ -16,6 +16,7 @@ import { SignUpFormData } from './types';
 import useDefaultToast from 'hooks/useDefaultToast';
 import { loginValidationSchema } from '../LoginScreen/loginValidationSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Typography from 'components/atoms/Typography';
 
 const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
   const formMethods = useForm<SignUpFormData>({
@@ -57,12 +58,15 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
             />
           </View>
 
-          <Text className='text-center text-h1 font-interBold my-6'>
+          <Typography variant='h1Bold' className='text-center my-6'>
             Sign Up
-          </Text>
-          <Text className='font-interRegular text-h4 text-gray-400 text-center mb-6'>
+          </Typography>
+          <Typography
+            variant='h4Regular'
+            className='text-gray-400 text-center mb-6'
+          >
             Enter valid email and password to continue.
-          </Text>
+          </Typography>
 
           <Controller
             control={control}
@@ -104,9 +108,10 @@ const SignUpScreen = ({ navigation }: SignUpScreenProps) => {
           />
 
           <View className='flex-row justify-center items-center py-10'>
-            <Text className='text-gray-400 text-h4'>
+            <Typography className='text-gray-400' variant='h4Regular'>
               Already have an account?{' '}
-            </Text>
+            </Typography>
+
             <LinkButton
               label='Sign in'
               onPress={() => navigation?.navigate(Screens.Login)}
