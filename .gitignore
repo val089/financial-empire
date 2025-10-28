@@ -90,5 +90,5 @@ yarn-error.*
 
 .yarn
 NOTES/
-android/keystore.properties
-android/app/release.keystore
+android/app/keystore.properties
+android/app/release-key.keystore
