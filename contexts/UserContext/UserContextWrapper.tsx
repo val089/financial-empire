@@ -61,7 +61,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
           updateAuthState(session);
         }
       } catch (e) {
-        console.log('Supabase getSession error:', e);
+        console.error('Supabase getSession error:', e);
         updateAuthState(null);
       } finally {
         setIsInitializing(false);
