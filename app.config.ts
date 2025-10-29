@@ -50,11 +50,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
           image: './assets/splash-light.png',
           // backgroundColor: '#000000',
         },
-        imageWidth: 50,
+        imageWidth: 100,
       },
     ],
   ],
-  scheme: 'com.supabase',
+  scheme: 'financialempire',
   extra: {
     storybookEnabled: process.env.STORYBOOK_ENABLED,
     enableFPSMonitor: getFPSMonitorEnabled(),

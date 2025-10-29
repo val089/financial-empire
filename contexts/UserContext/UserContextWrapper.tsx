@@ -11,26 +11,27 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
   const [userId, setUserId] = useState('');
   const [isInitializing, setIsInitializing] = useState(true);
 
-  const { data: userProfile, isLoading: isUserProfileLoading } =
-    useUserProfileQuery(userId, {
-      enabled: userId !== null && userId !== '',
-      select: (data) => {
-        if (!data) return data;
+  const { data: userProfile } = useUserProfileQuery(userId, {
+    enabled: userId !== null && userId !== '',
+    select: (data) => {
+      if (!data) return data;
 
-        // Generate public URL for avatar if avatar_url exists
-        const avatar_url = data.avatar_url
-          ? supabase.storage.from('avatars').getPublicUrl(data.avatar_url).data
-              ?.publicUrl
-          : null;
+      // Generate public URL for avatar if avatar_url exists
+      const avatar_url = data.avatar_url
+        ? supabase.storage.from('avatars').getPublicUrl(data.avatar_url).data
+            ?.publicUrl
+        : null;
 
-        return {
-          ...data,
-          avatar_url,
-        };
-      },
-    });
+      return {
+        ...data,
+        avatar_url,
+      };
+    },
+  });
 
-  const isAuthenticating = isInitializing || isUserProfileLoading;
+  // (userProfile === undefined && userId !== '') - thanks to this, the UI won't try to use an undefined profile before the user logs in.
+  const isAuthenticating =
+    isInitializing || (userProfile === undefined && userId !== '');
 
   // Helper function to update auth state consistently
   const updateAuthState = (session: Session | null) => {
@@ -48,19 +49,23 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
   useEffect(() => {
     // Initialize session
     const initializeAuth = async () => {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
+      try {
+        const {
+          data: { session },
+          error,
+        } = await supabase.auth.getSession();
 
-      if (error) {
-        // Handle error: clear session/user state to avoid inconsistent state
+        if (error) {
+          updateAuthState(null);
+        } else {
+          updateAuthState(session);
+        }
+      } catch (e) {
+        console.log('Supabase getSession error:', e);
         updateAuthState(null);
-      } else {
-        updateAuthState(session);
+      } finally {
+        setIsInitializing(false);
       }
-
-      setIsInitializing(false);
     };
 
     initializeAuth();
