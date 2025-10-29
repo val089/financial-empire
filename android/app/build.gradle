@@ -100,7 +100,7 @@ android {
         applicationId 'com.kamildev.financialempire.dev'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
+        versionCode 8
         versionName "1.0.0"
     }
     signingConfigs {
@@ -119,7 +119,7 @@ android {
         }
     }
     buildTypes {
-        debug { 
+        debug {
             signingConfig signingConfigs.debug
         }
         release {
@@ -133,12 +133,6 @@ android {
                 // development
                 signingConfig signingConfigs.debug
             }
-
-
-            // shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
-            // minifyEnabled enableProguardInReleaseBuilds
-            // proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
