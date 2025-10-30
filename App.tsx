@@ -13,6 +13,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import FPSMonitor from 'components/utils/FPSMonitor';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import AddFinancialEntryContextWrapper from 'contexts/AddFinancialEntryContext/AddFinancialEntryContextWrapper';
+import { useEffect } from 'react';
+import { AppState, Platform } from 'react-native';
+import { supabase } from './lib/supabase/supabase';
 
 import './theme/global.css';
 
@@ -32,6 +35,25 @@ const App = () => {
     InterMedium,
     InterBold,
   });
+
+  useEffect(() => {
+    // Set up AppState listener for Supabase auth refresh
+    // Only needed for native platforms (iOS/Android)
+    if (Platform.OS !== 'web') {
+      const subscription = AppState.addEventListener('change', (state) => {
+        if (state === 'active') {
+          supabase.auth.startAutoRefresh();
+        } else {
+          supabase.auth.stopAutoRefresh();
+        }
+      });
+
+      // Cleanup function to remove the listener
+      return () => {
+        subscription.remove();
+      };
+    }
+  }, []);
 
   return loaded ? (
     <KeyboardProvider>
