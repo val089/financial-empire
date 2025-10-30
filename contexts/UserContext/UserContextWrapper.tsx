@@ -47,33 +47,33 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
   };
 
   useEffect(() => {
-    // Initialize session
-    const initializeAuth = async () => {
-      try {
-        const {
-          data: { session },
-          error,
-        } = await supabase.auth.getSession();
-
-        if (error) {
-          updateAuthState(null);
-        } else {
-          updateAuthState(session);
-        }
-      } catch (e) {
-        console.error('Supabase getSession error:', e);
-        updateAuthState(null);
-      } finally {
-        setIsInitializing(false);
-      }
-    };
-
-    initializeAuth();
-
-    // Listen to auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      // INITIAL_SESSION is the first event after app start
+      if (event === 'INITIAL_SESSION') {
+        if (session) {
+          updateAuthState(session);
+        } else {
+          // Defensive: make sure local storage doesn't hold an old token
+          try {
+            await supabase.auth.signOut();
+          } catch (error) {
+            // Ignore error - we're clearing invalid session anyway
+            console.error('signOut error (expected if no session):', error);
+          }
+          updateAuthState(null);
+        }
+        setIsInitializing(false);
+        return;
+      }
+
+      if (event === 'SIGNED_OUT') {
+        updateAuthState(null);
+        return;
+      }
+
+      // SIGNED_IN / TOKEN_REFRESHED / USER_UPDATED
       updateAuthState(session);
     });
 
