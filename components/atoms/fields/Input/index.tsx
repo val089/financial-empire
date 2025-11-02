@@ -27,7 +27,7 @@ const Input = ({
   } = rightIcon || {};
 
   return (
-    <View className={mergeClasses('', className)}>
+    <View className={mergeClasses('', className)} accessible={true}>
       {label && <Text className='pb-1 text-h4 text-black'>{label}</Text>}
       <View className='justify-center'>
         {LeftIcon && (

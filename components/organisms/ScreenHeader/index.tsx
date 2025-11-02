@@ -33,7 +33,13 @@ const ScreenHeader = ({
   const renderLeftHeaderElement = () => {
     if (onAvatarPress && avatarUrl) {
       return (
-        <TouchableOpacity onPress={onAvatarPress} testID={testIDs.avatarButton}>
+        <TouchableOpacity
+          onPress={onAvatarPress}
+          testID={testIDs.avatarButton}
+          accessibilityLabel='Profile avatar'
+          accessibilityRole='button'
+          accessibilityHint='Opens profile settings'
+        >
           <Avatar url={avatarUrl} />
         </TouchableOpacity>
       );
@@ -44,7 +50,13 @@ const ScreenHeader = ({
     }
 
     if (onBackPress || canGoBack)
-      return <ArrowLeftButton onPress={onBackPress || goBack} />;
+      return (
+        <ArrowLeftButton
+          onPress={onBackPress || goBack}
+          accessibilityLabel='Go back'
+          accessibilityHint='Navigates to the previous screen'
+        />
+      );
 
     return null;
   };
@@ -63,12 +75,12 @@ const ScreenHeader = ({
             className={mergeClasses('text-h2 font-interBold', {
               'ml-2': onBackPress || avatarUrl || canGoBack,
             })}
+            accessibilityRole='header'
           >
             {title}
           </Typography>
         )}
       </View>
-
       {showMainSideMenu && (
         <View
           className='flex-row items-center justify-end'
@@ -79,6 +91,9 @@ const ScreenHeader = ({
             onPress={logOut}
             hitSlop={ICONS_HIT_SLOPE}
             testID={testIDs.logoutButton}
+            accessibilityLabel='Log out'
+            accessibilityRole='button'
+            accessibilityHint='Logs out from your account'
           >
             <Ionicons
               name='log-out-outline'

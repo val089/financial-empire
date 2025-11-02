@@ -106,7 +106,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
             name='name'
             render={({ field, fieldState: { error } }) => (
               <Input
-                label='Name:'
+                label='Name'
                 className='mb-4'
                 value={field.value}
                 onChangeText={field.onChange}
@@ -120,7 +120,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
             name='purchase_date'
             render={({ field }) => (
               <InputButton
-                label='Purchase date:'
+                label='Purchase date'
                 ref={inputButtonRef}
                 onPress={openModal}
                 value={format(field.value, 'yyyy-MM-dd')}
@@ -133,7 +133,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
             name='share_price'
             render={({ field, fieldState: { error } }) => (
               <Input
-                label='Share price:'
+                label='Share price'
                 placeholder={`0 ${watch('currency')}`}
                 className='mb-4'
                 value={field.value.toString()}
@@ -152,7 +152,7 @@ const AddInvestmentScreen = ({ navigation }: AddInvestmentScreenProps) => {
             name='shares_amount'
             render={({ field, fieldState: { error } }) => (
               <Input
-                label='Shares amount:'
+                label='Shares amount'
                 className='mb-4'
                 value={field.value.toString()}
                 onChangeText={(value) => {
