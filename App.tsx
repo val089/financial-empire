@@ -19,10 +19,10 @@ import { supabase } from './lib/supabase/supabase';
 
 import './theme/global.css';
 
-// TEMPORARILY DISABLED - Testing without splash screen
-// SplashScreen.preventAutoHideAsync().catch(() => {
-//   // Ignore errors in case runtime is not ready
-// });
+// Keep the splash screen visible until UserContext is ready
+SplashScreen.preventAutoHideAsync().catch(() => {
+  // Ignore errors in case runtime is not ready
+});
 
 const queryClient = new QueryClient();
 
@@ -35,16 +35,6 @@ const App = () => {
   });
 
   useEffect(() => {
-    // TEMPORARILY DISABLED - Testing without splash screen
-    // try {
-    //   SplashScreen.setOptions({
-    //     duration: 500,
-    //     fade: true,
-    //   });
-    // } catch {
-    //   // Ignore errors - splash screen might already be hidden
-    // }
-
     // Set up AppState listener for Supabase auth refresh
     // Only needed for native platforms (iOS/Android)
     if (Platform.OS !== 'web') {
@@ -67,12 +57,7 @@ const App = () => {
     <KeyboardProvider>
       <QueryClientProvider client={queryClient}>
         <UserContextWrapper>
-          <NavigationContainer
-            onReady={() => {
-              // TEMPORARILY DISABLED - Testing without splash screen
-              // SplashScreen.hide();
-            }}
-          >
+          <NavigationContainer>
             <SafeAreaProvider>
               <GestureHandlerRootView style={{ flex: 1 }}>
                 <AddFinancialEntryContextWrapper>

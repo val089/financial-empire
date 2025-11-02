@@ -27,10 +27,18 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     infoPlist: {
       ITSAppUsesNonExemptEncryption: false,
     },
+    icon: {
+      dark: './assets/icons/ios-dark.png',
+      light: './assets/icons/ios-light.png',
+      tinted: './assets/icons/ios-tinted.png',
+    },
   },
+
   android: {
     adaptiveIcon: {
-      foregroundImage: './assets/adaptive-icon.png',
+      foregroundImage: './assets/icons/adaptive-icon.png',
+      backgroundImage: './assets/icons/adaptive-icon.png',
+      monochromeImage: './assets/icons/adaptive-icon.png',
       backgroundColor: '#ffffff',
     },
     package: 'com.kamildev.financialempire.dev',
@@ -44,13 +52,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-splash-screen',
       {
-        // backgroundColor: '#ffffff',
-        image: './assets/splash-light.png',
+        backgroundColor: '#ffffff',
+        image: './assets/icons/splash-icon-light.png',
+        imageWidth: 200,
+        resizeMode: 'contain',
         dark: {
-          image: './assets/splash-light.png',
-          // backgroundColor: '#000000',
+          image: './assets/icons/splash-icon-dark.png',
+          backgroundColor: '#ffffff',
         },
-        imageWidth: 100,
       },
     ],
   ],
