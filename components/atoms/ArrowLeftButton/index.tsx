@@ -8,8 +8,8 @@ const ArrowLeftButton = (props: ArrowLeftButtonProps) => (
     accessibilityRole='button'
     activeOpacity={0.5}
     hitSlop={15}
-    {...props}
     testID={testIDs.arrowLeftButton}
+    {...props}
   >
     <Ionicons name='arrow-back' size={30} color='#000' accessible={false} />
   </TouchableOpacity>
