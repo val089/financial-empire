@@ -1,13 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+  <uses-permission android:name="android.permission.CAMERA" tools:node="remove"/>
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-  <!-- We don't need to record audio -->
-  <!-- <uses-permission android:name="android.permission.RECORD_AUDIO"/> -->
+  <uses-permission android:name="android.permission.RECORD_AUDIO"/>
   <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <!-- TODO: remove tools:node, you should add policy rules for permissions -->
-<uses-permission android:name="android.permission.CAMERA" tools:node="remove" />
   <queries>
     <intent>
       <action android:name="android.intent.action.VIEW"/>
@@ -30,6 +28,7 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="com.supabase"/>
         <data android:scheme="exp+financial-empire"/>
+        <data android:scheme="financialempire"/>
       </intent-filter>
     </activity>
   </application>
