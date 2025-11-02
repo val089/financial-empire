@@ -16,6 +16,11 @@ const CheckableButton = ({
         'bg-primary-blue-400 border-primary-blue-400': isSelected,
       }
     )}
+    accessibilityLabel={label}
+    accessibilityRole='radio'
+    accessibilityState={{
+      checked: isSelected,
+    }}
     {...{ onPress }}
     {...rest}
   >
@@ -25,6 +30,7 @@ const CheckableButton = ({
         'text-white': isSelected,
         'text-black': !isSelected,
       })}
+      accessible={false}
     >
       {label}
     </Typography>
