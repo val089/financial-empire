@@ -68,7 +68,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
         }
 
         setIsInitializing(false);
-        setIsContextReady(true);
+        // setIsContextReady(true);
         return;
       }
 
@@ -79,6 +79,7 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
 
       // SIGNED_IN / TOKEN_REFRESHED / USER_UPDATED
       updateAuthState(session);
+      setIsContextReady(true);
     });
 
     return () => {

@@ -15,7 +15,7 @@ const getFPSMonitorEnabled = () => {
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   owner: 'kamildev',
-  name: 'financial-empire',
+  name: 'Financial Empire',
   slug: 'financial-empire',
   version: '1.0.0',
   orientation: 'portrait',
@@ -59,6 +59,26 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         dark: {
           image: './assets/icons/splash-icon-dark.png',
           backgroundColor: '#ffffff',
+        },
+      },
+    ],
+    [
+      'expo-image-picker',
+      {
+        photosPermission: 'The app accesses your photos to let you share them.',
+        cameraPermission: false, // Don't request camera permission
+        microphonePermission: false, // Don't request microphone permission
+      },
+    ],
+    [
+      'expo-build-properties',
+      {
+        android: {
+          // Remove camera and audio recording permissions
+          blockedPermissions: [
+            'android.permission.CAMERA',
+            'android.permission.RECORD_AUDIO',
+          ],
         },
       },
     ],
