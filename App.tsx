@@ -19,12 +19,7 @@ import { supabase } from './lib/supabase/supabase';
 
 import './theme/global.css';
 
-// Set the animation options. This is optional.
-SplashScreen.setOptions({
-  duration: 500,
-  fade: true,
-});
-
+// TODO: Add SplashScreen manager to hide splash screen when app is ready
 // Keep the splash screen visible until UserContext is ready
 SplashScreen.preventAutoHideAsync().catch(() => {
   // Ignore errors in case runtime is not ready
