@@ -15,7 +15,7 @@ const getFPSMonitorEnabled = () => {
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   owner: 'kamildev',
-  name: 'financial-empire',
+  name: 'Financial Empire',
   slug: 'financial-empire',
   version: '1.0.0',
   orientation: 'portrait',
@@ -27,10 +27,18 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     infoPlist: {
       ITSAppUsesNonExemptEncryption: false,
     },
+    icon: {
+      dark: './assets/icons/ios-dark.png',
+      light: './assets/icons/ios-light.png',
+      tinted: './assets/icons/ios-tinted.png',
+    },
   },
+
   android: {
     adaptiveIcon: {
-      foregroundImage: './assets/adaptive-icon.png',
+      foregroundImage: './assets/icons/adaptive-icon.png',
+      backgroundImage: './assets/icons/adaptive-icon.png',
+      monochromeImage: './assets/icons/adaptive-icon.png',
       backgroundColor: '#ffffff',
     },
     package: 'com.kamildev.financialempire.dev',
@@ -44,13 +52,34 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'expo-splash-screen',
       {
-        // backgroundColor: '#ffffff',
-        image: './assets/splash-light.png',
+        backgroundColor: '#ffffff',
+        image: './assets/icons/splash-icon-light.png',
+        imageWidth: 200,
+        resizeMode: 'contain',
         dark: {
-          image: './assets/splash-light.png',
-          // backgroundColor: '#000000',
+          image: './assets/icons/splash-icon-dark.png',
+          backgroundColor: '#000000',
         },
-        imageWidth: 100,
+      },
+    ],
+    [
+      'expo-image-picker',
+      {
+        photosPermission: 'The app accesses your photos to let you share them.',
+        cameraPermission: false, // Don't request camera permission
+        microphonePermission: false, // Don't request microphone permission
+      },
+    ],
+    [
+      'expo-build-properties',
+      {
+        android: {
+          // Remove camera and audio recording permissions
+          blockedPermissions: [
+            'android.permission.CAMERA',
+            'android.permission.RECORD_AUDIO',
+          ],
+        },
       },
     ],
   ],

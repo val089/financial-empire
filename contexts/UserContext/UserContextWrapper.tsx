@@ -4,12 +4,14 @@ import { supabase } from 'lib/supabase/supabase';
 import { UserContextProvider } from '.';
 import useUserProfileQuery from 'api/queries/useUserProfileQuery';
 import { UserContextWrapperProps } from './types';
+import * as SplashScreen from 'expo-splash-screen';
 
 const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
   const [userId, setUserId] = useState('');
   const [isInitializing, setIsInitializing] = useState(true);
+  const [isContextReady, setIsContextReady] = useState(false);
 
   const { data: userProfile } = useUserProfileQuery(userId, {
     enabled: userId !== null && userId !== '',
@@ -64,7 +66,9 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
           }
           updateAuthState(null);
         }
+
         setIsInitializing(false);
+        setIsContextReady(true);
         return;
       }
 
@@ -81,6 +85,19 @@ const UserContextWrapper = ({ children }: UserContextWrapperProps) => {
       subscription.unsubscribe();
     };
   }, []);
+
+  // Hide splash screen when context is ready
+  useEffect(() => {
+    if (isContextReady) {
+      SplashScreen.hideAsync().catch(() => {
+        // Splash screen might already be hidden
+      });
+    }
+  }, [isContextReady]);
+
+  if (!isContextReady) {
+    return null;
+  }
 
   return (
     <UserContextProvider
