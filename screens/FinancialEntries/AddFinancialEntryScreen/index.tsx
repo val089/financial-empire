@@ -62,7 +62,7 @@ const AddFinancialEntryScreen = ({
       return;
     }
 
-    if (isEditting) {
+    if (isEditting && id) {
       editFinancialEntry(
         {
           id,
@@ -163,7 +163,9 @@ const AddFinancialEntryScreen = ({
             value={
               entry_date
                 ? format(entry_date, 'yyyy-MM-dd')
-                : format(created_at, 'yyyy-MM-dd')
+                : created_at
+                  ? format(created_at, 'yyyy-MM-dd')
+                  : format(new Date(), 'yyyy-MM-dd')
             }
             onPress={openModal}
             ref={inputButtonRef}
@@ -238,7 +240,7 @@ const AddFinancialEntryScreen = ({
           }));
         }}
         onClose={closeDateTimePicker}
-        value={entry_date || created_at}
+        value={entry_date ? entry_date : created_at ? created_at : new Date()}
       />
     </>
   );
