@@ -43,6 +43,7 @@ export type Database = {
           amount: number;
           category_name: Database['public']['Enums']['CategoryFinancialEntryName'];
           created_at: string;
+          entry_date: string | null;
           id: number;
           subcategory_name:
             | Database['public']['Enums']['SubcategoryFinancialEntryName']
@@ -54,6 +55,7 @@ export type Database = {
           amount: number;
           category_name: Database['public']['Enums']['CategoryFinancialEntryName'];
           created_at?: string;
+          entry_date?: string | null;
           id?: number;
           subcategory_name?:
             | Database['public']['Enums']['SubcategoryFinancialEntryName']
@@ -65,6 +67,7 @@ export type Database = {
           amount?: number;
           category_name?: Database['public']['Enums']['CategoryFinancialEntryName'];
           created_at?: string;
+          entry_date?: string | null;
           id?: number;
           subcategory_name?:
             | Database['public']['Enums']['SubcategoryFinancialEntryName']

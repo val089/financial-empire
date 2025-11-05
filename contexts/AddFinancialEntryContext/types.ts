@@ -10,6 +10,9 @@ export type FinancialEntryContextDataType = {
   category_name: CategoryFinancialEntryName | null;
   subcategory_name: SubcategoryFinancialEntryName | null;
   type: FinancialEntryType;
+  entry_date: Date | null;
+  id?: number;
+  created_at?: Date;
 };
 
 export type AddFinancialEntryContextProps = {

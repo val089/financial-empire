@@ -42,11 +42,17 @@ const FinancialEntriesScreen = ({
 
   const renderItem: ListRenderItem<FinancialEntry> = useCallback(
     ({ item, index }) => {
-      const currentDateString = Formatter.getDateString(item.created_at);
-      const previousDateString =
-        index > 0 && financialEntries?.[index - 1]?.created_at
-          ? Formatter.getDateString(financialEntries[index - 1].created_at)
-          : null;
+      const currentDate = item.entry_date || item.created_at;
+      const currentDateString = Formatter.getDateString(currentDate);
+
+      const previousItem = index > 0 ? financialEntries?.[index - 1] : null;
+      const previousDate = previousItem
+        ? previousItem.entry_date || previousItem.created_at
+        : null;
+      const previousDateString = previousDate
+        ? Formatter.getDateString(previousDate)
+        : null;
+
       const showMainDate = currentDateString !== previousDateString;
 
       const title = `${item.category_name || 'Uncategorized'}${item.subcategory_name ? ` / ${item.subcategory_name}` : ''}`;
@@ -56,7 +62,7 @@ const FinancialEntriesScreen = ({
           id={item.id}
           title={title}
           sectionTitle={
-            showMainDate ? Formatter.formatDate(item.created_at) : undefined
+            showMainDate ? Formatter.formatDate(currentDate) : undefined
           }
           rightText={
             item.type === 'income'
@@ -83,14 +89,15 @@ const FinancialEntriesScreen = ({
           onPress={() => {
             setIsEditting(true);
             setDefaultValues({
+              id: item.id,
               category_name: item.category_name,
               subcategory_name: item.subcategory_name,
               type: item.type,
               amount: String(Math.abs(item.amount)),
+              created_at: new Date(item.created_at),
+              entry_date: item.entry_date ? new Date(item.entry_date) : null,
             });
-            navigation?.navigate(Screens.AddFinancialEntry, {
-              financialEntryId: item.id,
-            });
+            navigation?.navigate(Screens.AddFinancialEntry);
           }}
         />
       );
@@ -114,7 +121,7 @@ const FinancialEntriesScreen = ({
           onPress={() => {
             setIsEditting(false);
             setDefaultValues(null);
-            navigation?.navigate(Screens.AddFinancialEntry, {});
+            navigation?.navigate(Screens.AddFinancialEntry);
           }}
         />
         <FlashList

@@ -17,7 +17,7 @@
     "test:coverage": "npx jest --coverage",
     "eas-build-pre-install": "node ./easHooks/pre-install.js",
     "storybook-generate": "sb-rn-get-stories",
-    "generate-types-supabase": "supabase gen types typescript --project-id fcppcnhqhxyvjnbixiqw > lib/database.types.ts --debug",
+    "generate-types-supabase": "supabase gen types typescript --project-id fcppcnhqhxyvjnbixiqw > lib/supabase/database.types.ts --debug",
     "check-dependencies": "yarn outdated"
   },
   "dependencies": {

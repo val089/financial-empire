@@ -1,3 +1,4 @@
+ #!/bin/sh
 echo '🏗️👷 Check lint and types before committing'
 
 yarn lint-staged
