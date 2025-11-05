@@ -16,19 +16,39 @@ import { Queries } from 'api/enums';
 import { useAddFinancialEntryContext } from 'contexts/AddFinancialEntryContext';
 import useEditFinancialEntry from 'api/mutations/useEditFinancialEntry';
 import Typography from 'components/atoms/Typography';
+import InputButton from 'components/atoms/InputButton';
+import { format } from 'date-fns';
+import useModal from 'hooks/useModal';
+import DateTimePickerModal from 'components/atoms/DateTimePickerModal';
+import { InputButtonHandle } from 'components/atoms/InputButton/types';
+import { useRef } from 'react';
 
 const AddFinancialEntryScreen = ({
   navigation,
-  route,
 }: AddFinancialEntryScreenProps) => {
-  const { financialEntryId } = route?.params || {};
   const { mutate: addFinancialEntry, isPending } = useAddFinancialEntry();
   const { mutate: editFinancialEntry } = useEditFinancialEntry();
   const { showErrorToast, showSuccessToast } = useDefaultToast();
   const queryClient = useQueryClient();
 
   const {
-    financialEntry: { amount, category_name, subcategory_name, type },
+    visible: isDateTimePickerVisible,
+    closeModal: closeDateTimePicker,
+    openModal,
+  } = useModal();
+
+  const inputButtonRef = useRef<InputButtonHandle>(null);
+
+  const {
+    financialEntry: {
+      id,
+      amount,
+      category_name,
+      subcategory_name,
+      type,
+      entry_date,
+      created_at,
+    },
     setFinancialEntry,
     setDefaultValues,
     isEditting,
@@ -42,14 +62,15 @@ const AddFinancialEntryScreen = ({
       return;
     }
 
-    if (isEditting && financialEntryId) {
+    if (isEditting) {
       editFinancialEntry(
         {
-          id: financialEntryId,
+          id,
           type,
           category_name,
           subcategory_name,
           amount: numericAmount,
+          entry_date: entry_date ? new Date(entry_date).toISOString() : null,
         },
         {
           onSuccess: () => {
@@ -78,6 +99,7 @@ const AddFinancialEntryScreen = ({
         category_name,
         subcategory_name,
         amount: numericAmount,
+        entry_date: entry_date?.toISOString() || null,
       },
       {
         onSuccess: () => {
@@ -103,95 +125,122 @@ const AddFinancialEntryScreen = ({
   };
 
   return (
-    <View className='flex-1 bg-white'>
-      <ScreenHeader
-        onBackPress={() => navigation?.popTo(Screens.FinancialEntries)}
-        title='Add financial entry'
-      />
+    <>
+      <View className='flex-1 bg-white'>
+        <ScreenHeader
+          onBackPress={() => navigation?.popTo(Screens.FinancialEntries)}
+          title='Add financial entry'
+        />
 
-      <View className='px-4'>
-        <View className='flex-row justify-between w-full mt-4 gap-4'>
-          <CheckableButton
-            label='Expense'
-            onPress={() =>
-              setFinancialEntry((prevState) => ({
-                ...prevState,
-                type: FinancialEntryTypeList.expense,
-              }))
-            }
-            isSelected={type === FinancialEntryTypeList.expense}
-          />
-          <CheckableButton
-            label='Income'
-            onPress={() =>
-              setFinancialEntry((prevState) => ({
-                ...prevState,
-                type: FinancialEntryTypeList.income,
-              }))
-            }
-            isSelected={type === FinancialEntryTypeList.income}
-          />
-        </View>
-
-        <View className='h-24 justify-center items-center'>
-          <View className='flex-row items-center'>
-            <TouchableOpacity
-              onPress={() =>
-                navigation?.navigate(Screens.CategoryFinancialEntries)
-              }
-              hitSlop={10}
-            >
-              {!category_name ? (
-                <Typography variant='h3'>Please select a category</Typography>
-              ) : (
-                <>
-                  <View className='flex-row items-center'>
-                    <CategoryIcon size={20} categoryName={category_name} />
-
-                    <Typography variant='h3' className='ml-2'>
-                      {`${category_name}${subcategory_name ? ` / ${subcategory_name}` : ''}`}
-                    </Typography>
-
-                    <Ionicons name='chevron-forward' size={20} />
-                  </View>
-                </>
-              )}
-            </TouchableOpacity>
+        <View className='px-4'>
+          <View className='flex-row justify-between w-full mt-4 gap-4 mb-4'>
+            <CheckableButton
+              label='Expense'
+              onPress={() => {
+                inputButtonRef.current?.blur();
+                setFinancialEntry((prevState) => ({
+                  ...prevState,
+                  type: FinancialEntryTypeList.expense,
+                }));
+              }}
+              isSelected={type === FinancialEntryTypeList.expense}
+            />
+            <CheckableButton
+              label='Income'
+              onPress={() => {
+                inputButtonRef.current?.blur();
+                setFinancialEntry((prevState) => ({
+                  ...prevState,
+                  type: FinancialEntryTypeList.income,
+                }));
+              }}
+              isSelected={type === FinancialEntryTypeList.income}
+            />
           </View>
+
+          <InputButton
+            label='Date'
+            value={
+              entry_date
+                ? format(entry_date, 'yyyy-MM-dd')
+                : format(created_at, 'yyyy-MM-dd')
+            }
+            onPress={openModal}
+            ref={inputButtonRef}
+          />
+
+          <View className='h-24 justify-center items-center'>
+            <View className='flex-row items-center'>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation?.navigate(Screens.CategoryFinancialEntries)
+                }
+                hitSlop={10}
+              >
+                {!category_name ? (
+                  <Typography variant='h3'>Please select a category</Typography>
+                ) : (
+                  <>
+                    <View className='flex-row items-center'>
+                      <CategoryIcon size={20} categoryName={category_name} />
+
+                      <Typography variant='h3' className='ml-2'>
+                        {`${category_name}${subcategory_name ? ` / ${subcategory_name}` : ''}`}
+                      </Typography>
+
+                      <Ionicons name='chevron-forward' size={20} />
+                    </View>
+                  </>
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <View className='justify-center items-center h-36'>
+            <Typography
+              variant='h1Regular'
+              className='items-center'
+              numberOfLines={1}
+              adjustsFontSizeToFit
+            >
+              {type === FinancialEntryTypeList.expense ? '-' : '+'}
+              {amount}
+              {/* TODO: set currency in the future */}
+              {' PLN'}
+            </Typography>
+          </View>
+
+          <Button
+            label={isEditting ? 'Save changes' : 'Add'}
+            onPress={onSubmit}
+            disabled={isPending || amount === '0'}
+          />
         </View>
 
-        <View className='justify-center items-center h-36'>
-          <Typography
-            variant='h1Regular'
-            className='items-center'
-            numberOfLines={1}
-            adjustsFontSizeToFit
-          >
-            {type === FinancialEntryTypeList.expense ? '-' : '+'}
-            {amount}
-            {/* TODO: set currency in the future */}
-            {' PLN'}
-          </Typography>
-        </View>
-
-        <Button
-          label={isEditting ? 'Save changes' : 'Add'}
-          onPress={onSubmit}
-          disabled={isPending || amount === '0'}
+        <NumberPad
+          value={amount}
+          onChange={(value) => {
+            setFinancialEntry((prevState) => ({
+              ...prevState,
+              amount: value,
+            }));
+          }}
+          className='flex-1'
         />
       </View>
 
-      <NumberPad
-        value={amount}
-        onChange={(value) => {
+      <DateTimePickerModal
+        visible={isDateTimePickerVisible}
+        onChange={(date) => {
           setFinancialEntry((prevState) => ({
             ...prevState,
-            amount: value,
+            entry_date: date,
           }));
         }}
-        className='flex-1'
+        onClose={closeDateTimePicker}
+        value={entry_date || created_at}
       />
-    </View>
+    </>
   );
 };
 

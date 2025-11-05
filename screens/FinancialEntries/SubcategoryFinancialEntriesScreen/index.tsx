@@ -34,7 +34,7 @@ const SubcategoryFinancialEntriesScreen = ({
               ...prevState,
               category_name: financialEntry.category_name,
             }));
-            navigation?.navigate(Screens.AddFinancialEntry, {});
+            navigation?.navigate(Screens.AddFinancialEntry);
           }}
         >
           <CategoryIcon categoryName={financialEntry.category_name} />
@@ -54,7 +54,7 @@ const SubcategoryFinancialEntriesScreen = ({
                   category_name: financialEntry.category_name,
                   subcategory_name: subcategory.name,
                 }));
-                navigation?.popTo(Screens.AddFinancialEntry, {});
+                navigation?.popTo(Screens.AddFinancialEntry);
               }}
             >
               <Text className='text-h4 font-interRegular'>
