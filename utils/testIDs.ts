@@ -21,4 +21,6 @@ export enum testIDs {
   modalBackdrop = 'modal-backdrop',
   monthlyChartTitle = 'monthly-chart-title',
   noMonthlySummaryChartDataAvailable = 'no-monthly-summary-chart-data-available',
+  inputButton = 'input-button',
+  dateTimePicker = 'date-time-picker',
 }

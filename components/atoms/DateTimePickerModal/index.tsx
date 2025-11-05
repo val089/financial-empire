@@ -5,6 +5,7 @@ import DateTimePicker, {
 } from '@react-native-community/datetimepicker';
 import Button from '../Button';
 import { DateTimePickerModalProps } from './types';
+import { testIDs } from 'utils/testIDs';
 
 const DateTimePickerModal = ({
   visible,
@@ -15,13 +16,13 @@ const DateTimePickerModal = ({
   <>
     {IS_ANDROID && visible && (
       <DateTimePicker
+        testID={testIDs.dateTimePicker}
         value={value}
         display='calendar'
         onChange={(event: DateTimePickerEvent, date) => {
-          if (date) {
-            onChange(date);
-            onClose();
-          }
+          if (!date) return;
+          onChange(date);
+          onClose();
         }}
       />
     )}
@@ -29,12 +30,12 @@ const DateTimePickerModal = ({
     {IS_IOS && (
       <MainModal isVisible={visible} onClose={onClose}>
         <DateTimePicker
+          testID={testIDs.dateTimePicker}
           value={value}
           display='spinner'
           onChange={(event: DateTimePickerEvent, date) => {
-            if (date) {
-              onChange(date);
-            }
+            if (!date) return;
+            onChange(date);
           }}
         />
 

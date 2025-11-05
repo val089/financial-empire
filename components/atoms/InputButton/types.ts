@@ -12,4 +12,5 @@ export interface InputButtonProps {
   label?: string;
   className?: string;
   ref?: RefObject<InputButtonHandle | null>;
+  errorMessage?: string;
 }
