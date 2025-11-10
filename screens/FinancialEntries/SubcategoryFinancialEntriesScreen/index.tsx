@@ -26,7 +26,7 @@ const SubcategoryFinancialEntriesScreen = ({
         onBackPress={() => navigation?.goBack()}
         title={financialEntry.category_name || ''}
       />
-      <ScreenContentWrapper className='p-0'>
+      <ScreenContentWrapper className='p-0' isScrollable>
         <TouchableOpacity
           className='flex-row my-5 items-center p-4 border-y border-gray-200'
           onPress={() => {
