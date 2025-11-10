@@ -1,6 +1,6 @@
 export const incomeSpacing = 3;
 export const expenseSpacing = 10;
-export const barWidth = 6;
+export const barWidth = 10;
 export const frontColorIncome = '#006DFF';
 export const frontColorExpense = '#3BE9DE';
 

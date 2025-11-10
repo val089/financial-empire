@@ -25,6 +25,12 @@ export const formatYLabel = (value: string): string => {
   return numValue.toString();
 };
 
+export const formatCurrency = (value: number): string =>
+  `${value.toLocaleString('pl-PL', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })} zł`;
+
 export const formatChartData = (
   data: MonthlyFinancialSummary[] | null | undefined
 ): barDataItem[] => {

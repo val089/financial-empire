@@ -19,7 +19,7 @@ const useDefaultToast = () => {
       type: 'success',
       text1: 'Success',
       text2: message,
-      position: 'top',
+      position: 'bottom',
     });
 
   const showInfoToast = (message: string) =>
@@ -27,7 +27,7 @@ const useDefaultToast = () => {
       type: 'info',
       text1: 'Info',
       text2: message,
-      position: 'top',
+      position: 'bottom',
     });
 
   return {

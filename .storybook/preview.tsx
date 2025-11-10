@@ -3,15 +3,22 @@ import { View, Appearance } from 'react-native';
 import { withBackgrounds } from '@storybook/addon-ondevice-backgrounds';
 import type { Preview } from '@storybook/react';
 import { NavigationContainer } from '@react-navigation/native';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { staleTime: Infinity, refetchOnMount: true } },
+});
 
 const preview: Preview = {
   decorators: [
     (Story) => (
-      <NavigationContainer>
-        <View style={{ padding: 8, flex: 1 }}>
-          <Story />
-        </View>
-      </NavigationContainer>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <View style={{ padding: 8, flex: 1 }}>
+            <Story />
+          </View>
+        </NavigationContainer>
+      </QueryClientProvider>
     ),
     withBackgrounds,
   ],
