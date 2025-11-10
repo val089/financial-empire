@@ -27,7 +27,7 @@ const MonthlyFinancialSummaryChart = ({
   const tooltipTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const chartData = useMemo(() => formatChartData(data), [data]);
-  const chartWidth = useMemo(() => Dimensions.get('window').width - 60, []);
+  const chartWidth = Dimensions.get('window').width - 60;
 
   useEffect(
     () => () => {
