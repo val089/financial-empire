@@ -19,10 +19,11 @@ const useFinancialEntries = <T = UseFinancialEntriesQueryResponse>(
       const to = from + ITEMS_PER_PAGE - 1;
 
       // Fetch financial entries from the 'financial-entries' table
-      // and order them by 'created_at' in descending order
+      // and order them by 'entry_date' (or 'created_at' if null) in descending order
       const { data, error } = await supabase
         .from('financial-entries')
         .select('*')
+        .order('entry_date', { ascending: false, nullsFirst: false })
         .order('created_at', { ascending: false })
         .range(from, to);
 

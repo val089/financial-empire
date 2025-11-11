@@ -92,3 +92,5 @@ yarn-error.*
 NOTES/
 android/keystore.properties
 android/app/release-key.keystore
+
+coverage/
